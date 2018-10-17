@@ -1,0 +1,50 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- floating button -->
+    <Button name="Noteworthy_FloatingButton" parent="UIParent" enableMouse="true" movable="true" inherits="ActionButtonTemplate" frameStrata="MEDIUM">
+        <Size>
+            <AbsDimension x="28" y="28"/>
+        </Size>
+
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+
+        <Frames>
+        </Frames>
+
+        <Scripts>
+            <OnLoad>
+                    self:RegisterForClicks("LeftButtonUp", "RightButtonDown")
+                    self:RegisterForDrag("LeftButton", "RightButton")
+                    Noteworthy_FloatingButtonIcon:SetTexture("Interface\\Icons\\INV_Misc_Book_08")
+                    self:SetClampedToScreen(1)
+            </OnLoad>
+            <OnClick>Noteworthy_ButtonClick(button)</OnClick>
+            <OnMouseUp>self:StopMovingOrSizing()</OnMouseUp>
+            <OnDragStart>self:StartMoving()</OnDragStart>
+            <OnDragStop>self:StopMovingOrSizing()</OnDragStop>
+            <OnEnter>Noteworthy_ButtonTooltip(self)</OnEnter>
+            <OnLeave>GameTooltip:Hide()</OnLeave>
+        </Scripts>
+
+        <NormalTexture name="$parentNormalTexture" file="Interface\Buttons\UI-Quickslot2">
+            <Size>
+                <AbsDimension x="40" y="40"/>
+            </Size>
+
+            <Anchors>
+                <Anchor point="CENTER">
+                    <Offset>
+                        <AbsDimension x="0" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </NormalTexture>
+    </Button>
+</Ui>

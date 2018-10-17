@@ -1,0 +1,186 @@
+<!--
+GhostLib V1.1
+
+Description: XML templates
+Author: Ghost Dancer
+Web: equilibrium.kudosgames.com
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!-- Editbox template - requires code in GhostLib.lua -->	
+<EditBox name="Ghost_EditBox" multiLine="true" enableMouse="true" autoFocus="false" virtual="true">
+	<Scripts>
+		<OnLoad>
+			WorldFrame:HookScript("OnMouseDown", function(self, button) Ghost_ClearFocus() end)
+			
+			self:HookScript("OnMouseDown", function(self, button)	-- hooked this to prevent interference with other OnMouseDown stuff
+				Ghost_MouseButton = button
+				if Ghost_MouseButton == "RightButton" then Ghost_Wait(0.1, Ghost_RestoreSelection) end
+			end)
+		</OnLoad>
+		<OnEditFocusGained>Ghost_CurrentEditBox = self</OnEditFocusGained>
+		<OnHide>Ghost_CurrentEditBox = nil</OnHide>
+		<OnCursorChanged>Ghost_EditBoxCursor(self, y, h)</OnCursorChanged>
+		<OnReceiveDrag>Ghost_EditBoxDrag()</OnReceiveDrag>
+		<OnEscapePressed>
+			self:ClearFocus()
+			CloseDropDownMenus()
+		</OnEscapePressed>
+	</Scripts>
+	
+	<FontString inherits="ChatFontNormal" />
+</EditBox>
+
+<!--
+Checkbox Template
+adds label & tooltip from "text" attribute (separated by "|")
+Prevents other OnLoad events working for anything that inherits this, so do any intitialisation via ADDON_LOADED event
+-->
+<CheckButton name="Ghost_CheckboxTemplate" inherits="UICheckButtonTemplate" virtual="true">
+	<Scripts>
+		<OnLoad>
+			local text = self:GetText()
+			local pos = string.find(text, "|")
+			
+			if pos ~= nil then
+				_G[self:GetName() .. "Label"] = strsub(text, 0, pos-1)
+				_G[self:GetName() .. "Tooltip"] = strsub(text, pos+1)
+			else
+				_G[self:GetName() .. "Label"] = text
+			end
+			
+			_G[self:GetName() .. "Text"]:SetText(_G[self:GetName() .. "Label"])
+			_G[self:GetName() .. "Text"]:SetTextColor(1, 1, 1)
+		</OnLoad>
+		<OnEnter>
+			if _G[self:GetName() .. "Tooltip"] ~= nil then
+				GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+				GameTooltip:SetText(_G[self:GetName() .. "Tooltip"], 1, 0.8, 0, 1, 1)
+			end
+		</OnEnter>
+		<OnLeave>GameTooltip:Hide()</OnLeave>
+	</Scripts>
+</CheckButton>
+
+
+<!-- Button template -->	
+<Button name="Ghost_ButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
+	<Size>
+		<AbsDimension x="100" y="22"/>
+	</Size>
+	
+	<NormalText inherits="GameFontNormal"/>
+	<DisabledText inherits="GameFontDisable"/>
+	<HighlightText inherits="GameFontNormal"/>
+</Button>
+
+
+<!-- Background panel template -->
+<Frame name="Ghost_PanelTemplate" virtual="true">
+	<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+		<BackgroundInsets>
+			<AbsInset left="5" right="5" top="5" bottom="5" />
+		</BackgroundInsets>
+		<TileSize>
+			<AbsValue val="16" />
+		</TileSize>
+		<EdgeSize>
+			<AbsValue val="16" />
+		</EdgeSize>
+	</Backdrop>
+</Frame>
+
+
+<!-- Label template -->	
+<Frame name="Ghost_LabelTemplate" virtual="true">
+	<Layers>
+		<Layer>
+			<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" justifyH="LEFT">
+				<Anchors>
+					<Anchor point="TOPLEFT" />
+					<Anchor point="BOTTOMRIGHT" />
+				</Anchors>
+				<FontHeight>
+					<AbsValue val="12" />
+				</FontHeight>
+				<Color r="1" g="0.8196079" b="0" />
+				<Shadow>
+					<Color r="0" g="0" b="0" />
+					<Offset>
+					  <AbsDimension x="1" y="-1" />
+					</Offset>
+				</Shadow>
+			</FontString>
+		</Layer>
+	</Layers>
+</Frame>
+
+
+<!-- Window template -->	
+<Frame name="Ghost_WindowTemplate" virtual="true" movable="true">
+	<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+		<BackgroundInsets>
+			<AbsInset left="11" right="12" top="12" bottom="11" />
+		</BackgroundInsets>
+		<TileSize>
+			<AbsValue val="32" />
+		</TileSize>
+		<EdgeSize>
+			<AbsValue val="32" />
+		</EdgeSize>
+	</Backdrop>
+	
+	<Layers>
+		<Layer>
+			<Texture name="$parentWindowBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
+				<Size>
+					<AbsDimension x="160" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
+			</Texture>
+			
+			<FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF">
+				<Size>
+					<AbsDimension x="140" y="0" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontHeight>
+					<AbsValue val="12" />
+				</FontHeight>
+				<Color r="1" g="0.8196079" b="0" />
+				<Shadow>
+					<Color r="0" g="0" b="0" />
+					<Offset>
+						<AbsDimension x="1" y="-1" />
+					</Offset>
+				</Shadow>
+			</FontString>
+		</Layer>
+	</Layers>
+
+	<Scripts>
+		<OnLoad>self:SetClampedToScreen(true)</OnLoad>	<!-- Needs to be last OnLoad event -->
+		
+		<OnMouseDown>self:StartMoving()</OnMouseDown>
+		<OnMouseUp>self:StopMovingOrSizing()</OnMouseUp>
+		<OnDragStop>self:StopMovingOrSizing()</OnDragStop>
+	</Scripts>
+</Frame>
+
+
+</Ui>
+

@@ -1,0 +1,5 @@
+luac.out
+*.src.rock
+*.zip
+*.tar.gz
+/.idea
