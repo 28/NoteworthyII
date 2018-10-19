@@ -1,8 +1,11 @@
 # Noteworthy (notes, notepad World of Warcraft addon)
 
-Current version:	 2.0-alpha	
+Current version:	 2.0-alpha
+
 Author:				 Ghost Dancer (aka ZathrasEU)
+
 Contributing author: 28 (aka Dabog)
+
 Web:				 https://github.com/28/Noteworthy
 
 ## Description
@@ -111,3 +114,43 @@ Overview of features:
     - Enabled: If notepad opened on quick notes tab, quick notes will be inserted at cursor position.
 	  Note that when added this way, you must manually Save any changes to the text.
     - Disabled: Quick notes will always be added at the top and will be automatically saved.
+
+NOTE: If you are updating to V1.1 (or higher) from an earlier version, please
+delete your old Noteworthy folder first (your settings and data will be unaffected).
+This is just to clear out some old files that are no longer being used.
+Or use the one of the scripts from the [tools](/tools).
+
+## Dependencies
+
+All dependency libs are packaged with Noteworthy.
+
+- GhostLib
+An utility library made by Ghost Dancer.
+- CallbackHandler
+CallbackHandler is a back-end utility library that makes it easy for a library
+to fire its events to interested parties.
+Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/callbackhandler).
+- LibDataBroker:
+LibDataBroker is a small WoW addon library designed to provide a MVC interface
+for use in various addons.
+Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
+- LibDBIcon:
+LibDBIcon is a small library you can throw in your LDB addon that will create
+a small minimap icon for you and nothing more.
+Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
+- LibStub:
+LibStub is a minimalistic versioning library that allows other libraries
+to easily register themselves and upgrade.
+Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/libstub).
+
+## Tools
+
+There are a couple of helpful things located in the [tools](/tools) directory.
+
+- local_deploy.ps1 - A script for Windows that moves all required Noteworthy files
+to the WoW installation directory. The install directory should be passed as a
+script parameter (enclosed in quotes).
+- package.ps1 - Packages the whole project to an archive. Name could be specified
+as a parameter.
+
+All scripts must be run from the *tools* directory.
