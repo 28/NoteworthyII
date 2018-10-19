@@ -124,21 +124,26 @@ Or use the one of the scripts from the [tools](/tools).
 
 All dependency libs are packaged with Noteworthy.
 
-- GhostLib
+- GhostLib:
+
 An utility library made by Ghost Dancer.
-- CallbackHandler
+- CallbackHandler:
+
 CallbackHandler is a back-end utility library that makes it easy for a library
 to fire its events to interested parties.
 Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/callbackhandler).
 - LibDataBroker:
+
 LibDataBroker is a small WoW addon library designed to provide a MVC interface
 for use in various addons.
 Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
 - LibDBIcon:
+
 LibDBIcon is a small library you can throw in your LDB addon that will create
 a small minimap icon for you and nothing more.
 Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
 - LibStub:
+
 LibStub is a minimalistic versioning library that allows other libraries
 to easily register themselves and upgrade.
 Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/libstub).
