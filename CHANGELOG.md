@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## Unreleased (2.0-alpha)
+- General
+  - Make interface work with BFA.
+  - Fix player location retrieval.
+  - Update all dependency libs.
 
 ## V1.1
 - Cursor & selection behavior:
