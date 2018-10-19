@@ -3,7 +3,7 @@
 --==============================================================
 
 -- constants
-local NOTEWORTHY_VERSION = 1100
+local NOTEWORTHY_VERSION = 2000
 local NOTEWORTHY_VTEXT = "2.0-alpha"
 
 local MAX_CHAT_LINES = 30
