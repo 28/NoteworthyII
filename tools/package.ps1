@@ -6,7 +6,6 @@ if(-Not ($args[0])) {
 }
 
 New-Variable -Name "source_dir" -Value (Resolve-Path '..\').Path -Scope Script -Option Constant
-$compression_level = [System.IO.Compression.CompressionLevel]::Optimal
 $out = Join-Path -Path (Resolve-Path '..\').Path -ChildPath $out_name
 
 Get-ChildItem $source_dir |
