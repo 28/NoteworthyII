@@ -5,23 +5,23 @@
 -- constants
 local NOTEWORTHY_VERSION = 2000
 local NOTEWORTHY_VTEXT = "2.0-alpha"
-
 local MAX_CHAT_LINES = 30
-BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
-
 local TAB_CHAR = 1
 local TAB_SHARED = 2
 local TAB_QUICK = 3
 local TAB_OPT = 4
+BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
 
 -- set saved variable to table to store all settings
 if not Noteworthy_DB then Noteworthy_DB = {} end
 
 -- session vars
 Noteworthy_character = "" -- selected character
+Noteworthy_Snd_Type_File = -10
+Noteworthy_Snd_Type_Kit = -20
 local Noteworthy_plrID = 0 -- player character ID
 local Noteworthy_current_tab = 1 -- ID of current tab
-local Noteworthy_textbox = nil -- current visible textbox (diff to Ghost_CurrentEditBox which is focussed box)
+local Noteworthy_textbox -- current visible textbox (diff to Ghost_CurrentEditBox which is focussed box)
 local Noteworthy_text = {} -- character notes text
 local Noteworthy_reminder = {} -- character reminder flags
 local Noteworthy_bufferTxt = {} -- text buffer for quick notes
@@ -31,6 +31,16 @@ local Noteworthy_bufferID = 1 -- current buffer entry
 ----------------------------------------------------------------
 -- Initialise code
 ----------------------------------------------------------------
+
+-- get Noteworthy charactger id
+function Noteworthy_GetPlrID()
+    for c = 1, Noteworthy_DB["character_count"], 1 do
+        if Noteworthy_DB["character_list"][c] == Noteworthy_character then return c end
+    end
+
+    return 0 -- return 0 if character not in table
+end
+
 -- variable initialisation
 function Noteworthy_Initialise()
     local startupMsg = "|cFFFF7D0ANoteworthy V" .. NOTEWORTHY_VTEXT .. " loaded.|r"
@@ -39,13 +49,14 @@ function Noteworthy_Initialise()
 
     --Noteworthy_DB["version"] = 1010		-- temporarily uncomment this line & change number to reset to previous version
     --Noteworthy_DB["initialised"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
-    --Noteworthy_DB = {}					-- temporarily uncomment this line to reset ALL saved data
+    Noteworthy_DB = {} -- temporarily uncomment this line to reset ALL saved data
 
     -- version check
     if Noteworthy_DB["initialised"] == nil then
         startupMsg = "|cFF00FF00Noteworthy V" .. NOTEWORTHY_VTEXT .. " installed.|r"
         Noteworthy_SetDefaults()
-    elseif Noteworthy_DB["version"] ~= NOTEWORTHY_VERSION then
+    end
+    if Noteworthy_DB["version"] ~= NOTEWORTHY_VERSION then
         startupMsg = "|cFF00FF00Noteworthy updated to V" .. NOTEWORTHY_VTEXT .. "|r"
         Noteworthy_SetDefaults()
     end
@@ -63,14 +74,6 @@ function Noteworthy_Initialise()
     if Noteworthy_DB["character_count"] == nil or Noteworthy_DB["character_list"] == nil then
         Noteworthy_DB["character_count"] = 0
         Noteworthy_DB["character_list"] = {}
-    end
-
-    function Noteworthy_GetPlrID()
-        for c = 1, Noteworthy_DB["character_count"], 1 do
-            if Noteworthy_DB["character_list"][c] == Noteworthy_character then return c end
-        end
-
-        return 0 -- return 0 if character not in table
     end
 
     -- check if character has been added to table
@@ -102,7 +105,7 @@ function Noteworthy_Initialise()
     Noteworthy_CreateDropDown()
 
     -- set initial tab etc.
-    if Noteworthy_DB["remember_page"] == 1 then
+    if Noteworthy_DB["remember_page"] then
         Noteworthy_SetTab(Noteworthy_DB["last_tab"])
 
         if Noteworthy_current_tab == TAB_CHAR then Noteworthy_ChangeCharacter(Noteworthy_DB["last_char"]) end
@@ -114,14 +117,13 @@ function Noteworthy_Initialise()
     end
 
     -- check for reminder
-    if Noteworthy_DB["Remind_" .. Noteworthy_character] == 1 then
+    if Noteworthy_DB["Remind_" .. Noteworthy_character] then
         Noteworthy_ReminderLabelText:SetText("You have a reminder set for " .. Noteworthy_character)
         Noteworthy_AlertWindow:Show()
     end
 
     print(startupMsg .. " Use buttons or /noteworthy to open.")
 end
-
 
 function Noteworthy_SetDefaults()
     -- V1.0 settings
@@ -130,40 +132,41 @@ function Noteworthy_SetDefaults()
         Noteworthy_DB["last_tab"] = 1
         Noteworthy_DB["last_curs"] = 1
 
-        Noteworthy_DB["remember_page"] = 0
-        Noteworthy_DB["focus_text"] = 1
-        Noteworthy_DB["combat_close"] = 1
-        Noteworthy_DB["save_on_close"] = 1
-        Noteworthy_DB["save_on_page_change"] = 0
-        Noteworthy_DB["play_sounds"] = 1
+        Noteworthy_DB["remember_page"] = false
+        Noteworthy_DB["focus_text"] = true
+        Noteworthy_DB["combat_close"] = true
+        Noteworthy_DB["save_on_close"] = true
+        Noteworthy_DB["save_on_page_change"] = false
+        Noteworthy_DB["play_sounds"] = true
 
         Noteworthy_DB["minimap_button"] = {}
-        Noteworthy_DB["show_floating_button"] = 0
-        Noteworthy_DB["qnote_prefix"] = 1
-        Noteworthy_DB["qnote_edit"] = 0
+        Noteworthy_DB["show_floating_button"] = false
+        Noteworthy_DB["qnote_prefix"] = true
+        Noteworthy_DB["qnote_edit"] = false
     end
 
-    if Noteworthy_DB["version"] == nil then Noteworthy_DB["version"] = 1010 end
-
     -- V1.1 settings
-    if Noteworthy_DB["version"] < 1100 then
-        Noteworthy_DB["chat_logging"] = 1
-        Noteworthy_DB["qnote_cursor"] = 1
+    if Noteworthy_DB["version"] < 2000 then
+        Noteworthy_DB["chat_logging"] = true
+        Noteworthy_DB["qnote_cursor"] = true
 
         Noteworthy_DB["date_only_format"] = "%d %b %Y"
         Noteworthy_DB["date_time_format"] = "%d %b %Y %H:%M"
         Noteworthy_DB["coord_format"] = "%.2f %.2f"
-        Noteworthy_DB["snd_scribble"] = "WriteQuest"
-        Noteworthy_DB["snd_pageturn"] = "igQuestListOpen"
-        Noteworthy_DB["snd_pageclose"] = "igQuestListClose"
+        Noteworthy_DB["snd_scribble"] = { type = Noteworthy_Snd_Type_File, snd = "Sound/Interface/WriteQuestC.ogg" }
+        Noteworthy_DB["snd_pageturn"] = { type = Noteworthy_Snd_Type_Kit, snd = SOUNDKIT.IG_QUEST_LIST_OPEN }
+        Noteworthy_DB["snd_pageclose"] = { type = Noteworthy_Snd_Type_Kit, snd = SOUNDKIT.IG_QUEST_LIST_CLOSE }
     end
 
-    Noteworthy_DB["initialised"] = 1
+    if Noteworthy_DB["version"] == nil then Noteworthy_DB["version"] = 2000 end
+
+    Noteworthy_DB["initialised"] = true
     Noteworthy_DB["version"] = NOTEWORTHY_VERSION
 end
 
+
 ----------------------------------------------------------------
--- core event functions
+-- Core event functions
 ----------------------------------------------------------------
 function Noteworthy_EventHandler(event)
     if (event == "VARIABLES_LOADED") then
@@ -171,7 +174,7 @@ function Noteworthy_EventHandler(event)
 
     elseif event == "PLAYER_REGEN_DISABLED" then
         -- entering combat
-        if Noteworthy_DB["combat_close"] == 1 then Noteworthy_AutoCloseSave(1) end
+        if Noteworthy_DB["combat_close"] then Noteworthy_AutoCloseSave(true) end
 
     elseif event == "PLAYER_LEAVING_WORLD" then
         -- logoff
@@ -179,7 +182,7 @@ function Noteworthy_EventHandler(event)
         Noteworthy_DB["last_char"] = UIDropDownMenu_GetSelectedID(Noteworthy_DropDown)
         Noteworthy_DB["last_curs"] = Ghost_CursorPos
 
-        Noteworthy_AutoCloseSave(0)
+        Noteworthy_AutoCloseSave(false)
     end
 end
 
@@ -187,8 +190,8 @@ function Noteworthy_SetTab(tab)
     CloseDropDownMenus()
     Noteworthy_current_tab = tab
 
-    if Noteworthy_DB["save_on_page_change"] == 1 and Noteworthy_MainWindow:IsVisible() then
-        Noteworthy_SaveGadgetInfo(0)
+    if Noteworthy_DB["save_on_page_change"] and Noteworthy_MainWindow:IsVisible() then
+        Noteworthy_SaveGadgetInfo(false)
     end
 
     PanelTemplates_SetTab(Noteworthy_MainWindow, Noteworthy_current_tab)
@@ -228,7 +231,7 @@ function Noteworthy_ChangeCharacter(newCharacterID)
     -- save current info
     Noteworthy_reminder[Noteworthy_character] = Noteworthy_ReminderCheckbox:GetChecked()
     Noteworthy_text[Noteworthy_character] = Noteworthy_TextAreaCEditBox:GetText()
-    if Noteworthy_DB["save_on_page_change"] == 1 then Noteworthy_SaveGadgetInfo(0) end
+    if Noteworthy_DB["save_on_page_change"] then Noteworthy_SaveGadgetInfo(false) end
 
     -- update menu and set new character
     UIDropDownMenu_SetSelectedID(Noteworthy_DropDown, newCharacterID)
@@ -244,7 +247,7 @@ function Noteworthy_ChangeCharacter(newCharacterID)
     end
 end
 
-function Noteworthy_ChatFilter(self, event, msg, author)
+function Noteworthy_ChatFilter(_, event, msg, author)
     -- allow all text through, storing it in buffer (up to MAX_CHAT_LINES)
     Noteworthy_bufferTxt[Noteworthy_bufferID] = "[" .. author .. "] " .. msg
     if event == "CHAT_MSG_BN_WHISPER_INFORM" or event == "CHAT_MSG_WHISPER_INFORM" then
@@ -259,7 +262,7 @@ end
 
 
 ----------------------------------------------------------------
--- button/menu triggered actions
+-- Button/menu triggered actions
 ----------------------------------------------------------------
 function Noteworthy_ButtonClick(button)
     if button == "LeftButton" then
@@ -271,7 +274,7 @@ end
 
 function Noteworthy_ToggleView()
     if Noteworthy_MainWindow:IsVisible() then
-        Noteworthy_AutoCloseSave(1)
+        Noteworthy_AutoCloseSave(true)
     elseif not Noteworthy_MainWindow:IsVisible() then
         Noteworthy_ShowNotepad()
     end
@@ -289,7 +292,7 @@ function Noteworthy_SaveChanges(playSoundFx)
     CloseDropDownMenus()
 
     if Noteworthy_MainWindow:IsVisible() then
-        playSoundFx = playSoundFx or 1 -- default value of 1
+        playSoundFx = playSoundFx or true -- default value of 1
 
         Noteworthy_SaveGadgetInfo(playSoundFx)
         Noteworthy_MainWindow:Hide()
@@ -307,7 +310,7 @@ function Noteworthy_CancelChanges()
 end
 
 function Noteworthy_AutoCloseSave(playSoundFx)
-    if Noteworthy_DB["save_on_close"] == 1 then
+    if Noteworthy_DB["save_on_close"] then
         Noteworthy_SaveChanges(playSoundFx)
     else
         Noteworthy_CancelChanges()
@@ -355,7 +358,7 @@ function Noteworthy_AddQuickNote(quicknote)
         Ghost_UndoEnabled = 0
 
         -- check for prefix
-        if Noteworthy_DB["qnote_prefix"] == 1 then
+        if Noteworthy_DB["qnote_prefix"] then
             quicknote = date(Noteworthy_DB["date_time_format"]) .. " (" .. UnitName("player") .. "): " .. "\n" .. quicknote .. "\n"
         end
 
@@ -363,7 +366,7 @@ function Noteworthy_AddQuickNote(quicknote)
         Noteworthy_DB["quick_text"] = Noteworthy_TextAreaQEditBox:GetText()
 
         -- add note to DB and textbox
-        if Noteworthy_DB["qnote_cursor"] == 1 and Noteworthy_MainWindow:IsVisible() and Noteworthy_current_tab == TAB_QUICK then
+        if Noteworthy_DB["qnote_cursor"] and Noteworthy_MainWindow:IsVisible() and Noteworthy_current_tab == TAB_QUICK then
             Noteworthy_TextAreaQEditBox:Insert(quicknote)
         else
             Noteworthy_DB["quick_text"] = quicknote .. "\n" .. Noteworthy_DB["quick_text"]
@@ -371,7 +374,7 @@ function Noteworthy_AddQuickNote(quicknote)
         end
 
         -- check for edit
-        if Noteworthy_DB["qnote_edit"] == 1 then
+        if Noteworthy_DB["qnote_edit"] then
             Noteworthy_QuickEdit()
         else
             print("Noteworthy quick note saved")
@@ -394,7 +397,7 @@ end
 
 
 ----------------------------------------------------------------
--- close/save/options functions
+-- Close/save/options functions
 ----------------------------------------------------------------
 function Noteworthy_ResetGadgetInfo()
     -- store working copy of character notes
@@ -458,7 +461,7 @@ function Noteworthy_SaveGadgetInfo(playSoundFx)
     end
 
     -- play sound
-    if playSoundFx == 1 then Noteworthy_PlaySound(Noteworthy_DB["snd_scribble"]) end
+    if playSoundFx then Noteworthy_PlaySound(Noteworthy_DB["snd_scribble"]) end
 end
 
 function Noteworthy_SaveOptionsInfo()
@@ -494,8 +497,9 @@ end
 
 
 ----------------------------------------------------------------
--- other event functions
+-- Other event functions
 ----------------------------------------------------------------
+
 -- set interface from options
 function Noteworthy_SetInterface(updateMinimap)
     -- minimap button (only show/hide if changed)
@@ -508,14 +512,14 @@ function Noteworthy_SetInterface(updateMinimap)
     end
 
     -- floating button
-    if Noteworthy_DB["show_floating_button"] == 1 then
+    if Noteworthy_DB["show_floating_button"] then
         Noteworthy_FloatingButton:Show()
     else
         Noteworthy_FloatingButton:Hide()
     end
 
     -- chat logging
-    if Noteworthy_DB["chat_logging"] == 1 then
+    if Noteworthy_DB["chat_logging"] then
         ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_CONVERSATION", Noteworthy_ChatFilter)
         ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER", Noteworthy_ChatFilter)
         ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", Noteworthy_ChatFilter)
@@ -563,7 +567,7 @@ end
 
 -- set focus to current text box if auto focus enabled
 function Noteworthy_SetTextFocus(pos)
-    if Noteworthy_DB["focus_text"] == 1 then
+    if Noteworthy_DB["focus_text"] then
         Noteworthy_SetFocus(pos)
     end
 end

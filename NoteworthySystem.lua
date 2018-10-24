@@ -6,8 +6,6 @@
 ----------------------------------------------------------------
 -- Slash commands
 ----------------------------------------------------------------
-
-
 SLASH_Noteworthy_1, SLASH_Noteworthy_2 = '/noteworthy', '/notes'
 SLASH_QuickNotes_1 = '/quicknotes'
 
@@ -66,7 +64,6 @@ function Noteworthy_EditContextMenu()
     -- create table
     local Noteworthy_EditMenu = {
         { text = "Edit Menu", isTitle = true, notCheckable = true },
-
         {
             text = "Insert Info",
             hasArrow = true,
@@ -79,7 +76,6 @@ function Noteworthy_EditContextMenu()
                 { text = "Date and Time", func = function() Noteworthy_InsertText(date(Noteworthy_DB["date_time_format"])) end, notCheckable = true }
             }
         },
-
         {
             text = "Insert Chat Log",
             hasArrow = true,
@@ -92,9 +88,7 @@ function Noteworthy_EditContextMenu()
                 { text = "Last 30 Entries", notCheckable = true, func = function() Noteworthy_InsertText(Noteworthy_GetChat(30)) end }
             }
         },
-
         { text = "------------------", nil, notCheckable = true, disabled = true },
-
         {
             text = "Text Colour",
             hasArrow = true,
@@ -113,7 +107,6 @@ function Noteworthy_EditContextMenu()
             }
         },
         { text = "Clear Formatting", func = function() Ghost_EditBoxClearEscapes() end, notCheckable = true },
-
         { text = "------------------", nil, notCheckable = true, disabled = true },
         { text = "Close Menu", nil, notCheckable = true },
     }
@@ -126,7 +119,6 @@ end
 ----------------------------------------------------------------
 -- Quick Notes context menu
 ----------------------------------------------------------------
-
 local Noteworthy_QuickMenuFrame = CreateFrame("Frame", "QuickNotesMenuFrame", UIParent, "UIDropDownMenuTemplate")
 
 function Noteworthy_QuickContextMenu()
@@ -153,11 +145,9 @@ function Noteworthy_QuickContextMenu()
                 { text = "Last 30 Entries", notCheckable = true, func = function() Noteworthy_AddQuickNote(Noteworthy_GetChat(30)) end }
             }
         },
-
         { text = "------------------", nil, notCheckable = true, disabled = true },
         { text = "Edit Quick Notes", func = function() Noteworthy_QuickEdit() end, notCheckable = true },
         { text = "Edit My Notes", func = function() Noteworthy_MyEdit() end, notCheckable = true },
-
         { text = "------------------", nil, notCheckable = true, disabled = true },
         { text = "Close Menu", nil, notCheckable = true }
     }
@@ -178,5 +168,11 @@ function Noteworthy_ButtonTooltip(button)
 end
 
 function Noteworthy_PlaySound(snd)
-    if Noteworthy_DB["play_sounds"] == 1 then PlaySound(snd, "SFX") end
+    if Noteworthy_DB["play_sounds"] then
+        if snd.type == Noteworthy_Snd_Type_File then
+            PlaySoundFile(snd.snd, "SFX")
+        else
+            PlaySound(snd.snd, "SFX")
+        end
+    end
 end
