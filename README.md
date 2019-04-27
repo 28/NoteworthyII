@@ -4,7 +4,7 @@ Current version:	 2.0-alpha
 
 Author:				 Ghost Dancer (aka ZathrasEU)
 
-Contributing author: 28 (aka Turuvid, Argent Dawn)
+Contributing author: Dejan Josifović (aka Turuvid, Argent Dawn)
 
 Web:				 https://github.com/28/Noteworthy
 
