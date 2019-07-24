@@ -1,9 +1,9 @@
-## Interface: 80000
+## Interface: 80200
 ## Title: Noteworthy
 ## Version: 2.0-alpha
 ## Notes: Fully featured and configurable notepad utility
 ## Author: Ghost Dancer (aka ZathrasEU)
-## X-Contributing-Author: 28 (aka Dabog)
+## X-Contributing-Author: 28 (aka Turuvid)
 ## URL: https://github.com/28/Noteworthy
 ## Dependencies:
 ## OptionalDeps:
