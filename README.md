@@ -150,9 +150,10 @@ Last updated on 24.07.2019. from [here](https://www.curseforge.com/wow/addons/li
 There are a couple of helpful things located in the [tools](/tools) directory.
 
 - local_deploy.ps1 - A script for Windows that moves all required Noteworthy files
-to the WoW installation directory. The install directory should be passed as a
-script parameter (enclosed in quotes).
-- package.ps1 - Packages the whole project to an archive. Name could be specified
+to the WoW installation directory. The root of install directory should be passed as a
+script parameter (enclosed in quotes) or the environment variable *WOWIL* can be set to
+the same value.
+- package.ps1 - Packages the whole project to an archive. Name of the archive can be specified
 as a parameter.
 
 All scripts must be run from the *tools* directory.
