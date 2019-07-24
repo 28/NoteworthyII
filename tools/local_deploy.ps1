@@ -2,7 +2,7 @@ if (-Not ($args[0])) {
     Write-Host "WoW installation location must be specified!"
     Exit
 }
-New-Variable -Name "noteworthy_path" -Value "Interface\AddOns\Noteworthy" -Option Constant -Scope Script
+New-Variable -Name "noteworthy_path" -Value "_retail_\Interface\AddOns\Noteworthy" -Option Constant -Scope Script
 New-Variable -Name "wow_path" -Value $args[0] -Option Constant -Scope Script
 New-Variable -Name "install_path" -Value "${wow_path}\${noteworthy_path}\"
 
