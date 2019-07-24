@@ -474,12 +474,12 @@ function Noteworthy_SaveOptionsInfo()
     Noteworthy_DB["chat_logging"] = Noteworthy_ChatLoggingCheckbox:GetChecked()
     --Noteworthy_DB["large_undo"] = Noteworthy_LargeUndoCheckbox:GetChecked()
 
-    local updateMinimap = 0
+    local updateMinimap = false
     local currentMinimap = not Noteworthy_MiniButtonCheckbox:GetChecked()
 
     if currentMinimap ~= Noteworthy_DB["minimap_button"].hide then
 	Noteworthy_DB["minimap_button"].hide = currentMinimap
-	updateMinimap = 1
+	updateMinimap = true
     end
 
     Noteworthy_DB["show_floating_button"] = Noteworthy_ShowIconCheckbox:GetChecked()
@@ -503,7 +503,7 @@ end
 -- set interface from options
 function Noteworthy_SetInterface(updateMinimap)
     -- minimap button (only show/hide if changed)
-    if updateMinimap == 1 then
+    if updateMinimap then
 	if Noteworthy_DB["minimap_button"].hide then
 	    ldbicon:Hide("Noteworthy")
 	else
