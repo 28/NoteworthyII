@@ -1,10 +1,13 @@
-# Changelog
+# Change log
 
 ## Unreleased (2.0-alpha)
 - General
   - Make interface work with BFA.
   - Fix player location retrieval.
   - Update all dependency libs.
+  - Add dev helper tools.
+  - Switch to using boolean values instead of 1/0.
+  - Make Noteworthy close on ESC.
 
 ## V1.1
 - Cursor & selection behavior:
@@ -24,7 +27,7 @@
   - New sub-menu: Text Colour (Set selected text to one of nine preset colours).
   - New option: Clear Formatting (Remove colours and hyperlinks. If no selection will apply to whole page).
 - Quick Notes
-  - Now inserted at the cursor position if notepad opened on quick notes page. Note that text added this way must be saved manually. 
+  - Now inserted at the cursor position if notepad opened on quick notes page. Note that text added this way must be saved manually.
   - New option on Settings tab to disable this new behavior.
 - New 'Chat logging' setting to disable chat filtering in case it causes performance issues for some users.
 - Changed position of link tooltip to keep it within window as much as possible.
