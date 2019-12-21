@@ -15,6 +15,14 @@
 	</Anchors>
 
 	<Frames>
+	    <Button name="$parent_Close" parentKey="close" inherits="UIPanelCloseButton">
+		<Anchors>
+		    <Anchor point="TOPRIGHT">
+			<Offset x="0" y="0"/>
+		    </Anchor>
+		</Anchors>
+	    </Button>
+
 	    <!-- Page label -->
 	    <Frame name="Noteworthy_PageLabel" inherits="Ghost_LabelTemplate">
 		<Size>
