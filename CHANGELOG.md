@@ -2,6 +2,7 @@
 
 ## Unreleased (2.0-alpha)
 - General
+  - Add exit button (X button) on top right.
   - Make interface work with BFA.
   - Fix player location retrieval.
   - Update all dependency libs.
