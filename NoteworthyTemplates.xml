@@ -80,5 +80,12 @@
                 </Scripts>
             </EditBox>
         </ScrollChild>
+
+        <Scripts>
+            <OnMouseDown>
+                print("TextArea OnMouseDown")
+                Noteworthy_SetTextFocus()
+            </OnMouseDown>
+        </Scripts>
     </ScrollFrame>
 </Ui>

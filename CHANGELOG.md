@@ -2,6 +2,7 @@
 
 ## Unreleased (2.0-alpha)
 - General
+  - Always set focus in edit box on click on text area.
   - Add exit button (X button) on top right.
   - Make interface work with BFA.
   - Fix player location retrieval.
