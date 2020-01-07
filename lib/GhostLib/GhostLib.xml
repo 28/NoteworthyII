@@ -170,11 +170,19 @@ Web: https://github.com/28/Noteworthy
         </Layers>
 
         <Scripts>
-            <OnLoad>self:SetClampedToScreen(true)</OnLoad><!-- Needs to be last OnLoad event -->
-
-            <OnMouseDown>self:StartMoving()</OnMouseDown>
-            <OnMouseUp>self:StopMovingOrSizing()</OnMouseUp>
-            <OnDragStop>self:StopMovingOrSizing()</OnDragStop>
+            <OnLoad>
+                <!-- needs to be last OnLoad event -->
+                self:SetClampedToScreen(true)
+            </OnLoad>
+			<OnMouseDown>
+                <!-- leave empty so that event doesn't propagate to world frame -->
+            </OnMouseDown>
+			<OnMouseUp>
+                <!-- leave empty so that event doesn't propagate to world frame -->
+            </OnMouseUp>
+			<OnDragStop>
+                <!-- leave empty so that event doesn't propagate to world frame -->
+            </OnDragStop>
         </Scripts>
     </Frame>
 </Ui>

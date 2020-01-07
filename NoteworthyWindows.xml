@@ -15,13 +15,37 @@
 	</Anchors>
 
 	<Frames>
-	    <Button name="$parent_Close" parentKey="close" inherits="UIPanelCloseButton">
+	    <Button name="$parentCloseButton" parentKey="close" inherits="UIPanelCloseButton">
 		<Anchors>
 		    <Anchor point="TOPRIGHT">
 			<Offset x="0" y="0"/>
 		    </Anchor>
 		</Anchors>
 	    </Button>
+
+        <!-- custom TitleRegion used for main window dragging -->
+		<Frame name="$parentMoveLabel">
+			<Size>
+				<AbsDimension x="140" y="20"/>
+			</Size>
+
+			<Anchors>
+				<Anchor point="TOP">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+
+			<Scripts>
+				<OnMouseDown>
+                    Noteworthy_MainWindow:StartMoving()
+                </OnMouseDown>
+				<OnMouseUp>
+                    Noteworthy_MainWindow:StopMovingOrSizing()
+                </OnMouseUp>
+			</Scripts>
+		</Frame>
 
 	    <!-- Page label -->
 	    <Frame name="Noteworthy_PageLabel" inherits="Ghost_LabelTemplate">
@@ -422,12 +446,18 @@
 		tinsert(UISpecialFrames, self:GetName());
 	    </OnLoad>
 
-	    <OnReceiveDrag>Ghost_EditBoxDrag()</OnReceiveDrag>
-	    <OnEvent>Noteworthy_EventHandler(event)</OnEvent>
-	    <OnShow>Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])</OnShow>
+	    <OnReceiveDrag>
+            Ghost_EditBoxDrag()
+        </OnReceiveDrag>
+	    <OnEvent>
+            Noteworthy_EventHandler(event)
+        </OnEvent>
+	    <OnShow>
+            Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
+        </OnShow>
 	    <OnHide>
-		Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
-		CloseDropDownMenus()
+            Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
+		    CloseDropDownMenus()
 	    </OnHide>
 	</Scripts>
     </Frame>
