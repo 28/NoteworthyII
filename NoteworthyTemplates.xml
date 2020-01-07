@@ -83,7 +83,7 @@
 
         <Scripts>
             <OnMouseDown>
-                Noteworthy_SetTextFocus()
+                Noteworthy_SetFocus()
             </OnMouseDown>
         </Scripts>
     </ScrollFrame>
