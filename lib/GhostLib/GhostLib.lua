@@ -9,9 +9,8 @@
 ----------------------------------------------------------------
 -- misc functions
 ----------------------------------------------------------------
-
 local waitTable = {};
-local waitFrame ;
+local waitFrame;
 
 function Ghost_Wait(delay, func, ...)
     if (type(delay) ~= "number" or type(func) ~= "function") then
@@ -135,7 +134,6 @@ function Ghost_EditBoxCursor(self, y, cursorHeight)
             if y > offset then scroller:SetVerticalScroll(y) end
         end
 
-
         -----------------------------------------
         -- check for link
         -----------------------------------------
@@ -186,20 +184,6 @@ end
 
 function Ghost_RestoreSelection()
     -- call with small delay if using pop-up menu as it can interfere with the selection being shown
-    if Ghost_CurrentEditBox then
-        Ghost_CurrentEditBox:SetCursorPosition(Ghost_CursorPos)
-
-        if not Ghost_SelectionStart and not Ghost_SelectionEnd then
-            -- force 'selection' to cursor pos if vars are nil
-            Ghost_SelectionStart = Ghost_CursorPos
-            Ghost_SelectionEnd = Ghost_CursorPos
-        end
-
-        Ghost_CurrentEditBox:HighlightText(Ghost_SelectionStart, Ghost_SelectionEnd)
-    end
-end
-
-function Ghost_RestoreSelection()
     if Ghost_CurrentEditBox then
         Ghost_CurrentEditBox:SetCursorPosition(Ghost_CursorPos)
 
