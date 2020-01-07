@@ -13,12 +13,14 @@ Web: https://github.com/28/Noteworthy
     <EditBox name="Ghost_EditBox" multiLine="true" enableMouse="true" autoFocus="false" virtual="true">
         <Scripts>
             <OnLoad>
-                    WorldFrame:HookScript("OnMouseDown", function(self, button) Ghost_ClearFocus() end)
+                WorldFrame:HookScript("OnMouseDown", function(self, button) Ghost_ClearFocus() end)
 
-                    self:HookScript("OnMouseDown", function(self, button) -- hooked this to prevent interference with other OnMouseDown stuff
-                        Ghost_MouseButton = button
-                        if Ghost_MouseButton == "RightButton" then Ghost_Wait(0.1, Ghost_RestoreSelection) end
-                    end)
+                self:HookScript("OnMouseDown", function(self, button) -- hooked this to prevent interference with other OnMouseDown stuff
+                    Ghost_MouseButton = button
+                    if Ghost_MouseButton == "RightButton" then
+                        Ghost_Wait(0.1, Ghost_RestoreSelection)
+                    end
+                end)
             </OnLoad>
             <OnEditFocusGained>Ghost_CurrentEditBox = self</OnEditFocusGained>
             <OnHide>Ghost_CurrentEditBox = nil</OnHide>
@@ -41,24 +43,24 @@ Web: https://github.com/28/Noteworthy
     <CheckButton name="Ghost_CheckboxTemplate" inherits="UICheckButtonTemplate" virtual="true">
         <Scripts>
             <OnLoad>
-                    local text = self:GetText()
-                    local pos = string.find(text, "|")
+                local text = self:GetText()
+                local pos = string.find(text, "|")
 
-                    if pos ~= nil then
-                        _G[self:GetName() .. "Label"] = strsub(text, 0, pos - 1)
-                        _G[self:GetName() .. "Tooltip"] = strsub(text, pos + 1)
-                    else
-                        _G[self:GetName() .. "Label"] = text
-                    end
+                if pos ~= nil then
+                    _G[self:GetName() .. "Label"] = strsub(text, 0, pos - 1)
+                    _G[self:GetName() .. "Tooltip"] = strsub(text, pos + 1)
+                else
+                    _G[self:GetName() .. "Label"] = text
+                end
 
-                    _G[self:GetName() .. "Text"]:SetText(_G[self:GetName() .. "Label"])
-                    _G[self:GetName() .. "Text"]:SetTextColor(1, 1, 1)
+                _G[self:GetName() .. "Text"]:SetText(_G[self:GetName() .. "Label"])
+                _G[self:GetName() .. "Text"]:SetTextColor(1, 1, 1)
             </OnLoad>
             <OnEnter>
-                    if _G[self:GetName() .. "Tooltip"] ~= nil then
-                        GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
-                        GameTooltip:SetText(_G[self:GetName() .. "Tooltip"], 1, 0.8, 0, 1, 1)
-                    end
+                if _G[self:GetName() .. "Tooltip"] ~= nil then
+                    GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+                    GameTooltip:SetText(_G[self:GetName() .. "Tooltip"], 1, 0.8, 0, 1, 1)
+                end
             </OnEnter>
             <OnLeave>GameTooltip:Hide()</OnLeave>
         </Scripts>
@@ -77,7 +79,8 @@ Web: https://github.com/28/Noteworthy
 
     <!-- Background panel template -->
     <Frame name="Ghost_PanelTemplate" virtual="true">
-        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border"
+                  tile="true">
             <BackgroundInsets>
                 <AbsInset left="5" right="5" top="5" bottom="5"/>
             </BackgroundInsets>
@@ -116,7 +119,8 @@ Web: https://github.com/28/Noteworthy
 
     <!-- Window template -->
     <Frame name="Ghost_WindowTemplate" virtual="true" movable="true">
-        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                  edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
             <BackgroundInsets>
                 <AbsInset left="11" right="12" top="12" bottom="11"/>
             </BackgroundInsets>
@@ -174,13 +178,13 @@ Web: https://github.com/28/Noteworthy
                 <!-- needs to be last OnLoad event -->
                 self:SetClampedToScreen(true)
             </OnLoad>
-			<OnMouseDown>
+            <OnMouseDown>
                 <!-- leave empty so that event doesn't propagate to world frame -->
             </OnMouseDown>
-			<OnMouseUp>
+            <OnMouseUp>
                 <!-- leave empty so that event doesn't propagate to world frame -->
             </OnMouseUp>
-			<OnDragStop>
+            <OnDragStop>
                 <!-- leave empty so that event doesn't propagate to world frame -->
             </OnDragStop>
         </Scripts>

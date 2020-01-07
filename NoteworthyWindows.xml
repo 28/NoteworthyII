@@ -2,534 +2,567 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <Frame name="Noteworthy_MainWindow" hidden="true" inherits="Ghost_WindowTemplate">
-	<Size>
-	    <AbsDimension x="400" y="425"/>
-	</Size>
+        <Size>
+            <AbsDimension x="400" y="425"/>
+        </Size>
 
-	<Anchors>
-	    <Anchor point="CENTER" relativeTo="UIParent">
-		<Offset>
-		    <AbsDimension x="0" y="0"/>
-		</Offset>
-	    </Anchor>
-	</Anchors>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="UIParent">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
 
-	<Frames>
-	    <Button name="$parentCloseButton" parentKey="close" inherits="UIPanelCloseButton">
-		<Anchors>
-		    <Anchor point="TOPRIGHT">
-			<Offset x="0" y="0"/>
-		    </Anchor>
-		</Anchors>
-	    </Button>
+        <Frames>
+            <Button name="$parentCloseButton" parentKey="close" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="0" y="0"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
 
-        <!-- custom TitleRegion used for main window dragging -->
-		<Frame name="$parentMoveLabel">
-			<Size>
-				<AbsDimension x="140" y="20"/>
-			</Size>
+            <!-- custom TitleRegion used for main window dragging -->
+            <Frame name="$parentMoveLabel">
+                <Size>
+                    <AbsDimension x="140" y="20"/>
+                </Size>
 
-			<Anchors>
-				<Anchor point="TOP">
-					<Offset>
-						<AbsDimension x="0" y="0"/>
-					</Offset>
-				</Anchor>
-			</Anchors>
+                <Anchors>
+                    <Anchor point="TOP">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
 
-			<Scripts>
-				<OnMouseDown>
-                    Noteworthy_MainWindow:StartMoving()
-                </OnMouseDown>
-				<OnMouseUp>
-                    Noteworthy_MainWindow:StopMovingOrSizing()
-                </OnMouseUp>
-			</Scripts>
-		</Frame>
+                <Scripts>
+                    <OnMouseDown>
+                        Noteworthy_MainWindow:StartMoving()
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        Noteworthy_MainWindow:StopMovingOrSizing()
+                    </OnMouseUp>
+                </Scripts>
+            </Frame>
 
-	    <!-- Page label -->
-	    <Frame name="Noteworthy_PageLabel" inherits="Ghost_LabelTemplate">
-		<Size>
-		    <AbsDimension x="163" y="22"/>
-		</Size>
+            <!-- Page label -->
+            <Frame name="Noteworthy_PageLabel" inherits="Ghost_LabelTemplate">
+                <Size>
+                    <AbsDimension x="163" y="22"/>
+                </Size>
 
-		<Anchors>
-		    <Anchor point="TOPLEFT">
-			<Offset>
-			    <AbsDimension x="23" y="-35"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="23" y="-35"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
 
-		<Layers>
-		    <Layer>
-			<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" justifyH="LEFT">
-			    <Anchors>
-				<Anchor point="TOPLEFT"/>
-				<Anchor point="BOTTOMRIGHT"/>
-			    </Anchors>
-			    <FontHeight>
-				<AbsValue val="12"/>
-			    </FontHeight>
-			    <Color r="1" g="0.8196079" b="0"/>
-			    <Shadow>
-				<Color r="0" g="0" b="0"/>
-				<Offset>
-				    <AbsDimension x="1" y="-1"/>
-				</Offset>
-			    </Shadow>
-			</FontString>
-		    </Layer>
-		</Layers>
-	    </Frame>
+                <Layers>
+                    <Layer>
+                        <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT"/>
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="12"/>
+                            </FontHeight>
+                            <Color r="1" g="0.8196079" b="0"/>
+                            <Shadow>
+                                <Color r="0" g="0" b="0"/>
+                                <Offset>
+                                    <AbsDimension x="1" y="-1"/>
+                                </Offset>
+                            </Shadow>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
 
-	    <!-- Character Frame -->
-	    <Frame name="Noteworthy_PanelChar" inherits="Noteworthy_PanelTemplate" hidden="true">
-		<Frames>
-		    <!-- Drop Down Menu -->
-		    <Frame name="Noteworthy_DropDown" inherits="UIDropDownMenuTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageLabel" relativePoint="TOPLEFT">
-				<Offset>
-				    <AbsDimension x="20" y="2"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
-		    </Frame>
+            <!-- Character Frame -->
+            <Frame name="Noteworthy_PanelChar" inherits="Noteworthy_PanelTemplate" hidden="true">
+                <Frames>
+                    <!-- Drop Down Menu -->
+                    <Frame name="Noteworthy_DropDown" inherits="UIDropDownMenuTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageLabel" relativePoint="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="20" y="2"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </Frame>
 
-		    <!-- Reminder Checkbox -->
-		    <CheckButton name="Noteworthy_ReminderCheckbox" text="Reminder" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageLabel" relativePoint="TOPLEFT">
-				<Offset>
-				    <AbsDimension x="160" y="3"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Reminder Checkbox -->
+                    <CheckButton name="Noteworthy_ReminderCheckbox" text="Reminder" inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageLabel" relativePoint="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="160" y="3"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Text Area -->
-		    <ScrollFrame name="Noteworthy_TextAreaC" inherits="Noteworthy_TextAreaTemplate"/>
-		</Frames>
-	    </Frame>
+                    <!-- Text Area -->
+                    <ScrollFrame name="Noteworthy_TextAreaC" inherits="Noteworthy_TextAreaTemplate"/>
+                </Frames>
+            </Frame>
 
-	    <!-- Shared Frame -->
-	    <Frame name="Noteworthy_PanelShared" inherits="Noteworthy_PanelTemplate" hidden="true">
-		<Frames>
-		    <ScrollFrame name="Noteworthy_TextAreaS" inherits="Noteworthy_TextAreaTemplate"/>
-		</Frames>
-	    </Frame>
+            <!-- Shared Frame -->
+            <Frame name="Noteworthy_PanelShared" inherits="Noteworthy_PanelTemplate" hidden="true">
+                <Frames>
+                    <ScrollFrame name="Noteworthy_TextAreaS" inherits="Noteworthy_TextAreaTemplate"/>
+                </Frames>
+            </Frame>
 
-	    <!-- Quick Frame -->
-	    <Frame name="Noteworthy_PanelQuick" inherits="Noteworthy_PanelTemplate" hidden="true">
-		<Frames>
-		    <ScrollFrame name="Noteworthy_TextAreaQ" inherits="Noteworthy_TextAreaTemplate"/>
-		</Frames>
-	    </Frame>
+            <!-- Quick Frame -->
+            <Frame name="Noteworthy_PanelQuick" inherits="Noteworthy_PanelTemplate" hidden="true">
+                <Frames>
+                    <ScrollFrame name="Noteworthy_TextAreaQ" inherits="Noteworthy_TextAreaTemplate"/>
+                </Frames>
+            </Frame>
 
-	    <!-- Options Frame -->
-	    <Frame name="Noteworthy_PanelOpt" inherits="Noteworthy_PanelTemplate" hidden="true">
-		<Frames>
-		    <!-- Apply Button -->
-		    <Button name="$parentButton0" text="Apply" inherits="Ghost_ButtonTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageLabel" relativePoint="TOPLEFT">
-				<Offset>
-				    <AbsDimension x="256" y="0"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
+            <!-- Options Frame -->
+            <Frame name="Noteworthy_PanelOpt" inherits="Noteworthy_PanelTemplate" hidden="true">
+                <Frames>
+                    <!-- Apply Button -->
+                    <Button name="$parentButton0" text="Apply" inherits="Ghost_ButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageLabel" relativePoint="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="256" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
 
-			<Scripts>
-			    <OnClick>Noteworthy_ApplyOptions()</OnClick>
-			</Scripts>
-		    </Button>
+                        <Scripts>
+                            <OnClick>Noteworthy_ApplyOptions()</OnClick>
+                        </Scripts>
+                    </Button>
 
-		    <!-- General Options label -->
-		    <Frame name="Noteworthy_GeneralLabel">
-			<Size>
-			    <AbsDimension x="140" y="22"/>
-			</Size>
+                    <!-- General Options label -->
+                    <Frame name="Noteworthy_GeneralLabel">
+                        <Size>
+                            <AbsDimension x="140" y="22"/>
+                        </Size>
 
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PanelOpt" relativePoint="TOPLEFT">
-				<Offset>
-				    <AbsDimension x="6" y="-4"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_PanelOpt" relativePoint="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="6" y="-4"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
 
-			<Layers>
-			    <Layer level="ARTWORK">
-				<FontString name="$parentText" text=" General" justifyH="LEFT" justifyV="TOP" inherits="GameFontNormal"/>
-			    </Layer>
-			</Layers>
-		    </Frame>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentText" text=" General" justifyH="LEFT" justifyV="TOP"
+                                            inherits="GameFontNormal"/>
+                            </Layer>
+                        </Layers>
+                    </Frame>
 
-		    <!-- Remember Page Checkbox -->
-		    <CheckButton name="Noteworthy_RememberPageCheckbox" text="Remember last session|Remember page and cursor between sessions" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_GeneralLabel" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Remember Page Checkbox -->
+                    <CheckButton name="Noteworthy_RememberPageCheckbox"
+                                 text="Remember last session|Remember page and cursor between sessions"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_GeneralLabel" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Focus Checkbox -->
-		    <CheckButton name="Noteworthy_FocusCheckbox" text="Auto focus|Focus text area when opening note tabs" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_RememberPageCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Focus Checkbox -->
+                    <CheckButton name="Noteworthy_FocusCheckbox"
+                                 text="Auto focus|Focus text area when opening note tabs"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_RememberPageCheckbox"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Combat Close Checkbox -->
-		    <CheckButton name="Noteworthy_CombatCloseCheckbox" text="Close on combat|Close window when entering combat" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_FocusCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Combat Close Checkbox -->
+                    <CheckButton name="Noteworthy_CombatCloseCheckbox"
+                                 text="Close on combat|Close window when entering combat"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_FocusCheckbox" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Close Save Checkbox -->
-		    <CheckButton name="Noteworthy_CloseSaveCheckbox" text="Save on auto close|Save changes when closed by toggle, logoff and combat" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_CombatCloseCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Close Save Checkbox -->
+                    <CheckButton name="Noteworthy_CloseSaveCheckbox"
+                                 text="Save on auto close|Save changes when closed by toggle, logoff and combat"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_CombatCloseCheckbox"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Tab Save Checkbox -->
-		    <CheckButton name="Noteworthy_PageSaveCheckbox" text="Save on page change|Save changes when changing page" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_CloseSaveCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Tab Save Checkbox -->
+                    <CheckButton name="Noteworthy_PageSaveCheckbox"
+                                 text="Save on page change|Save changes when changing page"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_CloseSaveCheckbox"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Sound Checkbox -->
-		    <CheckButton name="Noteworthy_SoundCheckbox" text="Sound effects|Play sound effects when changing pages and saving" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageSaveCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Sound Checkbox -->
+                    <CheckButton name="Noteworthy_SoundCheckbox"
+                                 text="Sound effects|Play sound effects when changing pages and saving"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageSaveCheckbox"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Performance label -->
-		    <Frame name="Noteworthy_PerformanceLabel">
-			<Size>
-			    <AbsDimension x="140" y="22"/>
-			</Size>
+                    <!-- Performance label -->
+                    <Frame name="Noteworthy_PerformanceLabel">
+                        <Size>
+                            <AbsDimension x="140" y="22"/>
+                        </Size>
 
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_SoundCheckbox" relativePoint="BOTTOMLEFT">
-				<Offset>
-				    <AbsDimension x="0" y="-10"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_SoundCheckbox" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-10"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
 
-			<Layers>
-			    <Layer level="ARTWORK">
-				<FontString name="$parentText" text=" Performance" justifyH="LEFT" justifyV="TOP" inherits="GameFontNormal"/>
-			    </Layer>
-			</Layers>
-		    </Frame>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentText" text=" Performance" justifyH="LEFT" justifyV="TOP"
+                                            inherits="GameFontNormal"/>
+                            </Layer>
+                        </Layers>
+                    </Frame>
 
-		    <!-- Chat Logging Checkbox -->
-		    <CheckButton name="Noteworthy_ChatLoggingCheckbox" text="Chat logging|Disabling will prevent chat log copying but MIGHT improve performance" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PerformanceLabel" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Chat Logging Checkbox -->
+                    <CheckButton name="Noteworthy_ChatLoggingCheckbox"
+                                 text="Chat logging|Disabling will prevent chat log copying but MIGHT improve performance"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_PerformanceLabel"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Buttons label -->
-		    <Frame name="Noteworthy_ButtonsLabel">
-			<Size>
-			    <AbsDimension x="140" y="22"/>
-			</Size>
+                    <!-- Buttons label -->
+                    <Frame name="Noteworthy_ButtonsLabel">
+                        <Size>
+                            <AbsDimension x="140" y="22"/>
+                        </Size>
 
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_GeneralLabel" relativePoint="TOPLEFT">
-				<Offset>
-				    <AbsDimension x="180" y="0"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_GeneralLabel" relativePoint="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="180" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
 
-			<Layers>
-			    <Layer level="ARTWORK">
-				<FontString name="$parentText" text=" Buttons" justifyH="LEFT" justifyV="TOP" inherits="GameFontNormal"/>
-			    </Layer>
-			</Layers>
-		    </Frame>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentText" text=" Buttons" justifyH="LEFT" justifyV="TOP"
+                                            inherits="GameFontNormal"/>
+                            </Layer>
+                        </Layers>
+                    </Frame>
 
-		    <!-- Minimap Checkbox -->
-		    <CheckButton name="Noteworthy_MiniButtonCheckbox" text="Minimap button|Show minimap toggle button" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_ButtonsLabel" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Minimap Checkbox -->
+                    <CheckButton name="Noteworthy_MiniButtonCheckbox" text="Minimap button|Show minimap toggle button"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_ButtonsLabel" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Show Icon Checkbox -->
-		    <CheckButton name="Noteworthy_ShowIconCheckbox" text="Floating button|Show floating toggle button" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_MiniButtonCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- Show Icon Checkbox -->
+                    <CheckButton name="Noteworthy_ShowIconCheckbox" text="Floating button|Show floating toggle button"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_MiniButtonCheckbox"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Macro Button -->
-		    <Button name="Noteworthy_MacroButton" text="Create Macros" inherits="Ghost_ButtonTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_ShowIconCheckbox" relativePoint="BOTTOMLEFT">
-				<Offset>
-				    <AbsDimension x="0" y="-4"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
+                    <!-- Macro Button -->
+                    <Button name="Noteworthy_MacroButton" text="Create Macros" inherits="Ghost_ButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_ShowIconCheckbox" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-4"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
 
-			<Scripts>
-			    <OnClick>Noteworthy_CreateMacros()</OnClick>
-			</Scripts>
-		    </Button>
+                        <Scripts>
+                            <OnClick>Noteworthy_CreateMacros()</OnClick>
+                        </Scripts>
+                    </Button>
 
-		    <!-- Quick Notes label -->
-		    <Frame name="Noteworthy_QNotesLabel">
-			<Size>
-			    <AbsDimension x="140" y="22"/>
-			</Size>
+                    <!-- Quick Notes label -->
+                    <Frame name="Noteworthy_QNotesLabel">
+                        <Size>
+                            <AbsDimension x="140" y="22"/>
+                        </Size>
 
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_MacroButton" relativePoint="BOTTOMLEFT">
-				<Offset>
-				    <AbsDimension x="0" y="-16"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_MacroButton" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-16"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
 
-			<Layers>
-			    <Layer level="ARTWORK">
-				<FontString name="$parentText" text=" Quick Notes" justifyH="LEFT" justifyV="TOP" inherits="GameFontNormal"/>
-			    </Layer>
-			</Layers>
-		    </Frame>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentText" text=" Quick Notes" justifyH="LEFT" justifyV="TOP"
+                                            inherits="GameFontNormal"/>
+                            </Layer>
+                        </Layers>
+                    </Frame>
 
-		    <!-- QNote Prefix Checkbox -->
-		    <CheckButton name="Noteworthy_QNotePrefixCheckbox" text="Add prefix|Add date and character info line before each quick note" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNotesLabel" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- QNote Prefix Checkbox -->
+                    <CheckButton name="Noteworthy_QNotePrefixCheckbox"
+                                 text="Add prefix|Add date and character info line before each quick note"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNotesLabel" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- QNote Edit Checkbox -->
-		    <CheckButton name="Noteworthy_QNoteEditCheckbox" text="Auto edit|Edit quick note after it is saved to notepad" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNotePrefixCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- QNote Edit Checkbox -->
+                    <CheckButton name="Noteworthy_QNoteEditCheckbox"
+                                 text="Auto edit|Edit quick note after it is saved to notepad"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNotePrefixCheckbox"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- QNote Cursor Checkbox -->
-		    <CheckButton name="Noteworthy_QNoteCursorCheckbox" text="Add at cursor|Insert quick note at cursor if notepad opened on that page (must save changes manually)" inherits="Ghost_CheckboxTemplate">
-			<Anchors>
-			    <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNoteEditCheckbox" relativePoint="BOTTOMLEFT"/>
-			</Anchors>
-		    </CheckButton>
+                    <!-- QNote Cursor Checkbox -->
+                    <CheckButton name="Noteworthy_QNoteCursorCheckbox"
+                                 text="Add at cursor|Insert quick note at cursor if notepad opened on that page (must save changes manually)"
+                                 inherits="Ghost_CheckboxTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNoteEditCheckbox"
+                                    relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </CheckButton>
 
-		    <!-- Version label -->
-		    <Frame name="Noteworthy_VersionLabel">
-			<Size>
-			    <AbsDimension x="50" y="22"/>
-			</Size>
+                    <!-- Version label -->
+                    <Frame name="Noteworthy_VersionLabel">
+                        <Size>
+                            <AbsDimension x="50" y="22"/>
+                        </Size>
 
-			<Anchors>
-			    <Anchor point="BOTTOMRIGHT" relativeTo="Noteworthy_PanelOpt" relativePoint="BOTTOMRIGHT">
-				<Offset>
-				    <AbsDimension x="4" y="4"/>
-				</Offset>
-			    </Anchor>
-			</Anchors>
+                        <Anchors>
+                            <Anchor point="BOTTOMRIGHT" relativeTo="Noteworthy_PanelOpt" relativePoint="BOTTOMRIGHT">
+                                <Offset>
+                                    <AbsDimension x="4" y="4"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
 
-			<Layers>
-			    <Layer level="ARTWORK">
-				<FontString name="$parentText" text="" justifyH="LEFT" justifyV="TOP" inherits="GameFontNormal"/>
-			    </Layer>
-			</Layers>
-		    </Frame>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentText" text="" justifyH="LEFT" justifyV="TOP"
+                                            inherits="GameFontNormal"/>
+                            </Layer>
+                        </Layers>
+                    </Frame>
 
-		</Frames>
-	    </Frame>
+                </Frames>
+            </Frame>
 
-	    <!-- Save Button -->
-	    <Button name="$parentButton1" text="Save" inherits="Ghost_ButtonTemplate">
-		<Anchors>
-		    <Anchor point="BOTTOMLEFT" relativeTo="Noteworthy_MainWindow" relativePoint="BOTTOMLEFT">
-			<Offset>
-			    <AbsDimension x="20" y="16"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
+            <!-- Save Button -->
+            <Button name="$parentButton1" text="Save" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeTo="Noteworthy_MainWindow" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="20" y="16"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
 
-		<Scripts>
-		    <OnClick>Noteworthy_SaveChanges()</OnClick>
-		</Scripts>
-	    </Button>
+                <Scripts>
+                    <OnClick>Noteworthy_SaveChanges()</OnClick>
+                </Scripts>
+            </Button>
 
-	    <!-- Cancel Button -->
-	    <Button name="$parentButton2" text="Cancel" inherits="Ghost_ButtonTemplate">
-		<Anchors>
-		    <Anchor point="BOTTOMRIGHT" relativeTo="Noteworthy_MainWindow" relativePoint="BOTTOMRIGHT">
-			<Offset>
-			    <AbsDimension x="-20" y="16"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
+            <!-- Cancel Button -->
+            <Button name="$parentButton2" text="Cancel" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="Noteworthy_MainWindow" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-20" y="16"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
 
-		<Scripts>
-		    <OnClick>Noteworthy_CancelChanges()</OnClick>
-		</Scripts>
-	    </Button>
+                <Scripts>
+                    <OnClick>Noteworthy_CancelChanges()</OnClick>
+                </Scripts>
+            </Button>
 
-	    <!-- Tab 1 -->
-	    <Button name="$parentTab1" inherits="Noteworthy_TabTemplate" id="1" text="Character Notes">
-		<Anchors>
-		    <Anchor point="LEFT" relativePoint="BOTTOMLEFT">
-			<Offset>
-			    <AbsDimension x="8" y="-10"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
-	    </Button>
+            <!-- Tab 1 -->
+            <Button name="$parentTab1" inherits="Noteworthy_TabTemplate" id="1" text="Character Notes">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="8" y="-10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
 
-	    <!-- Tab 2 -->
-	    <Button name="$parentTab2" inherits="Noteworthy_TabTemplate" id="2" text="Shared Notes">
-		<Anchors>
-		    <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
-			<Offset>
-			    <AbsDimension x="-10" y="0"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
-	    </Button>
+            <!-- Tab 2 -->
+            <Button name="$parentTab2" inherits="Noteworthy_TabTemplate" id="2" text="Shared Notes">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
 
-	    <!-- Tab 3 -->
-	    <Button name="$parentTab3" inherits="Noteworthy_TabTemplate" id="3" text="Quick Notes">
-		<Anchors>
-		    <Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT">
-			<Offset>
-			    <AbsDimension x="-10" y="0"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
-	    </Button>
+            <!-- Tab 3 -->
+            <Button name="$parentTab3" inherits="Noteworthy_TabTemplate" id="3" text="Quick Notes">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
 
-	    <!-- Tab 4 -->
-	    <Button name="$parentTab4" inherits="Noteworthy_TabTemplate" id="4" text="Settings">
-		<Anchors>
-		    <Anchor point="LEFT" relativeTo="$parentTab3" relativePoint="RIGHT">
-			<Offset>
-			    <AbsDimension x="-10" y="0"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
-	    </Button>
+            <!-- Tab 4 -->
+            <Button name="$parentTab4" inherits="Noteworthy_TabTemplate" id="4" text="Settings">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab3" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
 
-	</Frames>
+        </Frames>
 
-	<Scripts>
-	    <OnLoad>
-		self:RegisterEvent("VARIABLES_LOADED")
-		self:RegisterEvent("ADDON_LOADED")
-		self:RegisterEvent("PLAYER_REGEN_DISABLED")
-		self:RegisterEvent("PLAYER_LEAVING_WORLD")
-		self:RegisterForDrag("LeftButton")
+        <Scripts>
+            <OnLoad>
+                self:RegisterEvent("VARIABLES_LOADED")
+                self:RegisterEvent("ADDON_LOADED")
+                self:RegisterEvent("PLAYER_REGEN_DISABLED")
+                self:RegisterEvent("PLAYER_LEAVING_WORLD")
+                self:RegisterForDrag("LeftButton")
 
-		self.elapsed = 0
-		PanelTemplates_SetNumTabs(Noteworthy_MainWindow, 4)
+                self.elapsed = 0
+                PanelTemplates_SetNumTabs(Noteworthy_MainWindow, 4)
 
-		Noteworthy_MainWindowTitle:SetText("Noteworthy")
-		self:SetClampedToScreen(true)
+                Noteworthy_MainWindowTitle:SetText("Noteworthy")
+                self:SetClampedToScreen(true)
 
-		<!-- Make frame closeable on ESC -->
-		tinsert(UISpecialFrames, self:GetName());
-	    </OnLoad>
+                <!-- Make frame closeable on ESC -->
+                tinsert(UISpecialFrames, self:GetName());
+            </OnLoad>
 
-	    <OnReceiveDrag>
-            Ghost_EditBoxDrag()
-        </OnReceiveDrag>
-	    <OnEvent>
-            Noteworthy_EventHandler(event)
-        </OnEvent>
-	    <OnShow>
-            Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
-        </OnShow>
-	    <OnHide>
-            Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
-		    CloseDropDownMenus()
-	    </OnHide>
-	</Scripts>
+            <OnReceiveDrag>
+                Ghost_EditBoxDrag()
+            </OnReceiveDrag>
+            <OnEvent>
+                Noteworthy_EventHandler(event)
+            </OnEvent>
+            <OnShow>
+                Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
+            </OnShow>
+            <OnHide>
+                Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
+                CloseDropDownMenus()
+            </OnHide>
+        </Scripts>
     </Frame>
 
 
     <Frame name="Noteworthy_AlertWindow" hidden="true" inherits="Ghost_WindowTemplate">
-	<Size>
-	    <AbsDimension x="330" y="100"/>
-	</Size>
+        <Size>
+            <AbsDimension x="330" y="100"/>
+        </Size>
 
-	<Anchors>
-	    <Anchor point="CENTER" relativeTo="UIParent">
-		<Offset>
-		    <AbsDimension x="0" y="0"/>
-		</Offset>
-	    </Anchor>
-	</Anchors>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="UIParent">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
 
-	<Frames>
-	    <!-- Reminder Label -->
-	    <Frame name="Noteworthy_ReminderLabel" inherits="Ghost_LabelTemplate">
-		<Size>
-		    <AbsDimension x="280" y="22"/>
-		</Size>
+        <Frames>
+            <!-- Reminder Label -->
+            <Frame name="Noteworthy_ReminderLabel" inherits="Ghost_LabelTemplate">
+                <Size>
+                    <AbsDimension x="280" y="22"/>
+                </Size>
 
-		<Anchors>
-		    <Anchor point="CENTER" relativeTo="Noteworthy_AlertWindow">
-			<Offset>
-			    <AbsDimension x="0" y="10"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
-	    </Frame>
+                <Anchors>
+                    <Anchor point="CENTER" relativeTo="Noteworthy_AlertWindow">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
 
+            <!-- Open Notes Button -->
+            <Button name="$parentButton1" text="Open Notes" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeTo="Noteworthy_AlertWindow" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="20" y="16"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
 
-	    <!-- Open Notes Button -->
-	    <Button name="$parentButton1" text="Open Notes" inherits="Ghost_ButtonTemplate">
-		<Anchors>
-		    <Anchor point="BOTTOMLEFT" relativeTo="Noteworthy_AlertWindow" relativePoint="BOTTOMLEFT">
-			<Offset>
-			    <AbsDimension x="20" y="16"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
+                <Scripts>
+                    <OnClick>Noteworthy_ShowNotepad()</OnClick>
+                </Scripts>
+            </Button>
 
-		<Scripts>
-		    <OnClick>Noteworthy_ShowNotepad()</OnClick>
-		</Scripts>
-	    </Button>
+            <!-- Remind Again Button -->
+            <Button name="$parentButton2" text="Remind Again" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="Noteworthy_AlertWindow" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-20" y="16"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
 
-	    <!-- Remind Again Button -->
-	    <Button name="$parentButton2" text="Remind Again" inherits="Ghost_ButtonTemplate">
-		<Anchors>
-		    <Anchor point="BOTTOMRIGHT" relativeTo="Noteworthy_AlertWindow" relativePoint="BOTTOMRIGHT">
-			<Offset>
-			    <AbsDimension x="-20" y="16"/>
-			</Offset>
-		    </Anchor>
-		</Anchors>
+                <Scripts>
+                    <OnClick>Noteworthy_AlertWindow:Hide()</OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
 
-		<Scripts>
-		    <OnClick>Noteworthy_AlertWindow:Hide()</OnClick>
-		</Scripts>
-	    </Button>
-
-	</Frames>
-
-	<Scripts>
-	    <OnLoad>
-		Noteworthy_AlertWindowTitle:SetText("Noteworthy")
-		self:SetClampedToScreen(true)
-	    </OnLoad>
-	</Scripts>
+        <Scripts>
+            <OnLoad>
+                Noteworthy_AlertWindowTitle:SetText("Noteworthy")
+                self:SetClampedToScreen(true)
+            </OnLoad>
+        </Scripts>
     </Frame>
 </Ui>
