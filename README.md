@@ -7,17 +7,23 @@ Web:                    https://github.com/28/Noteworthy
 
 ## Description
 
-Noteworthy is a feature rich, configurable notepad with full LDB support.
+Noteworthy is a feature rich, configurable notepad with full LDB
+support.
 
 Overview of features:
-- Separate notes page for each character plus a Shared and Quick Notes page (see below).
+- Separate notes page for each character plus a Shared and Quick Notes
+page (see below).
 - All notes pages are accessible by all characters.
-- Drag & drop items, spells and macros, creating linkable tooltips (if applicable).
-- Insert game info, including character location, target name and chat logs via pop-up Edit menu.
+- Drag & drop items, spells and macros, creating linkable tooltips
+(if applicable).
+- Insert game info, including character location, target name and chat
+logs via pop-up Edit menu.
 - Change colour of selected text via pop-up Edit menu.
-- Quick Notes pop-up menu adds location, target name and chat logs, even when notepad is closed.
+- Quick Notes pop-up menu adds location, target name and chat logs,
+even when notepad is closed.
 - Reminder system can show alerts for each character.
-- Notepad window toggled via minimap/floating button, slash commands, macro or as LDB plug-in.
+- Notepad window toggled via minimap/floating button, slash commands,
+macro or as LDB plug-in.
 - Notepad behavior controlled via comprehensive settings.
 - Full LDB support.
 
@@ -37,8 +43,8 @@ Overview of features:
 	- Insert Info -> Date: Inserts current date.
 	- Insert Info -> Date and time: Inserts current date and time.
 	- Insert Chat Log: Inserts a specified number of entries from the chat log (from all major player initiated channels).
-	- Text Colour: Set selected text to one of preset colours.
-	- Clear Formatting: Remove colours and hyperlinks. If no selection will apply to whole page.
+	- Text Colour: Set selected text to one of preset colors.
+	- Clear Formatting: Remove colors and hyperlinks. If no selection will apply to whole page.
 	- Close Menu: Close the pop-up menu.
   - The Save button saves all notes and settings, and then closes the window.
   - The Cancel button closes the window, losing all changes since opening it
@@ -112,48 +118,95 @@ Overview of features:
 	  Note that when added this way, you must manually Save any changes to the text.
 	- Disabled: Quick notes will always be added at the top and will be automatically saved.
 
+## Installation
+
+1. Download the Noteworthy release zip archive (download source pending);
+2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
+
 NOTE: If you are updating to V1.1 (or higher) from an earlier version, please
 delete your old Noteworthy folder first (your settings and data will be unaffected).
 This is just to clear out some old files that are no longer being used.
-Or use the one of the scripts from the [tools](/tools).
 
-## Dependencies
+If you are interested in local installation for development purposes,
+read the next section.
 
-All dependency libs are packaged with Noteworthy.
+## Development
 
-- GhostLib:
+TBD
 
-An utility library made by Ghost Dancer.
-- CallbackHandler:
+### Change log
 
-CallbackHandler is a back-end utility library that makes it easy for a library
-to fire its events to interested parties.
-Last updated on 24.07.2019. from [here](https://www.curseforge.com/wow/addons/callbackhandler).
-- LibDataBroker:
+See the change log file [here](/doc/CHANGELOG.md).
 
-LibDataBroker is a small WoW addon library designed to provide a MVC interface
-for use in various addons.
-Last updated on 09.10.2018. from [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
-- LibDBIcon:
+### Dependencies
 
-LibDBIcon is a small library you can throw in your LDB addon that will create
-a small minimap icon for you and nothing more.
-Last updated on 24.07.2019. from [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
-- LibStub:
+Dependency management and updating is done manually. All libraries are
+packaged with Noteworthy.
 
-LibStub is a minimalistic versioning library that allows other libraries
-to easily register themselves and upgrade.
-Last updated on 24.07.2019. from [here](https://www.curseforge.com/wow/addons/libstub).
+1. GhostLib  
+An utility library made by Ghost Dancer. Developed with Noteworthy.  
+Located [here](/lib/GhostLib).
 
-## Tools
+2. CallbackHandler  
+CallbackHandler is a back-end utility library that makes it easy for
+a library to fire its events to interested parties.  
+Last updated on 24.07.2019.  
+Located [here](https://www.curseforge.com/wow/addons/callbackhandler).
+
+3. LibDataBroker  
+LibDataBroker is a small WoW addon library designed to provide a MVC
+interface for use in various addons.  
+Last updated on 09.10.2018.  
+Located [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
+
+4. LibDBIcon  
+LibDBIcon is a small library you can throw in your LDB addon that will
+create a small minimap icon for you and nothing more.  
+Last updated on 24.07.2019.  
+Located [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
+
+5. LibStub  
+LibStub is a minimalist versioning library that allows other
+libraries to easily register themselves and upgrade.  
+Last updated on 24.07.2019.  
+Located [here](https://www.curseforge.com/wow/addons/libstub).
+
+### Tools
 
 There are a couple of helpful things located in the [tools](/tools) directory.
 
-- local_deploy.ps1 - A script for Windows that moves all required Noteworthy files
-to the WoW installation directory. The root of install directory should be passed as a
-script parameter (enclosed in quotes) or the environment variable *WOWIL* can be set to
-the same value.
-- package.ps1 - Packages the whole project to an archive. Name of the archive can be specified
-as a parameter.
+- local_deploy.ps1 - A script that copies all required Noteworthy files
+to the WoW installation directory. The root of install directory can be
+passed as a script parameter (enclosed in quotes) otherwise the
+environment variable *WOWIL* will be used. The variable value should
+also be the root of WoW installation directory. The script performs a
+clean copy as in it deletes the contents of the destination directory
+first.
+
+``` powershell
+# in tools directory
+> .\local_deploy.ps1 "C:\Games\Wow"
+Successfully installed Noteworthy to C:\Games\Wow\_retail_\Interface\AddOns\Noteworthy.
+
+# or with environment variable
+> $env:WOWIL = "C:\Games\Wow"
+> .\local_deploy.ps1
+Successfully installed Noteworthy to C:\Games\Wow\_retail_\Interface\AddOns\Noteworthy.
+```
+
+- package.ps1 - Packages the whole project to an archive. Accepts
+version parameter that will be appended to the archive name. If no
+parameter is passed current timestamp will be appended. Archive
+contains a folder called *Noteworthy* with addon files only.
+
+``` powershell
+# in tools directory
+> .\package.ps1
+Created archive 'C:\dev\Noteworthy-2.0\Noteworthy_10012020151502.zip'.
+
+# with version
+> .\package.ps1 "2.0-alpha"
+Created archive 'C:\dev\Noteworthy-2.0\Noteworthy-v2.0-alpha.zip'.
+```
 
 All scripts must be run from the *tools* directory.

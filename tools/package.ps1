@@ -1,13 +1,24 @@
 if(-Not ($args[0])) {
-    $date = (Get-Date).ToString("ddMMyyy")
-    $out_name = "noteworthy_$date.zip"
+    $date = (Get-Date).ToString("ddMMyyyHHmmss")
+    $out_name = "Noteworthy_$date.zip"
 } else {
-    $out_name = $args[0]
+    $ver = $args[0]
+    $out_name = "Noteworthy-v$ver.zip"
 }
 
 New-Variable -Name "source_dir" -Value (Resolve-Path '..\').Path -Scope Script -Option Constant
 $out = Join-Path -Path (Resolve-Path '..\').Path -ChildPath $out_name
 
-Get-ChildItem $source_dir |
-    Where {$_.Name -notmatch "\.zip" -and $_ -notmatch "^\."} |
-        Compress-Archive -DestinationPath $out -Update
+$temp_dir = New-Item -Path ".\" -Name "Noteworthy" -ItemType Directory
+
+Get-ChildItem $source_dir -Recurse |
+    Where-Object {$_.FullName -notmatch "\.md|\.zip|tools|doc|\.gitignore"} |
+	ForEach-Object {
+	    Copy-Item $_.FullName -Destination ($temp_dir.FullName + $_.FullName.Substring($source_dir.Length)) -Force
+	}
+
+Compress-Archive $temp_dir -DestinationPath $out
+
+Remove-Item $temp_dir -Recurse -Force
+
+Write-Host "Created archive '$out'."
