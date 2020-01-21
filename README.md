@@ -154,7 +154,7 @@ Noteworthy project file structure:
 +- lib
    +- GhostLib
       |- GhostLib.xml ---> Reusable XML templates
-	  |- GhostLib.lua ---> Code for text editing
+      |- GhostLib.lua ---> Code for text editing
 ```
 
 Noteworthy XML structure leverages heavily on inheritance, and
@@ -162,7 +162,7 @@ components are located in multiple files. Here is a diagram of
 inheritance trying to explain which component is in which file and 
 which component inherits which.
 
-![Noteworthy XML inheritance](/doc/noteworthy-xml-inheritance.png)
+![Noteworthy XML inheritance](/doc/noteworthy-xml-inheritance.png "Noteworthy XML inheritance")
 
 ### Change log
 
