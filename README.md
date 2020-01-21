@@ -1,7 +1,7 @@
 # Noteworthy (notes, notepad World of Warcraft addon)
 
 Current version:        2.0-alpha  
-Author:                 Ghost Dancer (aka ZathrasEU)  
+Original author:        Ghost Dancer (aka ZathrasEU)  
 Contributing author:    Dejan Josifović (aka Turuvid, Argent Dawn)  
 Web:                    https://github.com/28/Noteworthy  
 
@@ -26,6 +26,10 @@ even when notepad is closed.
 macro or as LDB plug-in.
 - Notepad behavior controlled via comprehensive settings.
 - Full LDB support.
+
+This is a continuation of development of the original Noteworthy, which
+can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
+The original author approved it.
 
 ## Instructions & notes
 
@@ -132,7 +136,33 @@ read the next section.
 
 ## Development
 
-TBD
+Noteworthy development is meant to go in cycles. Code is developed in a
+separate directory and when needed it is 'deployed' in WoW, tested then
+repeat. All scripts packed in the project exist to support this
+philosophy.
+
+Noteworthy project file structure:
+```
++- .
+|- Noteworthy.toc ---> The TOC file
+|- NoteworthyBroker.lua ---> Contains LDB code for Noteworthy
+|- NoteworthyButton.xml ---> Code for the floating button
+|- NoteworthyMain.lua ---> Main library code
+|- NoteworthySystem.lua ---> Code for menus, commands and misc
+|- NoteworthyTemplates.xml ---> Noteworthy specific reusable XML templates
+|- NoteworthyWindows.xml ---> Noteworthy main XML file (main and alert windows)
++- lib
+   +- GhostLib
+      |- GhostLib.xml ---> Reusable XML templates
+	  |- GhostLib.lua ---> Code for text editing
+```
+
+Noteworthy XML structure leverages heavily on inheritance, and
+components are located in multiple files. Here is a diagram of
+inheritance trying to explain which component is in which file and 
+which component inherits which.
+
+![Noteworthy XML inheritance](/doc/noteworthy-xml-inheritance.png)
 
 ### Change log
 
@@ -210,3 +240,8 @@ Created archive 'C:\dev\Noteworthy-2.0\Noteworthy-v2.0-alpha.zip'.
 ```
 
 All scripts must be run from the *tools* directory.
+
+## License
+
+GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007.
+See [license](/LICENSE.txt).
