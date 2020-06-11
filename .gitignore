@@ -3,3 +3,4 @@ luac.out
 *.zip
 *.tar.gz
 /.idea
+/Interface
