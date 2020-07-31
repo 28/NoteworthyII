@@ -37,11 +37,11 @@ The original author approved it.
   left-click minimap/floating button, Broker plugin, '/noteworthy' or via a macro.
 - All windows and buttons are draggable.
 - General EditBox features:
-  - Each notes page can store up to 5000 letters.
+  - Each note page can store up to 5000 letters.
   - Spells, inventory items and merchant items can be dragged onto the notes window to insert a link.
-  - Click links to view it's tooltip.
+  - Click links to view their tooltip.
   - Right click in editbox for the pop-up Edit menu:
-	- Insert Info -> Current Location: Inserts current zone and coordinates in Tom Tom format.
+	- Insert Info -> Current Location: Inserts the current zone and coordinates in Tom Tom format.
 	- Insert Info -> Character Name: Inserts current character name.
 	- Insert Info -> Target Name: Inserts name of current target.
 	- Insert Info -> Date: Inserts current date.
@@ -53,7 +53,7 @@ The original author approved it.
   - The Save button saves all notes and settings, and then closes the window.
   - The Cancel button closes the window, losing all changes since opening it
 	(see also 'Save on auto close' checkbox below)
-  - Press Esc or click outside notepad window to remove focus from notepad (e.g. to type in chat) and close pop-up menus.
+  - Press Esc or click outside notepad window to remove focus from the notepad (e.g. to type in the chat) and close pop-up menus.
 - Character Notes tab:
   - This tab is for storing notes specific to each of your characters.
   - It defaults to the current logged on character and can be changed via the drop down menu.
@@ -70,7 +70,7 @@ The original author approved it.
   - Quick notes are added to top of page unless notepad opened on this page, in which case the text is inserted at the cursor.
   - Quick notes options can be found on the Settings tab.
   - Quick Notes menu
-	- Location: Saves current zone and coordinates in Tom Tom format.
+	- Location: Saves the current zone and coordinates in Tom Tom format.
 	- Target Name: Saves name of current target.
 	- Chat Log: Saves a specified number of entries from the chat log (from all major player initiated channels).
 	- Edit Quick Notes: Opens notepad window on Quick Notes tab.
@@ -226,7 +226,7 @@ Successfully installed Noteworthy to C:\Games\Wow\_retail_\Interface\AddOns\Note
 
 - package.ps1 - Packages the whole project to an archive. Accepts
 version parameter that will be appended to the archive name. If no
-parameter is passed current timestamp will be appended. Archive
+parameter is passed the current timestamp will be appended. Archive
 contains a folder called *Noteworthy* with addon files only.
 
 ``` powershell

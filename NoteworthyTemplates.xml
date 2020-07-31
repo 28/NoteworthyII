@@ -1,5 +1,11 @@
+<!--
+    NoteworthyTemplates.xml
+
+    A collection of UI templates that are reused in Noteworthy code.
+-->
 <Ui xmlns="http://www.blizzard.com/wow/ui"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui ./Interface/FrameXML/UI.xsd">
 
     <!-- Background panel template -->
     <Frame name="Noteworthy_PanelTemplate" inherits="Ghost_PanelTemplate" virtual="true">
@@ -83,7 +89,7 @@
 
         <Scripts>
             <OnMouseDown>
-                Noteworthy_SetFocus()
+                    Noteworthy_SetFocus()
             </OnMouseDown>
         </Scripts>
     </ScrollFrame>

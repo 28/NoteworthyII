@@ -1,5 +1,11 @@
+<!--
+    NoteworthyWindows.xml
+
+    Noteworthy add-on main windows: note/main and alert window.
+-->
 <Ui xmlns="http://www.blizzard.com/wow/ui"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui ./Interface/FrameXML/UI.xsd">
 
     <Frame name="Noteworthy_MainWindow" hidden="true" inherits="Ghost_WindowTemplate">
         <Size>
@@ -15,6 +21,7 @@
         </Anchors>
 
         <Frames>
+            <!-- Close (X) button -->
             <Button name="$parentCloseButton" parentKey="close" inherits="UIPanelCloseButton">
                 <Anchors>
                     <Anchor point="TOPRIGHT">
@@ -23,7 +30,7 @@
                 </Anchors>
             </Button>
 
-            <!-- custom TitleRegion used for main window dragging -->
+            <!-- Custom TitleRegion used for main window dragging -->
             <Frame name="$parentMoveLabel">
                 <Size>
                     <AbsDimension x="140" y="20"/>
@@ -39,10 +46,10 @@
 
                 <Scripts>
                     <OnMouseDown>
-                        Noteworthy_MainWindow:StartMoving()
+                            Noteworthy_MainWindow:StartMoving()
                     </OnMouseDown>
                     <OnMouseUp>
-                        Noteworthy_MainWindow:StopMovingOrSizing()
+                            Noteworthy_MainWindow:StopMovingOrSizing()
                     </OnMouseUp>
                 </Scripts>
             </Frame>
@@ -465,34 +472,34 @@
 
         <Scripts>
             <OnLoad>
-                self:RegisterEvent("VARIABLES_LOADED")
-                self:RegisterEvent("ADDON_LOADED")
-                self:RegisterEvent("PLAYER_REGEN_DISABLED")
-                self:RegisterEvent("PLAYER_LEAVING_WORLD")
-                self:RegisterForDrag("LeftButton")
+                    self:RegisterEvent("VARIABLES_LOADED")
+                    self:RegisterEvent("ADDON_LOADED")
+                    self:RegisterEvent("PLAYER_REGEN_DISABLED")
+                    self:RegisterEvent("PLAYER_LEAVING_WORLD")
+                    self:RegisterForDrag("LeftButton")
 
-                self.elapsed = 0
-                PanelTemplates_SetNumTabs(Noteworthy_MainWindow, 4)
+                    self.elapsed = 0
+                    PanelTemplates_SetNumTabs(Noteworthy_MainWindow, 4)
 
-                Noteworthy_MainWindowTitle:SetText("Noteworthy")
-                self:SetClampedToScreen(true)
+                    Noteworthy_MainWindowTitle:SetText("Noteworthy")
+                    self:SetClampedToScreen(true)
 
                 <!-- Make frame closeable on ESC -->
-                tinsert(UISpecialFrames, self:GetName());
+                    tinsert(UISpecialFrames, self:GetName());
             </OnLoad>
 
             <OnReceiveDrag>
-                Ghost_EditBoxDrag()
+                    Ghost_EditBoxDrag()
             </OnReceiveDrag>
             <OnEvent>
-                Noteworthy_EventHandler(event)
+                    Noteworthy_EventHandler(event)
             </OnEvent>
             <OnShow>
-                Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
+                    Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
             </OnShow>
             <OnHide>
-                Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
-                CloseDropDownMenus()
+                    Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
+                    CloseDropDownMenus()
             </OnHide>
         </Scripts>
     </Frame>
@@ -560,8 +567,8 @@
 
         <Scripts>
             <OnLoad>
-                Noteworthy_AlertWindowTitle:SetText("Noteworthy")
-                self:SetClampedToScreen(true)
+                    Noteworthy_AlertWindowTitle:SetText("Noteworthy")
+                    self:SetClampedToScreen(true)
             </OnLoad>
         </Scripts>
     </Frame>

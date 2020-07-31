@@ -1,7 +1,13 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<!--
+    NoteworthyButton.xml
 
-    <!-- floating button -->
+    The UI for the Noteworthy floating button.
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui ./Interface/FrameXML/UI.xsd">
+
+    <!-- Floating button -->
     <Button name="Noteworthy_FloatingButton" parent="UIParent" enableMouse="true" movable="true"
             inherits="ActionButtonTemplate" frameStrata="MEDIUM">
         <Size>
@@ -21,10 +27,10 @@
 
         <Scripts>
             <OnLoad>
-                self:RegisterForClicks("LeftButtonUp", "RightButtonDown")
-                self:RegisterForDrag("LeftButton", "RightButton")
-                Noteworthy_FloatingButtonIcon:SetTexture("Interface\\Icons\\INV_Misc_Book_08")
-                self:SetClampedToScreen(1)
+                    self:RegisterForClicks("LeftButtonUp", "RightButtonDown")
+                    self:RegisterForDrag("LeftButton", "RightButton")
+                    Noteworthy_FloatingButtonIcon:SetTexture("Interface\\Icons\\INV_Misc_Book_08")
+                    self:SetClampedToScreen(true)
             </OnLoad>
             <OnClick>Noteworthy_ButtonClick(button)</OnClick>
             <OnMouseUp>self:StopMovingOrSizing()</OnMouseUp>

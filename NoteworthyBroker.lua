@@ -8,11 +8,12 @@ ldbicon = LibStub("LibDBIcon-1.0", true);
 function Noteworthy_InitBroker()
     if LDB then
         -- create LDB object
+        --noinspection GlobalCreationOutsideO
         Noteworthy_LDB = LDB:NewDataObject("Noteworthy", {
             label = "Noteworthy",
             type = "launcher",
             icon = "Interface\\Icons\\INV_Misc_Book_08",
-            OnClick = function(frame, button)
+            OnClick = function(_, button)
                 if button == 'LeftButton' then
                     Noteworthy_ToggleView();
                 elseif button == 'RightButton' then

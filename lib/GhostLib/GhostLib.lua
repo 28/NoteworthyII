@@ -7,7 +7,7 @@
 
 
 ----------------------------------------------------------------
--- misc functions
+-- Misc functions
 ----------------------------------------------------------------
 local waitTable = {};
 local waitFrame;
@@ -99,7 +99,6 @@ end
 -- Ghost_CursorPos, Ghost_SelectionStart, Ghost_SelectionEnd
 -- Shared Globals: Ghost_CurrentEditBox (current focussed EditBox)
 ----------------------------------------------------------------
-
 -- called by WorldFrame:HookScript
 function Ghost_EditBoxMouseDown()
     Ghost_ClearFocus()
@@ -214,7 +213,6 @@ end
 -- Ghost_EditBox text formatting & insert code
 -- Shared Globals: Ghost_CurrentEditBox, Ghost_CursorPos, Ghost_SelectionStart, Ghost_SelectionEnd
 ----------------------------------------------------------------
-
 -- manages items dragged into EditBox
 function Ghost_EditBoxDrag()
     local infoType, info1, info2 = GetCursorInfo()

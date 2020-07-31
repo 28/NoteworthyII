@@ -1,26 +1,25 @@
 <!--
-GhostLib V1.1
+    GhostLib V1.1
 
-Description: XML templates
-Author: Ghost Dancer
-Web: https://github.com/28/Noteworthy
+    Description: XML templates
+    Author: Ghost Dancer
+    Web: https://github.com/28/Noteworthy
 -->
 
-<Ui xmlns="http://www.blizzard.com/wow/ui"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Ui xmlns="http://www.blizzard.com/wow/ui">
 
     <!-- Editbox template - requires code in GhostLib.lua -->
     <EditBox name="Ghost_EditBox" multiLine="true" enableMouse="true" autoFocus="false" virtual="true">
         <Scripts>
             <OnLoad>
-                WorldFrame:HookScript("OnMouseDown", function(self, button) Ghost_ClearFocus() end)
+                    WorldFrame:HookScript("OnMouseDown", function(self, button) Ghost_ClearFocus() end)
 
-                self:HookScript("OnMouseDown", function(self, button) -- hooked this to prevent interference with other OnMouseDown stuff
-                    Ghost_MouseButton = button
-                    if Ghost_MouseButton == "RightButton" then
-                        Ghost_Wait(0.1, Ghost_RestoreSelection)
-                    end
-                end)
+                    self:HookScript("OnMouseDown", function(self, button) -- hooked this to prevent interference with other OnMouseDown stuff
+                        Ghost_MouseButton = button
+                        if Ghost_MouseButton == "RightButton" then
+                            Ghost_Wait(0.1, Ghost_RestoreSelection)
+                        end
+                    end)
             </OnLoad>
             <OnEditFocusGained>Ghost_CurrentEditBox = self</OnEditFocusGained>
             <OnHide>Ghost_CurrentEditBox = nil</OnHide>
@@ -43,24 +42,24 @@ Web: https://github.com/28/Noteworthy
     <CheckButton name="Ghost_CheckboxTemplate" inherits="UICheckButtonTemplate" virtual="true">
         <Scripts>
             <OnLoad>
-                local text = self:GetText()
-                local pos = string.find(text, "|")
+                    local text = self:GetText()
+                    local pos = string.find(text, "|")
 
-                if pos ~= nil then
-                    _G[self:GetName() .. "Label"] = strsub(text, 0, pos - 1)
-                    _G[self:GetName() .. "Tooltip"] = strsub(text, pos + 1)
-                else
-                    _G[self:GetName() .. "Label"] = text
-                end
+                    if pos ~= nil then
+                        _G[self:GetName() .. "Label"] = strsub(text, 0, pos - 1)
+                        _G[self:GetName() .. "Tooltip"] = strsub(text, pos + 1)
+                    else
+                        _G[self:GetName() .. "Label"] = text
+                    end
 
-                _G[self:GetName() .. "Text"]:SetText(_G[self:GetName() .. "Label"])
-                _G[self:GetName() .. "Text"]:SetTextColor(1, 1, 1)
+                    _G[self:GetName() .. "Text"]:SetText(_G[self:GetName() .. "Label"])
+                    _G[self:GetName() .. "Text"]:SetTextColor(1, 1, 1)
             </OnLoad>
             <OnEnter>
-                if _G[self:GetName() .. "Tooltip"] ~= nil then
-                    GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
-                    GameTooltip:SetText(_G[self:GetName() .. "Tooltip"], 1, 0.8, 0, 1, 1)
-                end
+                    if _G[self:GetName() .. "Tooltip"] ~= nil then
+                        GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+                        GameTooltip:SetText(_G[self:GetName() .. "Tooltip"], 1, 0.8, 0, 1, 1)
+                    end
             </OnEnter>
             <OnLeave>GameTooltip:Hide()</OnLeave>
         </Scripts>
@@ -176,7 +175,7 @@ Web: https://github.com/28/Noteworthy
         <Scripts>
             <OnLoad>
                 <!-- needs to be last OnLoad event -->
-                self:SetClampedToScreen(true)
+                    self:SetClampedToScreen(true)
             </OnLoad>
             <OnMouseDown>
                 <!-- leave empty so that event doesn't propagate to world frame -->
