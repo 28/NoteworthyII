@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="to-be-added" alt="Noteworthy II logo"/>
+    <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/logo.jpg" alt="Noteworthy II logo"/>
 </p>
 
 # Noteworthy II
