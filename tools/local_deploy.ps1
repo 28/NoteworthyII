@@ -7,7 +7,7 @@ if ($args[0]) {
     Exit
 }
 
-New-Variable -Name "noteworthy_path" -Value "_retail_\Interface\AddOns\Noteworthy" -Option Constant -Scope Script
+New-Variable -Name "noteworthy_path" -Value "_retail_\Interface\AddOns\NoteworthyII" -Option Constant -Scope Script
 New-Variable -Name "install_path" -Value "${wow_path}\${noteworthy_path}\"
 
 Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $install_path

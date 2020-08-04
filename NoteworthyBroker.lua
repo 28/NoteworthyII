@@ -10,7 +10,7 @@ function Noteworthy_InitBroker()
         -- create LDB object
         --noinspection GlobalCreationOutsideO
         Noteworthy_LDB = LDB:NewDataObject("Noteworthy", {
-            label = "Noteworthy",
+            label = "Noteworthy II",
             type = "launcher",
             icon = "Interface\\Icons\\INV_Misc_Book_08",
             OnClick = function(_, button)

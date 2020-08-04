@@ -481,7 +481,7 @@
                     self.elapsed = 0
                     PanelTemplates_SetNumTabs(Noteworthy_MainWindow, 4)
 
-                    Noteworthy_MainWindowTitle:SetText("Noteworthy")
+                    Noteworthy_MainWindowTitle:SetText("Noteworthy II")
                     self:SetClampedToScreen(true)
 
                 <!-- Make frame closeable on ESC -->
@@ -567,7 +567,7 @@
 
         <Scripts>
             <OnLoad>
-                    Noteworthy_AlertWindowTitle:SetText("Noteworthy")
+                    Noteworthy_AlertWindowTitle:SetText("Noteworthy II")
                     self:SetClampedToScreen(true)
             </OnLoad>
         </Scripts>

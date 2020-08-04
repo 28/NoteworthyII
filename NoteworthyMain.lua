@@ -10,7 +10,7 @@ local TAB_CHAR = 1
 local TAB_SHARED = 2
 local TAB_QUICK = 3
 local TAB_OPT = 4
-BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
+BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy II|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
 
 -- set saved variable to table to store all settings
 if not Noteworthy_DB then Noteworthy_DB = {} end
@@ -42,21 +42,21 @@ end
 
 -- variable initialisation
 function Noteworthy_Initialise()
-    local startupMsg = "|cFFFF7D0ANoteworthy V" .. NOTEWORTHY_VTEXT .. " loaded.|r"
+    local startupMsg = "|cFFFF7D0ANoteworthy II V" .. NOTEWORTHY_VTEXT .. " loaded.|r"
 
     Noteworthy_character = UnitName("player")
 
-    --Noteworthy_DB["version"] = 1010		-- temporarily uncomment this line & change number to reset to previous version
+    --Noteworthy_DB["version"] = 1100		-- temporarily uncomment this line & change number to reset to previous version
     --Noteworthy_DB["initialised"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
     --Noteworthy_DB = {}                        -- temporarily uncomment this line to reset ALL saved data
 
     -- version check
     if Noteworthy_DB["initialised"] == nil then
-        startupMsg = "|cFF00FF00Noteworthy V" .. NOTEWORTHY_VTEXT .. " installed.|r"
+        startupMsg = "|cFF00FF00Noteworthy II V" .. NOTEWORTHY_VTEXT .. " installed.|r"
         Noteworthy_SetDefaults()
     end
     if Noteworthy_DB["version"] ~= NOTEWORTHY_VERSION then
-        startupMsg = "|cFF00FF00Noteworthy updated to V" .. NOTEWORTHY_VTEXT .. "|r"
+        startupMsg = "|cFF00FF00Noteworthy II updated to V" .. NOTEWORTHY_VTEXT .. "|r"
         Noteworthy_SetDefaults()
     end
 
@@ -145,7 +145,8 @@ function Noteworthy_SetDefaults()
     end
 
     -- V1.1 settings
-    if Noteworthy_DB["version"] < 2000 then
+    if Noteworthy_DB["version"] < 1100 then
+        Noteworthy_DB["version"] = 1100
         Noteworthy_DB["chat_logging"] = true
         Noteworthy_DB["qnote_cursor"] = true
 
@@ -156,6 +157,8 @@ function Noteworthy_SetDefaults()
         Noteworthy_DB["snd_pageturn"] = { type = Noteworthy_Snd_Type_Kit, snd = SOUNDKIT.IG_QUEST_LIST_OPEN }
         Noteworthy_DB["snd_pageclose"] = { type = Noteworthy_Snd_Type_Kit, snd = SOUNDKIT.IG_QUEST_LIST_CLOSE }
     end
+
+    --V2.0 did not introduce new settings
 
     if Noteworthy_DB["version"] == nil then Noteworthy_DB["version"] = 2000 end
 
@@ -490,7 +493,7 @@ function Noteworthy_SaveOptionsInfo()
 end
 
 function Noteworthy_CreateMacros()
-    Ghost_CreateMacro("Noteworthy", "INV_Misc_Book_08", "/noteworthy")
+    Ghost_CreateMacro("Noteworthy II", "INV_Misc_Book_08", "/noteworthy")
     Ghost_CreateMacro("QuickNotes", "INV_Misc_Book_11", "/quicknotes")
 end
 
