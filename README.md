@@ -1,13 +1,18 @@
-# Noteworthy (notes, notepad World of Warcraft addon)
+<p align="center">
+    <img src="to-be-added" alt="Noteworthy II logo"/>
+</p>
 
-Current version:        2.0-alpha  
-Original author:        Ghost Dancer (aka ZathrasEU)  
-Contributing author:    Dejan Josifović (aka Turuvid, Argent Dawn)  
-Web:                    https://github.com/28/Noteworthy  
+# Noteworthy II
+
+The notes, notepad World of Warcraft addon.
+
+Current version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.0-alpha  
+Original author:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ghost Dancer (aka ZathrasEU)  
+Contributing author:&nbsp;&nbsp;&nbsp;Dejan Josifović (aka Turuvid, Argent Dawn)  
 
 ## Description
 
-Noteworthy is a feature rich, configurable notepad with full LDB
+Noteworthy II is a feature rich, configurable notepad with full LDB
 support.
 
 Overview of features:
@@ -30,6 +35,8 @@ macro or as LDB plug-in.
 This is a continuation of development of the original Noteworthy, which
 can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
 The original author approved it.
+
+Logo made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Instructions & notes
 
@@ -109,7 +116,7 @@ The original author approved it.
   - Floating button checkbox: Show floating toggle button
 	- Enabled: Enables a floating button to toggle the notepad window.
 	- Disabled: Disables the floating button.
-  - Create Macros button: Creates Noteworthy and QuickNotes macros.
+  - Create Macros button: Creates Noteworthy II and QuickNotes macros.
 - Settings tab (Quick Notes):
   - Add prefix checkbox: Add date and character info line before each quick note
 	- Enabled: Adds blank line and info line with date, time & current character name.
@@ -124,7 +131,7 @@ The original author approved it.
 
 ## Installation
 
-1. Download the Noteworthy release zip archive (download source pending);
+1. Download the Noteworthy II release zip archive (download source pending);
 2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
 
 NOTE: If you are updating to V1.1 (or higher) from an earlier version, please
@@ -136,33 +143,33 @@ read the next section.
 
 ## Development
 
-Noteworthy development is meant to go in cycles. Code is developed in a
+Noteworthy II development is meant to go in cycles. Code is developed in a
 separate directory and when needed it is 'deployed' in WoW, tested then
 repeat. All scripts packed in the project exist to support this
 philosophy.
 
-Noteworthy project file structure:
+Noteworthy II project file structure:
 ```
 +- .
-|- Noteworthy.toc ---> The TOC file
-|- NoteworthyBroker.lua ---> Contains LDB code for Noteworthy
+|- NoteworthyII.toc ---> The TOC file
+|- NoteworthyBroker.lua ---> Contains LDB code for Noteworthy II
 |- NoteworthyButton.xml ---> Code for the floating button
 |- NoteworthyMain.lua ---> Main library code
 |- NoteworthySystem.lua ---> Code for menus, commands and misc
-|- NoteworthyTemplates.xml ---> Noteworthy specific reusable XML templates
-|- NoteworthyWindows.xml ---> Noteworthy main XML file (main and alert windows)
+|- NoteworthyTemplates.xml ---> Noteworthy II specific reusable XML templates
+|- NoteworthyWindows.xml ---> Noteworthy II main XML file (main and alert windows)
 +- lib
    +- GhostLib
       |- GhostLib.xml ---> Reusable XML templates
       |- GhostLib.lua ---> Code for text editing
 ```
 
-Noteworthy XML structure leverages heavily on inheritance, and
+Noteworthy II XML structure leverages heavily on inheritance, and
 components are located in multiple files. Here is a diagram of
 inheritance trying to explain which component is in which file and 
 which component inherits which.
 
-![Noteworthy XML inheritance](/doc/noteworthy-xml-inheritance.png "Noteworthy XML inheritance")
+![Noteworthy XML inheritance](/doc/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
 
 ### Change log
 
@@ -171,10 +178,10 @@ See the change log file [here](/doc/CHANGELOG.md).
 ### Dependencies
 
 Dependency management and updating is done manually. All libraries are
-packaged with Noteworthy.
+packaged with Noteworthy II.
 
 1. GhostLib  
-An utility library made by Ghost Dancer. Developed with Noteworthy.  
+An utility library made by Ghost Dancer. Developed with Noteworthy II.  
 Located [here](/lib/GhostLib).
 
 2. CallbackHandler  
@@ -205,7 +212,7 @@ Located [here](https://www.curseforge.com/wow/addons/libstub).
 
 There are a couple of helpful things located in the [tools](/tools) directory.
 
-- local_deploy.ps1 - A script that copies all required Noteworthy files
+- local_deploy.ps1 - A script that copies all required Noteworthy II files
 to the WoW installation directory. The root of install directory can be
 passed as a script parameter (enclosed in quotes) otherwise the
 environment variable *WOWIL* will be used. The variable value should
@@ -216,12 +223,12 @@ first.
 ``` powershell
 # in tools directory
 > .\local_deploy.ps1 "C:\Games\Wow"
-Successfully installed Noteworthy to C:\Games\Wow\_retail_\Interface\AddOns\Noteworthy.
+Successfully installed Noteworthy II to C:\Games\Wow\_retail_\Interface\AddOns\NoteworthyII.
 
 # or with environment variable
 > $env:WOWIL = "C:\Games\Wow"
 > .\local_deploy.ps1
-Successfully installed Noteworthy to C:\Games\Wow\_retail_\Interface\AddOns\Noteworthy.
+Successfully installed Noteworthy II to C:\Games\Wow\_retail_\Interface\AddOns\NoteworthyII.
 ```
 
 - package.ps1 - Packages the whole project to an archive. Accepts
@@ -232,11 +239,11 @@ contains a folder called *Noteworthy* with addon files only.
 ``` powershell
 # in tools directory
 > .\package.ps1
-Created archive 'C:\dev\Noteworthy-2.0\Noteworthy_10012020151502.zip'.
+Created archive 'C:\dev\NoteworthyII\NoteworthyII_10012020151502.zip'.
 
 # with version
 > .\package.ps1 "2.0-alpha"
-Created archive 'C:\dev\Noteworthy-2.0\Noteworthy-v2.0-alpha.zip'.
+Created archive 'C:\dev\NoteworthyII\NoteworthyII-v2.0-alpha.zip'.
 ```
 
 All scripts must be run from the *tools* directory.

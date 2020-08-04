@@ -19,4 +19,4 @@ Copy-Item -Path "..\*" -Include "*.toc", "*.lua", "*.xml" -Destination $install_
 Copy-Item -Path "..\lib\*" -Include "*.lua", "*.xml" -Destination "$install_path\lib\" -Recurse
 Copy-Item -Path "..\lib\GhostLib\*" -Include "*.lua", "*.xml" -Destination "$install_path\lib\GhostLib\" -Recurse
 
-Write-Host "Successfully installed Noteworthy to '$install_path'."
+Write-Host "Successfully installed Noteworthy II to '$install_path'."

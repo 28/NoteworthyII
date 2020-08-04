@@ -11,6 +11,7 @@
   - Add dev helper tools.
   - Switch to using boolean values instead of 1/0.
   - Make Noteworthy close on ESC.
+  - Officially rebrand to Noteworthy II.
 
 ## V1.1
 - Cursor & selection behavior:
