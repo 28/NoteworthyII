@@ -355,7 +355,7 @@ function Noteworthy_AddQuickNote(quicknote)
     CloseDropDownMenus()
 
     if quicknote == nil or quicknote == "" then
-        print("Noteworthy quick note NOT saved (no text)")
+        print("Noteworthy II quick note NOT saved (no text)")
     else
         Ghost_UndoEnabled = 0
 
@@ -379,7 +379,7 @@ function Noteworthy_AddQuickNote(quicknote)
         if Noteworthy_DB["qnote_edit"] then
             Noteworthy_QuickEdit()
         else
-            print("Noteworthy quick note saved")
+            print("Noteworthy II quick note saved")
         end
 
         Ghost_UndoEnabled = 1
