@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <p align="center">
     <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/logo-big.jpg" alt="Noteworthy II logo"/>
 </p>
@@ -37,6 +38,15 @@ can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
 The original author approved it.
 
 Logo made by [Alex](mailto:aleksandar.micic028@gmail.com).
+
+## Screenshots
+
+<img src="/doc/img/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" style="float: left; margin-right: 10px;" width="200"/>
+<img src="/doc/img/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" style="float: left; margin-right: 10px;" width="200"/>
+<img src="/doc/img/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" style="float: left; margin-right: 10px;" width="200"/>
+<img src="/doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" style="float: left; margin-right: 10px;" width="200"/>
+<img src="/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" style="float: left; margin-right: 10px;" width="200"/>
+<img src="/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" style="float: left; margin-right: 10px;" width="200"/>
 
 ## Instructions & notes
 
