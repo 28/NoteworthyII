@@ -41,12 +41,14 @@ Logo made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Screenshots
 
-<img src="/doc/img/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" width="200" align="left"/>
-<img src="/doc/img/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
-<img src="/doc/img/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200" align="left"/>
-<img src="/doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
-<img src="/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
-<img src="/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" width="200" align="left"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200"/>
+
+
 
 ## Instructions & notes
 
@@ -179,11 +181,11 @@ components are located in multiple files. Here is a diagram of
 inheritance trying to explain which component is in which file and 
 which component inherits which.
 
-![Noteworthy XML inheritance](/doc/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
+![Noteworthy XML inheritance](https://raw.githubusercontent.com/28/NoteworthyII/master/doc/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
 
 ### Change log
 
-See the change log file [here](/doc/CHANGELOG.md).
+See the change log file [here](https://raw.githubusercontent.com/28/NoteworthyII/master/doc/CHANGELOG.md).
 
 ### Dependencies
 
@@ -192,7 +194,7 @@ packaged with Noteworthy II.
 
 1. GhostLib  
 An utility library made by Ghost Dancer. Developed with Noteworthy II.  
-Located [here](/lib/GhostLib).
+Located [here](https://github.com/28/NoteworthyII/tree/master/lib/GhostLib).
 
 2. CallbackHandler  
 CallbackHandler is a back-end utility library that makes it easy for
@@ -220,7 +222,7 @@ Located [here](https://www.curseforge.com/wow/addons/libstub).
 
 ### Tools
 
-There are a couple of helpful things located in the [tools](/tools) directory.
+There are a couple of helpful things located in the [tools](https://github.com/28/NoteworthyII/tree/master/tools) directory.
 
 - local_deploy.ps1 - A script that copies all required Noteworthy II files
 to the WoW installation directory. The root of install directory can be
@@ -261,4 +263,4 @@ All scripts must be run from the *tools* directory.
 ## License
 
 GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007.
-See [license](/LICENSE.txt).
+See [license](https://raw.githubusercontent.com/28/NoteworthyII/master/LICENSE.txt).
