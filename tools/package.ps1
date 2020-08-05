@@ -12,7 +12,7 @@ $out = Join-Path -Path (Resolve-Path '..\').Path -ChildPath $out_name
 $temp_dir = New-Item -Path ".\" -Name "NoteworthyII" -ItemType Directory
 
 Get-ChildItem $source_dir -Recurse |
-    Where-Object {$_.FullName -notmatch "\.md|\.zip|tools|doc|\.gitignore|Interface|\.idea"} |
+    Where-Object {$_.FullName -notmatch "\.zip|tools|doc|\.gitignore|Interface|\.idea"} |
 	ForEach-Object {
 	    Copy-Item $_.FullName -Destination ($temp_dir.FullName + $_.FullName.Substring($source_dir.Length)) -Force
 	}
