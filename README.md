@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <p align="center">
-    <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/logo-big.jpg" alt="Noteworthy II logo"/>
+    <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/Banner.jpg" alt="Noteworthy II banner"/>
 </p>
 
 # Noteworthy II
