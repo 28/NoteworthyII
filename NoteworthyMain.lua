@@ -46,9 +46,11 @@ function Noteworthy_Initialise()
 
     Noteworthy_character = UnitName("player")
 
-    --Noteworthy_DB["version"] = 1100		-- temporarily uncomment this line & change number to reset to previous version
-    --Noteworthy_DB["initialised"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
-    --Noteworthy_DB = {}                        -- temporarily uncomment this line to reset ALL saved data
+    -- TODO: For dev only - check if commented before release/upload
+    -- Noteworthy_DB["version"] = 1100		-- temporarily uncomment this line & change number to reset to previous version
+    -- Noteworthy_DB["initialised"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
+    -- Noteworthy_DB = {}                        -- temporarily uncomment this line to reset ALL saved data
+    ----------------------------------------------------------------
 
     -- version check
     if Noteworthy_DB["initialised"] == nil then
