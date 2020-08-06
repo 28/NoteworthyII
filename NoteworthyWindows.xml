@@ -31,7 +31,7 @@
             </Button>
 
             <!-- Custom TitleRegion used for main window dragging -->
-            <Frame name="$parentMoveLabel">
+            <Frame name="$parentMoveLabel" resizable="false">
                 <Size>
                     <AbsDimension x="140" y="20"/>
                 </Size>
