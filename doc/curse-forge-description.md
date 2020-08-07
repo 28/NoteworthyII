@@ -6,7 +6,7 @@ The notes, notepad World of Warcraft addon.
 
 Current version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.0  
 Original author:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ghost Dancer (aka ZathrasEU)  
-Contributing author:&nbsp;&nbsp;&nbsp;Dejan Josifović (aka Turuvid, Argent Dawn)  
+Contributing author:&nbsp;&nbsp;&nbsp;drow_28 (aka Turuvid, Argent Dawn)  
 
 ## Description
 
@@ -80,7 +80,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Installation
 
-* Download the Noteworthy II release zip archive (download source pending)
+* Download the Noteworthy II release zip archive
 * Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
 
 NOTE: If you are updating to V2.0 (or higher) from an earlier version, please delete your old 'Noteworthy' folder first (your settings and data will be unaffected).
