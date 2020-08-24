@@ -86,4 +86,8 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 NOTE: If you are updating to V2.0 (or higher) from an earlier version, please delete your old 'Noteworthy' folder first (your settings and data will be unaffected).
 This is just to clear out some old files that are no longer being used.
 
+## Contribution and bug reporting
+
 If you are interested in helping the development go to [Noteworthy II GitHub page](https://github.com/28/NoteworthyII).
+
+For any potential issues please open an issue ticket or submit a pull request on [GitHub](https://github.com/28/NoteworthyII).
