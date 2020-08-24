@@ -155,7 +155,7 @@ function Noteworthy_SetDefaults()
         Noteworthy_DB["date_only_format"] = "%d %b %Y"
         Noteworthy_DB["date_time_format"] = "%d %b %Y %H:%M"
         Noteworthy_DB["coord_format"] = "%.2f %.2f"
-        Noteworthy_DB["snd_scribble"] = { type = Noteworthy_Snd_Type_File, snd = 567396 }
+        Noteworthy_DB["snd_scribble"] = { type = Noteworthy_Snd_Type_Kit, snd = 3093 }
         Noteworthy_DB["snd_pageturn"] = { type = Noteworthy_Snd_Type_Kit, snd = SOUNDKIT.IG_QUEST_LIST_OPEN }
         Noteworthy_DB["snd_pageclose"] = { type = Noteworthy_Snd_Type_Kit, snd = SOUNDKIT.IG_QUEST_LIST_CLOSE }
     end
