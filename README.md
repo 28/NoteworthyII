@@ -37,7 +37,7 @@ This is a continuation of development of the original Noteworthy, which
 can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
 The original author approved it.
 
-Logo made by [Alex](mailto:aleksandar.micic028@gmail.com).
+Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Screenshots
 
@@ -72,7 +72,7 @@ Logo made by [Alex](mailto:aleksandar.micic028@gmail.com).
   - The Save button saves all notes and settings, and then closes the window.
   - The Cancel button closes the window, losing all changes since opening it
 	(see also 'Save on auto close' checkbox below)
-  - Press Esc or click outside notepad window to remove focus from the notepad (e.g. to type in the chat) and close pop-up menus.
+  - Press Esc or click outside notepad window to remove focus from the notepad (e.g. to type in the chat) and close pop-up menus (press Esc again to close Noteworthy II).
 - Character Notes tab:
   - This tab is for storing notes specific to each of your characters.
   - It defaults to the current logged on character and can be changed via the drop down menu.
@@ -143,11 +143,11 @@ Logo made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Installation
 
-1. Download the Noteworthy II release zip archive (download source pending);
+1. Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases).
 2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
 
-NOTE: If you are updating to V1.1 (or higher) from an earlier version, please
-delete your old Noteworthy folder first (your settings and data will be unaffected).
+NOTE: If you are updating to V2.0 (or higher) from an earlier version, please
+delete your old 'Noteworthy' folder first (your settings and data will be unaffected).
 This is just to clear out some old files that are no longer being used.
 
 If you are interested in local installation for development purposes,
@@ -225,20 +225,20 @@ Located [here](https://www.curseforge.com/wow/addons/libstub).
 There are a couple of helpful things located in the [tools](https://github.com/28/NoteworthyII/tree/master/tools) directory.
 
 - local_deploy.ps1 - A script that copies all required Noteworthy II files
-to the WoW installation directory. The root of install directory can be
+to the WoW installation directory. The root of install the directory can be
 passed as a script parameter (enclosed in quotes) otherwise the
 environment variable *WOWIL* will be used. The variable value should
-also be the root of WoW installation directory. The script performs a
-clean copy as in it deletes the contents of the destination directory
+be the root of WoW retail installation directory (with `_retail_` part). The script performs a
+clean copy as it deletes the contents of the destination directory
 first.
 
 ``` powershell
 # in tools directory
-> .\local_deploy.ps1 "C:\Games\Wow"
+> .\local_deploy.ps1 "C:\Games\Wow\_retail_"
 Successfully installed Noteworthy II to C:\Games\Wow\_retail_\Interface\AddOns\NoteworthyII.
 
 # or with environment variable
-> $env:WOWIL = "C:\Games\Wow"
+> $env:WOWIL = "C:\Games\Wow\_retail_"
 > .\local_deploy.ps1
 Successfully installed Noteworthy II to C:\Games\Wow\_retail_\Interface\AddOns\NoteworthyII.
 ```
@@ -254,11 +254,23 @@ contains a folder called *Noteworthy* with addon files only.
 Created archive 'C:\dev\NoteworthyII\NoteworthyII_10012020151502.zip'.
 
 # with version
-> .\package.ps1 "2.0-alpha"
-Created archive 'C:\dev\NoteworthyII\NoteworthyII-v2.0-alpha.zip'.
+> .\package.ps1 "2.0"
+Created archive 'C:\dev\NoteworthyII\NoteworthyII-v2.0.zip'.
 ```
 
 All scripts must be run from the *tools* directory.
+
+### Upcoming
+
+1. Undo feature
+2. Move settings to the Interface/Addon game menu
+3. Restructure the source code to make it more manageable (decide what to do with GhostLib)
+4. Add entries from Combat log to Quick Notes
+
+### Known issues
+
+- Noteworthy II main window drag can sometimes misbehave like jumping on screen on mouse key. This will be solved
+as soon as possible. If it becomes too irritating, reload the UI with `/reload` command.
 
 ## License
 
