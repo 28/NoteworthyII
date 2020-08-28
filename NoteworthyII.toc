@@ -1,6 +1,6 @@
 ## Interface: 11305
 ## Title: Noteworthy II
-## Version: 2.0-alpha
+## Version: 2.0
 ## Notes: Fully featured and configurable notepad utility
 ## Author: Ghost Dancer (aka ZathrasEU)
 ## X-Contributing-Author: 28 (aka Turuvid)

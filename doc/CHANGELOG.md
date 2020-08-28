@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased (2.0-alpha)
+## V2.0
 - General
   - Noteworthy is now draggable only on title part.
   - Always set focus in edit box on click on text area.
