@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased (2.0-alpha)
+## V2.0
 - General
   - Noteworthy is now draggable only on title part.
   - Always set focus in edit box on click on text area.
@@ -9,7 +9,6 @@
   - Fix player location retrieval.
   - Update all dependency libs.
   - Add dev helper tools.
-  - Switch to using boolean values instead of 1/0.
   - Make Noteworthy close on ESC.
   - Officially rebrand to Noteworthy II.
 
