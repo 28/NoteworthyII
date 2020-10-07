@@ -37,15 +37,15 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 * Each note page can store up to 5000 letters.
 * Spells, inventory items and merchant items can be dragged onto the notes window to insert a link.
 * Click links to view their tooltip.
-* Right click on editbox -> Insert Current Location: Inserts the current zone and coordinates in Tom Tom format.
-* Right click on editbox -> Insert Character Name: Inserts current character name.
-* Right click on editbox -> Insert Target Name: Inserts name of current target.
-* Right click on editbox -> Insert Date: Inserts current date.
-* Right click on editbox -> Insert Date and time: Inserts current date and time.
-* Right click on editbox -> Insert Chat Log: Inserts a specified number of entries from the chat log (from all major player initiated channels).
-* Right click on editbox -> Text Colour: Set selected text to one of preset colors.
-* Right click on editbox -> Clear Formatting: Remove colors and hyperlinks. If no selection will apply to whole page.
-* Right click on editbox -> Close Menu: Close the pop-up menu.
+* Right click on editbox -&gt; Insert Current Location: Inserts the current zone and coordinates in Tom Tom format.
+* Right click on editbox -&gt; Insert Character Name: Inserts current character name.
+* Right click on editbox -&gt; Insert Target Name: Inserts name of current target.
+* Right click on editbox -&gt; Insert Date: Inserts current date.
+* Right click on editbox -&gt; Insert Date and time: Inserts current date and time.
+* Right click on editbox -&gt; Insert Chat Log: Inserts a specified number of entries from the chat log (from all major player initiated channels).
+* Right click on editbox -&gt; Text Colour: Set selected text to one of preset colors.
+* Right click on editbox -&gt; Clear Formatting: Remove colors and hyperlinks. If no selection will apply to whole page.
+* Right click on editbox -&gt; Close Menu: Close the pop-up menu.
 * The Save button saves all notes and settings, and then closes the window.
 * The Cancel button closes the window, losing all changes since opening it (see also 'Save on auto close' checkbox below)
 * Press Esc or click outside notepad window to remove focus from the notepad (e.g. to type in the chat) and close pop-up menus (press Esc again to close Noteworthy II).
@@ -63,27 +63,53 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 * Quick notes Edit Quick Notes: Opens notepad window on Quick Notes tab.
 * Quick notes Edit My Notes: Opens notepad window on Character Notes tab and selects the current character.
 * Quick notes Close Menu: Close the pop-up menu.
-* Settings tab -> Remember last session checkbox: Remember page and cursor between sessions
-* Settings tab -> Auto focus checkbox: Focus text area when opening note tabs
-* Settings tab -> Close on combat checkbox: Close window when entering combat
-* Settings tab -> Save on auto close checkbox: Save changes when closed by toggle, log off and combat
-* Settings tab -> Save on page change checkbox: Save changes when changing page
-* Settings tab -> Sound effects checkbox: Play sound effects when changing pages and saving
-* Settings tab -> Sound effects checkbox: Play sound effects when changing pages and saving
-* Settings tab -> Chat logging: Disabling will prevent chat log copying but MIGHT improve performance
-* Settings tab -> Minimap button checkbox: Show minimap toggle button
-* Settings tab -> Floating button checkbox: Show floating toggle button
-* Settings tab -> Create Macros button: Creates Noteworthy II and QuickNotes macros.
-* Settings tab -> Add prefix checkbox: Add date and character info line before each quick note
-* Settings tab -> Auto edit checkbox: Edit quick note after it is saved to notepad
-* Settings tab -> Add at cursor: Insert quick note at cursor if notepad opened on that page (must save changes manually)
+* Settings tab -&gt; Remember last session checkbox: Remember page and cursor between sessions
+* Settings tab -&gt; Auto focus checkbox: Focus text area when opening note tabs
+* Settings tab -&gt; Close on combat checkbox: Close window when entering combat
+* Settings tab -&gt; Save on auto close checkbox: Save changes when closed by toggle, log off and combat
+* Settings tab -&gt; Save on page change checkbox: Save changes when changing page
+* Settings tab -&gt; Sound effects checkbox: Play sound effects when changing pages and saving
+* Settings tab -&gt; Sound effects checkbox: Play sound effects when changing pages and saving
+* Settings tab -&gt; Chat logging: Disabling will prevent chat log copying but MIGHT improve performance
+* Settings tab -&gt; Minimap button checkbox: Show minimap toggle button
+* Settings tab -&gt; Floating button checkbox: Show floating toggle button
+* Settings tab -&gt; Create Macros button: Creates Noteworthy II and QuickNotes macros.
+* Settings tab -&gt; Add prefix checkbox: Add date and character info line before each quick note
+* Settings tab -&gt; Auto edit checkbox: Edit quick note after it is saved to notepad
+* Settings tab -&gt; Add at cursor: Insert quick note at cursor if notepad opened on that page (must save changes manually)
 
 ## Installation
 
-* Download the Noteworthy II release zip archive
-* Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
 
-NOTE: If you are updating to V2.0 (or higher) from an earlier version, please delete your old 'Noteworthy' folder first (your settings and data will be unaffected).
+### Manual
+
+* Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases);
+* Unzip the contents to the location: '&lt;wow_install_directory&gt;\_retail_\Interface\AddOns\'; Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is. This means that the final path after the extraction will be: '&lt;wow_install_directory&gt;\_retail_\Interface\AddOns\NoteworthyII';
+* Start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+
+### Twitch app
+
+* Start the [Twitch app](https://www.twitch.tv/downloads);
+* Navigate to 'Mods' section;
+* Select 'World of Warcraft' game;
+* Go to 'Get More Addons' tab;
+* In the upper right search bar type 'Noteworthy II';
+* Select the addon from the list and click the 'Install' button;
+* When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+
+### WoWUp
+
+* Start the [WowUp app](https://wowup.io);
+* Navigate to 'Get Addons' tab;
+* In the upper left search menu type 'Noteworthy II';
+* Select the addon from the list and click install;
+* When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+
+### Important
+
+NOTE: If you are updating to V2.0 (or higher) from an earlier version, please
+delete your old 'Noteworthy' folder first (your settings and data will be unaffected;
+v2.0 folder now has a different name).
 This is just to clear out some old files that are no longer being used.
 
 ## Contribution and bug reporting
