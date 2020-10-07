@@ -143,15 +143,39 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Installation
 
-1. Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases).
-2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
+### Manual
+
+1. Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases);
+2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\';
+
+Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is.
+This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII';
+3. Start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+
+### Twitch app
+
+1. Start the [Twitch app](https://www.twitch.tv/downloads);
+2. Navigate to 'Mods' section;
+3. Select 'World of Warcraft' game;
+4. Go to 'Get More Addons' tab;
+5. In the upper right search bar type 'Noteworthy II';
+6. Select the addon from the list and click the 'Install' button;
+7. When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+
+### WoWUp
+
+1. Start the [WowUp app](https://wowup.io);
+2. Navigate to 'Get Addons' tab;
+3. In the upper left search menu type 'Noteworthy II';
+4. Select the addon from the list and click install;
+5. When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+
+### Important
 
 NOTE: If you are updating to V2.0 (or higher) from an earlier version, please
-delete your old 'Noteworthy' folder first (your settings and data will be unaffected).
+delete your old 'Noteworthy' folder first (your settings and data will be unaffected;
+v2.0 folder now has a different name).
 This is just to clear out some old files that are no longer being used.
-
-If you are interested in local installation for development purposes,
-read the next section.
 
 ## Development
 
