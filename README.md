@@ -286,10 +286,21 @@ All scripts must be run from the *tools* directory.
 
 ### Upcoming
 
+There is no schedule or release date for these features, they are here only for the record.
+
 1. Undo feature
 2. Move settings to the Interface/Addon game menu
 3. Restructure the source code to make it more manageable (decide what to do with GhostLib)
 4. Add entries from Combat log to Quick Notes
+
+#### Requests from the community
+
+These have a slightly higher priority.
+
+1. Character notes should be saved as 'Character-Realm' instead of just 'Character' so that same-named characters
+from different realms can have their own notes.
+2. Multiple personal notes per character. It will be easier to divide the notes per topic. Leaning toward the multiple
+named tabs in the character notes panel, but not yet confirmed.
 
 ### Known issues
 
