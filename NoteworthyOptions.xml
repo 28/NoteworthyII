@@ -1,0 +1,344 @@
+<!--
+    NoteworthyOptions.xml
+
+    All Noteworthy II settings that will appear in Interface/AddOn game menu.
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui ./Interface/FrameXML/UI.xsd">
+
+    <Frame name="Noteworthy_AddOnOptions" hidden="false">
+        <KeyValues>
+            <KeyValue key="name" value="Noteworthy II"/>
+        </KeyValues>
+
+        <Frames>
+            <!-- General Options label -->
+            <Frame name="$parentGeneralLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-15"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="General" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Remember page checkbox -->
+            <CheckButton name="Noteworthy_RememberPageCheckbox"
+                         text="Remember last session|Remember page and cursor between sessions"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentGeneralLabel" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("remember_page", Noteworthy_RememberPageCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Focus checkbox -->
+            <CheckButton name="Noteworthy_FocusCheckbox"
+                         text="Auto focus|Focus text area when opening note tabs"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_RememberPageCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("focus_text", Noteworthy_FocusCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Close on combat checkbox -->
+            <CheckButton name="Noteworthy_CombatCloseCheckbox"
+                         text="Close on combat|Close window when entering combat"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_FocusCheckbox" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("combat_close", Noteworthy_CombatCloseCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Save on close checkbox -->
+            <CheckButton name="Noteworthy_CloseSaveCheckbox"
+                         text="Save on auto close|Save changes when closed by toggle, logoff and combat"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_CombatCloseCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("save_on_close", Noteworthy_CloseSaveCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Tab save checkbox -->
+            <CheckButton name="Noteworthy_PageSaveCheckbox"
+                         text="Save on page change|Save changes when changing page"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_CloseSaveCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("save_on_page_change", Noteworthy_PageSaveCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Sound checkbox -->
+            <CheckButton name="Noteworthy_SoundCheckbox"
+                         text="Sound effects|Play sound effects when changing pages and saving"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageSaveCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("play_sounds", self:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Buttons label -->
+            <Frame name="$parentButtonsLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="250" y="-15"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="Buttons" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Minimap checkbox -->
+            <CheckButton name="Noteworthy_MiniButtonCheckbox"
+                         text="Minimap button|Show minimap toggle button"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentButtonsLabel" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_UpdateMinimapButtonOption(Noteworthy_MiniButtonCheckbox:GetChecked())
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Show Icon checkbox -->
+            <CheckButton name="Noteworthy_ShowIconCheckbox"
+                         text="Floating button|Show floating toggle button"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_MiniButtonCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("show_floating_button", Noteworthy_ShowIconCheckbox:GetChecked(), true)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Quick Notes label -->
+            <Frame name="$parentQNotesLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="250" y="-90"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="Quick Notes" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Quick note prefix checkbox -->
+            <CheckButton name="Noteworthy_QNotePrefixCheckbox"
+                         text="Add prefix|Add date and character info line before each quick note"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentQNotesLabel" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("qnote_prefix", Noteworthy_QNotePrefixCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Quick note edit checkbox -->
+            <CheckButton name="Noteworthy_QNoteEditCheckbox"
+                         text="Auto edit|Edit quick note after it is saved to notepad"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNotePrefixCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("qnote_edit", Noteworthy_QNoteEditCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Quick note cursor checkbox -->
+            <CheckButton name="Noteworthy_QNoteCursorCheckbox"
+                         text="Add at cursor|Insert quick note at cursor if notepad opened on that page (must save changes manually)"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_QNoteEditCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("qnote_cursor", Noteworthy_QNoteCursorCheckbox:GetChecked(), false)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Performance label -->
+            <Frame name="$parentPerformanceLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-200"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="Performance" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Chat logging checkbox -->
+            <CheckButton name="Noteworthy_ChatLoggingCheckbox"
+                         text="Chat logging|Disabling will prevent chat log copying but MIGHT improve performance"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentPerformanceLabel"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                            Noteworthy_SaveFlagOptions("chat_logging", Noteworthy_ChatLoggingCheckbox:GetChecked(), true)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Macros label -->
+            <Frame name="$parentMacrosLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-300"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="Macros" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Macro Button -->
+            <Button name="Noteworthy_MacroButton" text="Create Macros" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentMacrosLabel" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-4"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnClick>Noteworthy_CreateMacros()</OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Version label -->
+            <Frame name="Noteworthy_VersionLabel">
+                <Size>
+                    <AbsDimension x="50" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="Noteworthy_AddOnOptions" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="4" y="4"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormal"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+
+        <Scripts>
+            <OnLoad function="InterfaceOptions_AddCategory"/>
+        </Scripts>
+    </Frame>
+</Ui>

@@ -4,7 +4,7 @@
 ## Notes: Fully featured and configurable notepad utility
 ## Author: Dejan Josifovic (aka Turuvid, Argent Dawn)
 ## X-Original-Author: 28 (aka Turuvid)
-## URL: https://github.com/28/NoteworthyII
+## X-URL: https://github.com/28/NoteworthyII
 ## Dependencies:
 ## OptionalDeps:
 ## DefaultState: enabled
@@ -23,3 +23,4 @@ NoteworthySystem.lua
 NoteworthyTemplates.xml
 NoteworthyWindows.xml
 NoteworthyButton.xml
+NoteworthyOptions.xml

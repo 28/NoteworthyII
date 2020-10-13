@@ -39,7 +39,7 @@
     adds label & tooltip from "text" attribute (separated by "|")
     Prevents other OnLoad events working for anything that inherits this, so do any initialisation via ADDON_LOADED event
     -->
-    <CheckButton name="Ghost_CheckboxTemplate" inherits="UICheckButtonTemplate" virtual="true">
+    <CheckButton name="Ghost_CheckboxTemplate" inherits="InterfaceOptionsCheckButtonTemplate" virtual="true">
         <Scripts>
             <OnLoad>
                     local text = self:GetText()

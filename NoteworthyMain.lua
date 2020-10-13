@@ -9,8 +9,6 @@ local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
 local TAB_QUICK = 3
-local TAB_OPT = 4
-
 BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy II|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
 NOTEWORTHY_PANEL_BACKDROP = {
     bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
@@ -59,7 +57,7 @@ function Noteworthy_Initialise()
     -- TODO: For dev only - check if commented before release/upload
     -- Noteworthy_DB["version"] = 1100		-- temporarily uncomment this line & change number to reset to previous version
     -- Noteworthy_DB["initialised"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
-    -- Noteworthy_DB = {}                        -- temporarily uncomment this line to reset ALL saved data
+    -- Noteworthy_DB = {}                   -- temporarily uncomment this line to reset ALL saved data
     ----------------------------------------------------------------
 
     -- version check
@@ -109,6 +107,7 @@ function Noteworthy_Initialise()
 
     -- set gadgdets from saved vars
     Noteworthy_VersionLabelText:SetText("V" .. NOTEWORTHY_VTEXT)
+    Noteworthy_ResetOptions()
     Noteworthy_ResetGadgetInfo()
     Noteworthy_SetInterface()
 
@@ -116,7 +115,7 @@ function Noteworthy_Initialise()
     Noteworthy_CreateDropDown()
 
     -- set initial tab etc.
-    if Noteworthy_DB["remember_page"] then
+    if Noteworthy_DB["remember_page"] and Noteworthy_ValidTab(Noteworthy_DB["last_tab"]) then
         Noteworthy_SetTab(Noteworthy_DB["last_tab"])
 
         if Noteworthy_current_tab == TAB_CHAR then Noteworthy_ChangeCharacter(Noteworthy_DB["last_char"]) end
@@ -134,6 +133,10 @@ function Noteworthy_Initialise()
     end
 
     print(startupMsg .. " Use buttons or /noteworthy to open.")
+end
+
+function Noteworthy_ValidTab(tabId)
+    return tabId ~= nil and (tabId == TAB_CHAR or tabId == TAB_SHARED or tabId == TAB_QUICK)
 end
 
 function Noteworthy_SetDefaults()
@@ -214,7 +217,6 @@ function Noteworthy_SetTab(tab)
     Noteworthy_PanelChar:Hide()
     Noteworthy_PanelShared:Hide()
     Noteworthy_PanelQuick:Hide()
-    Noteworthy_PanelOpt:Hide()
 
     -- show components for this tab
     if Noteworthy_current_tab == TAB_CHAR then
@@ -229,10 +231,6 @@ function Noteworthy_SetTab(tab)
         Noteworthy_textbox = Noteworthy_TextAreaQEditBox
         Noteworthy_PageLabelText:SetText("Page: Quick notes")
         Noteworthy_PanelQuick:Show()
-    elseif Noteworthy_current_tab == TAB_OPT then
-        Noteworthy_textbox = nil
-        Noteworthy_PageLabelText:SetText("Page: Settings")
-        Noteworthy_PanelOpt:Show()
     end
 
     if Noteworthy_MainWindow:IsVisible() then
@@ -306,7 +304,7 @@ function Noteworthy_SaveChanges(playSoundFx)
     CloseDropDownMenus()
 
     if Noteworthy_MainWindow:IsVisible() then
-        playSoundFx = playSoundFx or true -- default value of 1
+        playSoundFx = playSoundFx or true
 
         Noteworthy_SaveGadgetInfo(playSoundFx)
         Noteworthy_MainWindow:Hide()
@@ -329,11 +327,6 @@ function Noteworthy_AutoCloseSave(playSoundFx)
     else
         Noteworthy_CancelChanges()
     end
-end
-
-function Noteworthy_ApplyOptions()
-    CloseDropDownMenus()
-    Noteworthy_SaveOptionsInfo()
 end
 
 function Noteworthy_GetLocation()
@@ -424,13 +417,14 @@ function Noteworthy_ResetGadgetInfo()
     end
 
     -- set gadgets
-    Ghost_UndoEnabled = 0
     Noteworthy_TextAreaSEditBox:SetText(Noteworthy_DB["shared_text"])
     Noteworthy_TextAreaQEditBox:SetText(Noteworthy_DB["quick_text"])
     Noteworthy_UpdateCharacterGadgets()
-    Ghost_UndoEnabled = 1
+end
 
-    -- options
+---
+--
+function Noteworthy_ResetOptions()
     Noteworthy_RememberPageCheckbox:SetChecked(Noteworthy_DB["remember_page"])
     Noteworthy_FocusCheckbox:SetChecked(Noteworthy_DB["focus_text"])
     Noteworthy_CombatCloseCheckbox:SetChecked(Noteworthy_DB["combat_close"])
@@ -438,8 +432,6 @@ function Noteworthy_ResetGadgetInfo()
     Noteworthy_PageSaveCheckbox:SetChecked(Noteworthy_DB["save_on_page_change"])
     Noteworthy_SoundCheckbox:SetChecked(Noteworthy_DB["play_sounds"])
     Noteworthy_ChatLoggingCheckbox:SetChecked(Noteworthy_DB["chat_logging"])
-    --Noteworthy_LargeUndoCheckbox:SetChecked(Noteworthy_DB["large_undo"])
-
     Noteworthy_MiniButtonCheckbox:SetChecked(not Noteworthy_DB["minimap_button"].hide)
     Noteworthy_ShowIconCheckbox:SetChecked(Noteworthy_DB["show_floating_button"])
     Noteworthy_QNotePrefixCheckbox:SetChecked(Noteworthy_DB["qnote_prefix"])
@@ -450,16 +442,10 @@ end
 function Noteworthy_UpdateCharacterGadgets()
     _G[Noteworthy_ReminderCheckbox:GetName() .. "Text"]:SetText("Remind " .. Noteworthy_character .. " at logon")
     Noteworthy_ReminderCheckbox:SetChecked(Noteworthy_reminder[Noteworthy_character])
-
-    Ghost_UndoEnabled = 0
     Noteworthy_TextAreaCEditBox:SetText(Noteworthy_text[Noteworthy_character])
-    Ghost_UndoEnabled = 1
 end
 
 function Noteworthy_SaveGadgetInfo(playSoundFx)
-    -- save settings first
-    Noteworthy_SaveOptionsInfo()
-
     -- save text area text
     Noteworthy_DB["shared_text"] = Noteworthy_TextAreaSEditBox:GetText()
     Noteworthy_DB["quick_text"] = Noteworthy_TextAreaQEditBox:GetText()
@@ -478,30 +464,31 @@ function Noteworthy_SaveGadgetInfo(playSoundFx)
     if playSoundFx then Noteworthy_PlaySound(Noteworthy_DB["snd_scribble"]) end
 end
 
-function Noteworthy_SaveOptionsInfo()
-    Noteworthy_DB["remember_page"] = Noteworthy_RememberPageCheckbox:GetChecked()
-    Noteworthy_DB["focus_text"] = Noteworthy_FocusCheckbox:GetChecked()
-    Noteworthy_DB["combat_close"] = Noteworthy_CombatCloseCheckbox:GetChecked()
-    Noteworthy_DB["save_on_close"] = Noteworthy_CloseSaveCheckbox:GetChecked()
-    Noteworthy_DB["save_on_page_change"] = Noteworthy_PageSaveCheckbox:GetChecked()
-    Noteworthy_DB["play_sounds"] = Noteworthy_SoundCheckbox:GetChecked()
-    Noteworthy_DB["chat_logging"] = Noteworthy_ChatLoggingCheckbox:GetChecked()
-    --Noteworthy_DB["large_undo"] = Noteworthy_LargeUndoCheckbox:GetChecked()
-
+--- Updates the Noteworthy II minimap button visibility status.
+-- @param shouldUpdateButton flag indicating if button should be visible or not
+-- @return nil
+-- @see Noteworthy_SetInterface
+function Noteworthy_UpdateMinimapButtonOption(shouldUpdateButton)
     local updateMinimap = false
-    local currentMinimap = not Noteworthy_MiniButtonCheckbox:GetChecked()
+    local currentMinimap = not shouldUpdateButton
 
     if currentMinimap ~= Noteworthy_DB["minimap_button"].hide then
         Noteworthy_DB["minimap_button"].hide = currentMinimap
         updateMinimap = true
     end
 
-    Noteworthy_DB["show_floating_button"] = Noteworthy_ShowIconCheckbox:GetChecked()
-    Noteworthy_DB["qnote_prefix"] = Noteworthy_QNotePrefixCheckbox:GetChecked()
-    Noteworthy_DB["qnote_edit"] = Noteworthy_QNoteEditCheckbox:GetChecked()
-    Noteworthy_DB["qnote_cursor"] = Noteworthy_QNoteCursorCheckbox:GetChecked()
-
     Noteworthy_SetInterface(updateMinimap)
+end
+
+--- Updates the given flag with the given value.
+-- @param flagName the name of the flag to set/update
+-- @param flagValue value of the flag to set
+-- @param updateInterface flag indicating should the interface be updated after the new value is set
+-- @return nil
+-- @see Noteworthy_SetInterface
+function Noteworthy_SaveFlagOptions(flagName, flagValue, updateInterface)
+    Noteworthy_DB[flagName] = flagValue
+    if updateInterface then Noteworthy_SetInterface(false) end
 end
 
 function Noteworthy_CreateMacros()
@@ -513,7 +500,7 @@ end
 ----------------------------------------------------------------
 -- Other event functions
 ----------------------------------------------------------------
-----------------------------------------------------------------
+
 -- set interface from options
 function Noteworthy_SetInterface(updateMinimap)
     -- minimap button (only show/hide if changed)
@@ -569,13 +556,6 @@ function Noteworthy_SetInterface(updateMinimap)
         ChatFrame_RemoveMessageEventFilter("CHAT_MSG_OFFICER", Noteworthy_ChatFilter)
         ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER", Noteworthy_ChatFilter)
         ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER_INFORM", Noteworthy_ChatFilter)
-    end
-
-    -- undo buffer
-    if Noteworthy_DB["large_undo"] == 1 then
-        Ghost_MaxUndoSize = 50
-    else
-        Ghost_MaxUndoSize = 25
     end
 end
 
