@@ -471,7 +471,7 @@
         </Frames>
 
         <Scripts>
-            <OnLoad>
+            <OnLoad inherit="prepend">
                     self:RegisterEvent("VARIABLES_LOADED")
                     self:RegisterEvent("ADDON_LOADED")
                     self:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -566,7 +566,7 @@
         </Frames>
 
         <Scripts>
-            <OnLoad>
+            <OnLoad inherit="prepend">
                     Noteworthy_AlertWindowTitle:SetText("Noteworthy II")
                     self:SetClampedToScreen(true)
             </OnLoad>

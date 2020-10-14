@@ -10,7 +10,17 @@ local TAB_CHAR = 1
 local TAB_SHARED = 2
 local TAB_QUICK = 3
 local TAB_OPT = 4
+
 BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy II|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
+NOTEWORTHY_PANEL_BACKDROP = {
+    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    tile = true,
+    tileEdge = true,
+    tileSize = 16,
+    edgeSize = 16,
+    insets = { left = 5, right = 5, top = 5, bottom = 5 },
+}
 
 -- set saved variable to table to store all settings
 if not Noteworthy_DB then Noteworthy_DB = {} end
