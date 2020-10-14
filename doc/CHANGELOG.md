@@ -1,5 +1,10 @@
 # Change log
 
+## v2.0.1
+- General
+  - Update game client version to Shadowlands
+  - Implement new Backdrop API changes
+
 ## V2.0
 - General
   - Noteworthy is now draggable only on title part.
