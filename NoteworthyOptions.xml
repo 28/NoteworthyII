@@ -44,7 +44,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("remember_page", Noteworthy_RememberPageCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("remember_page", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -59,7 +59,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("focus_text", Noteworthy_FocusCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("focus_text", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -73,7 +73,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("combat_close", Noteworthy_CombatCloseCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("combat_close", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -88,7 +88,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("save_on_close", Noteworthy_CloseSaveCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("save_on_close", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -103,7 +103,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("save_on_page_change", Noteworthy_PageSaveCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("save_on_page_change", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -154,7 +154,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_UpdateMinimapButtonOption(Noteworthy_MiniButtonCheckbox:GetChecked())
+                            Noteworthy_UpdateMinimapButtonOption(self:GetChecked())
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -169,7 +169,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("show_floating_button", Noteworthy_ShowIconCheckbox:GetChecked(), true)
+                            Noteworthy_SaveFlagOptions("show_floating_button", self:GetChecked(), true)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -205,7 +205,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("qnote_prefix", Noteworthy_QNotePrefixCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("qnote_prefix", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -220,7 +220,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("qnote_edit", Noteworthy_QNoteEditCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("qnote_edit", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -235,7 +235,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("qnote_cursor", Noteworthy_QNoteCursorCheckbox:GetChecked(), false)
+                            Noteworthy_SaveFlagOptions("qnote_cursor", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -272,7 +272,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("chat_logging", Noteworthy_ChatLoggingCheckbox:GetChecked(), true)
+                            Noteworthy_SaveFlagOptions("chat_logging", self:GetChecked(), true)
                     </OnClick>
                 </Scripts>
             </CheckButton>
