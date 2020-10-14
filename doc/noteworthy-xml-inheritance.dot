@@ -25,7 +25,6 @@ digraph arch {
 		}
 	}
 
-	XML_GL->XML_T[label="Ghost_PanelTemplate", color=red, fontcolor=red]
 	XML_GL->XML_T[label="Ghost_EditBox", color=black, fontcolor=black]
 
 	XML_GL->M_F[label="Ghost_WindowTemplate", color=cyan, fontcolor=cyan, lhead=cluster_main_frame]
