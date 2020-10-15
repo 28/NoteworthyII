@@ -25,6 +25,14 @@ digraph arch {
 		}
 	}
 
+	subgraph cluster_options {
+		label="Noteworthy Options (NoteworthyOptions.xml)"
+		color=blue
+		node[color=green]
+
+		O_F[label="Options", color=cyan, style=invis, shape=point]
+	}
+
 	XML_GL->XML_T[label="Ghost_EditBox", color=black, fontcolor=black]
 
 	XML_GL->M_F[label="Ghost_WindowTemplate", color=cyan, fontcolor=cyan, lhead=cluster_main_frame]
@@ -34,4 +42,5 @@ digraph arch {
 	XML_T->M_T[label="Noteworthy_TextAreaTemplate", color=black, fontcolor=black]
 	XML_GL->M_B[label="Ghost_ButtonTemplate", color=orange, fontcolor=orange]
 	XML_T->M_TA[label="Noteworthy_TabTemplate", color=green, fontcolor=green]
+	XML_GL->O_F[label="Ghost_CheckboxTemplate", color=black, fontcolor=black, lhead=cluster_options]
 }
