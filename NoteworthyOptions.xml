@@ -249,7 +249,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="10" y="-200"/>
+                            <AbsDimension x="10" y="-210"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -286,7 +286,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="10" y="-300"/>
+                            <AbsDimension x="10" y="-270"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
