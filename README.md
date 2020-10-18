@@ -95,7 +95,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 	- Edit Quick Notes: Opens notepad window on Quick Notes tab.
 	- Edit My Notes: Opens notepad window on Character Notes tab and selects the current character.
 	- Close Menu: Close the pop-up menu.
-- Settings tab (General):
+- Settings page - Interface/AddOns/Noteworthy II (General):
   - Remember last session checkbox: Remember page and cursor between sessions
 	- Enabled: Remembers last page and cursor position when you log off.
 	- Disabled: First use each session will open on the current character's page.
@@ -117,11 +117,11 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
   - Sound effects checkbox: Play sound effects when changing pages and saving
 	- Enabled: Sounds effects are played.
 	- Disabled: Sounds effects are not played.
-- Settings tab (Performance):
+- Settings page - Interface/AddOns/Noteworthy II (Performance):
   - Chat logging: Disabling will prevent chat log copying but MIGHT improve performance
 	- Enabled: Enables copying of chat logs using message filters.
 	- Disabled: Disables message filters required for copy chat logs feature.
-- Settings tab (Buttons):
+- Settings page - Interface/AddOns/Noteworthy II(Buttons):
   - Minimap button checkbox: Show minimap toggle button
 	- Enabled: Enables a minimap button to toggle the notepad window.
 	- Disabled: Disables the minimap button.
@@ -129,7 +129,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 	- Enabled: Enables a floating button to toggle the notepad window.
 	- Disabled: Disables the floating button.
   - Create Macros button: Creates Noteworthy II and QuickNotes macros.
-- Settings tab (Quick Notes):
+- Settings page - Interface/AddOns/Noteworthy II (Quick Notes):
   - Add prefix checkbox: Add date and character info line before each quick note
 	- Enabled: Adds blank line and info line with date, time & current character name.
 	- Disabled: No additional information is added.
