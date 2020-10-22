@@ -307,6 +307,13 @@ named tabs in the character notes panel, but not yet confirmed.
 
 - Noteworthy II main window drag can sometimes misbehave like jumping on screen on mouse key. This will be solved
 as soon as possible. If it becomes too irritating, reload the UI with `/reload` command.
+- If a character who has valid notes (they at least logged in with Noteworthy II on) is deleted, their notes remain
+present in the character notes panel without the option to be removed. This will be handled in one of the upcoming
+releases.
+- Sometimes the cursor can misbehave during notes writing (any note type) - randomly change position in the text.
+I'm still investigating the issue and hopefully it will be solved as soon as possible.
+
+Suggestions for solutions are always welcome! Submit a pull request or open an issue. Thanks!
 
 ## License
 
