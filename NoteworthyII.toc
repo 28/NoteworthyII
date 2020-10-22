@@ -3,8 +3,9 @@
 ## Version: 2.0.1
 ## Notes: Fully featured and configurable notepad utility
 ## Author: Dejan Josifovic (aka Turuvid, Argent Dawn)
-## X-Original-Author: 28 (aka Turuvid)
-## X-URL: https://github.com/28/NoteworthyII
+## X-Original-Author: Ghost Dancer (aka ZathrasEU)
+## X-Website: https://github.com/28/NoteworthyII
+## X-Category: Miscellaneous
 ## Dependencies:
 ## OptionalDeps:
 ## DefaultState: enabled
