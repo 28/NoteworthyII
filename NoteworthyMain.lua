@@ -111,8 +111,10 @@ function Noteworthy_Initialise()
     Noteworthy_ResetGadgetInfo()
     Noteworthy_SetInterface()
 
-    -- configure dropdown menu
+    -- configure dropdown menus
     Noteworthy_CreateDropDown()
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_FromCharDropDown)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_ToCharDropDown)
 
     -- set initial tab etc.
     if Noteworthy_DB["remember_page"] and Noteworthy_ValidTab(Noteworthy_DB["last_tab"]) then
@@ -494,6 +496,28 @@ end
 function Noteworthy_CreateMacros()
     Ghost_CreateMacro("Noteworthy II", "INV_Misc_Book_08", "/noteworthy")
     Ghost_CreateMacro("QuickNotes", "INV_Misc_Book_11", "/quicknotes")
+end
+
+--- Migrates the character notes from one character to another and updates gadgets.
+-- Migrating notes are concatenated as a new paragraph to the target unless
+-- the 'override' check box is ticked. Origin notes will be removed.
+-- @return nil
+-- @see Noteworthy_ResetGadgetInfo
+function Noteworthy_MigrateCharacterNotes()
+    local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_FromCharDropDown)
+    local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_ToCharDropDown)
+    local override = Noteworthy_OverrideOnMigrateCheckbox:GetChecked() or false
+    local fromChar = Noteworthy_DB["character_list"][fromCharId]
+    local toChar = Noteworthy_DB["character_list"][toCharId]
+    local notes
+    if override then
+        notes = Noteworthy_DB[fromChar]
+    else
+        notes = Noteworthy_DB[toChar] .. "\n\n" .. Noteworthy_DB[fromChar]
+    end
+    Noteworthy_DB[toChar] = notes
+    Noteworthy_DB[fromChar] = ""
+    Noteworthy_ResetGadgetInfo()
 end
 
 

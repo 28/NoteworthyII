@@ -341,4 +341,164 @@
             <OnLoad function="InterfaceOptions_AddCategory"/>
         </Scripts>
     </Frame>
+
+    <Frame name="Noteworthy_AddOnMigrationOptions" hidden="false">
+        <KeyValues>
+            <KeyValue key="name" value="Character notes migration"/>
+            <KeyValue key="parent" value="Noteworthy II"/>
+        </KeyValues>
+
+        <Frames>
+            <!-- Character notes management label -->
+            <Frame name="$parentCharacterNotesMgmtLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMigrationOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-15"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="Character notes migration" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Migration explanation label -->
+            <Frame name="$parentCharacterNotesMgmtExplanationLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMigrationOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-55"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="Migrate notes from one character to another. By default they will be appended to the end of the target character's notes as a new paragraph. Ticking the override box will erase the target character's notes before appending. All unsaved work will be lost! Origin notes will be removed!" justifyH="LEFT" justifyV="TOP"
+                                    wordwrap="true"
+                                    inherits="GameFontNormal">
+                            <Size x="550" y="50"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- From Character label -->
+            <Frame name="$parentFromCharacterNotesMgmtLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMigrationOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-90"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="From Character:" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalSmall"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- From character drop down menu -->
+            <Frame name="Noteworthy_FromCharDropDown" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentFromCharacterNotesMgmtLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="-15" y="-20"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+
+            <!-- To character label -->
+            <Frame name="$parentToCharacterNotesMgmtLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMigrationOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="200" y="-90"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" text="To Character:" justifyH="LEFT" justifyV="TOP"
+                                    inherits="GameFontNormalSmall"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- To character drop down menu -->
+            <Frame name="Noteworthy_ToCharDropDown" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentToCharacterNotesMgmtLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="-15" y="-20"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+
+            <!-- Override checkbox -->
+            <CheckButton name="Noteworthy_OverrideOnMigrateCheckbox"
+                         text="Override|Override receiving character's notes on migration"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_FromCharDropDown" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="15" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </CheckButton>
+
+            <!-- Migrate button -->
+            <Button name="Noteworthy_MigrateButton" text="Migrate" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_OverrideOnMigrateCheckbox" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnClick>
+                            local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_FromCharDropDown)
+                            local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_ToCharDropDown)
+                            if fromCharId ~= nil and toCharId ~= nil and fromCharId ~= toCharId then
+                                StaticPopup_Show("NOTEWORTHY_MIGRATION_CONFIRM")
+                            end
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+
+        <Scripts>
+            <OnLoad function="InterfaceOptions_AddCategory"/>
+        </Scripts>
+    </Frame>
 </Ui>

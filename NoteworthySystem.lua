@@ -43,6 +43,27 @@ function Noteworthy_CreateDropDown()
     end)
 end
 
+--- Creates a drop down menu for the givent element and populates it with the current available character names.
+-- Menu width is set to 100. Creates a basic on-click function for displaying the selected text.
+-- @param dropDownElement name of the drop down menu element
+-- @return nil
+function Noteworthy_CreateCharacterListDropDown(dropDownElement)
+    UIDropDownMenu_SetWidth(dropDownElement, 100)
+    UIDropDownMenu_Initialize(dropDownElement, function(self, level, menuList)
+        for c = 1, Noteworthy_DB["character_count"], 1 do
+            local info = UIDropDownMenu_CreateInfo()
+            info.func = function(self)
+                local newCharId = self:GetID()
+                UIDropDownMenu_SetSelectedID(dropDownElement, newCharId)
+                local charName = Noteworthy_DB["character_list"][newCharId]
+                UIDropDownMenu_SetText(dropDownElement, charName)
+            end
+            info.text = Noteworthy_DB["character_list"][c]
+            UIDropDownMenu_AddButton(info)
+        end
+    end)
+end
+
 function Noteworthy_UpdateDropDown(self)
     Noteworthy_ChangeCharacter(self:GetID())
 end
@@ -160,6 +181,19 @@ end
 ----------------------------------------------------------------
 -- Misc functions
 ----------------------------------------------------------------
+
+-- Defines a static popup dialog for confirming/denying character notes migration.
+StaticPopupDialogs["NOTEWORTHY_MIGRATION_CONFIRM"] = {
+    text = "Are you sure you want to migrate notes?",
+    button1 = "Yes",
+    button2 = "No",
+    OnAccept = Noteworthy_MigrateCharacterNotes,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3
+}
+
 function Noteworthy_ButtonTooltip(button)
     if (button.dragging) then return end
 
