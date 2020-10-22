@@ -191,6 +191,7 @@ Noteworthy II project file structure:
 |- NoteworthyBroker.lua ---> Contains LDB code for Noteworthy II
 |- NoteworthyButton.xml ---> Code for the floating button
 |- NoteworthyMain.lua ---> Main library code
+|- NoteworthyOptions.xml ---> Noteworthy II settings that appear in Interface/AddOns game menu
 |- NoteworthySystem.lua ---> Code for menus, commands and misc
 |- NoteworthyTemplates.xml ---> Noteworthy II specific reusable XML templates
 |- NoteworthyWindows.xml ---> Noteworthy II main XML file (main and alert windows)
