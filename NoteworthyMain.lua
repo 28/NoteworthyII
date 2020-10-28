@@ -112,9 +112,7 @@ function Noteworthy_Initialise()
     Noteworthy_SetInterface()
 
     -- configure dropdown menus
-    Noteworthy_CreateDropDown()
-    Noteworthy_CreateCharacterListDropDown(Noteworthy_FromCharDropDown)
-    Noteworthy_CreateCharacterListDropDown(Noteworthy_ToCharDropDown)
+    Noteworthy_CreateDropDownMenus()
 
     -- set initial tab etc.
     if Noteworthy_DB["remember_page"] and Noteworthy_ValidTab(Noteworthy_DB["last_tab"]) then
@@ -135,6 +133,16 @@ function Noteworthy_Initialise()
     end
 
     print(startupMsg .. " Use buttons or /noteworthy to open.")
+end
+
+--- Creates all Noteworthy II drop down menus
+-- @return nil
+-- @see Noteworthy_CreateDropDown
+-- @see Noteworthy_CreateCharacterListDropDown
+function Noteworthy_CreateDropDownMenus()
+    Noteworthy_CreateDropDown()
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_FromCharDropDown)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_ToCharDropDown)
 end
 
 function Noteworthy_ValidTab(tabId)
@@ -518,6 +526,27 @@ function Noteworthy_MigrateCharacterNotes()
     Noteworthy_DB[toChar] = notes
     Noteworthy_DB[fromChar] = ""
     Noteworthy_ResetGadgetInfo()
+end
+
+--- Removes a character from Noteworthy II character lists, notes and reminders.
+-- @param charId
+-- @return nil
+-- @see Noteworthy_CreateDropDownMenus
+-- @see Noteworthy_ResetGadgetInfo
+function Noteworthy_RemoveCharacter(charId)
+    if Noteworthy_GetPlrID() ~= charId then
+        local charName = Noteworthy_DB["character_list"][charId]
+
+        Noteworthy_DB[charName] = nil
+        table.remove(Noteworthy_DB["character_list"], charId)
+        Noteworthy_DB["character_count"] = Noteworthy_DB["character_count"] - 1
+
+        Noteworthy_reminder[charName] = nil
+        Noteworthy_DB["Remind_" .. charName] = nil
+
+        Noteworthy_CreateDropDownMenus()
+        Noteworthy_ResetGadgetInfo()
+    end
 end
 
 
