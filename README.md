@@ -17,7 +17,7 @@ Noteworthy II is a feature rich, configurable notepad with full LDB
 support.
 
 Overview of features:
-- Separate notes page for each character plus a Shared and Quick Notes
+- Separate notes page for each character with advanced management options, plus a Shared and Quick Notes
 page (see below).
 - All notes pages are accessible by all characters.
 - Drag & drop items, spells and macros, creating linkable tooltips
@@ -45,6 +45,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200"/>
 
@@ -140,6 +141,11 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 	- Enabled: If notepad opened on quick notes tab, quick notes will be inserted at cursor position.
 	  Note that when added this way, you must manually Save any changes to the text.
 	- Disabled: Quick notes will always be added at the top and will be automatically saved.
+- Settings page/Character notes - Interface/AddOns/Noteworthy II/Character Notes:
+  - Migrate notes: Migrate notes from one character from drop down menu to another character from drop down menu.
+    - Override checkbox: Override the target character notes
+    - Preserve origin checkbox: Preserve the origin character notes
+  - Delete notes: Delete notes for selected character from the drop down menu (Character which notes were deleted will be recreated upon logon, but with placeholder text).
 
 ## Installation
 
