@@ -141,8 +141,9 @@ end
 -- @see Noteworthy_CreateCharacterListDropDown
 function Noteworthy_CreateDropDownMenus()
     Noteworthy_CreateDropDown()
-    Noteworthy_CreateCharacterListDropDown(Noteworthy_FromCharDropDown)
-    Noteworthy_CreateCharacterListDropDown(Noteworthy_ToCharDropDown)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_FromCharDropDown, false)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_ToCharDropDown, false)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_DelCharDropDown, true)
 end
 
 function Noteworthy_ValidTab(tabId)
@@ -508,13 +509,15 @@ end
 
 --- Migrates the character notes from one character to another and updates gadgets.
 -- Migrating notes are concatenated as a new paragraph to the target unless
--- the 'override' check box is ticked. Origin notes will be removed.
+-- the 'override' check box is ticked. Origin notes will be removed if 'preserve origin'
+-- checkbutton is ticked, otherwise not.
 -- @return nil
 -- @see Noteworthy_ResetGadgetInfo
 function Noteworthy_MigrateCharacterNotes()
     local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_FromCharDropDown)
     local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_ToCharDropDown)
     local override = Noteworthy_OverrideOnMigrateCheckbox:GetChecked() or false
+    local preserveOrigin = Noteworthy_LeaveOriginCheckbox:GetChecked() or false
     local fromChar = Noteworthy_DB["character_list"][fromCharId]
     local toChar = Noteworthy_DB["character_list"][toCharId]
     local notes
@@ -524,19 +527,18 @@ function Noteworthy_MigrateCharacterNotes()
         notes = Noteworthy_DB[toChar] .. "\n\n" .. Noteworthy_DB[fromChar]
     end
     Noteworthy_DB[toChar] = notes
-    Noteworthy_DB[fromChar] = ""
+    if not preserveOrigin then Noteworthy_DB[fromChar] = "" end
     Noteworthy_ResetGadgetInfo()
 end
 
 --- Removes a character from Noteworthy II character lists, notes and reminders.
--- @param charId
 -- @return nil
 -- @see Noteworthy_CreateDropDownMenus
 -- @see Noteworthy_ResetGadgetInfo
-function Noteworthy_RemoveCharacter(charId)
-    if Noteworthy_GetPlrID() ~= charId then
-        local charName = Noteworthy_DB["character_list"][charId]
-
+function Noteworthy_RemoveCharacter()
+    local charId = UIDropDownMenu_GetSelectedID(Noteworthy_DelCharDropDown)
+    local charName = Noteworthy_DB["character_list"][charId]
+    if charName ~= GetUnitName("player") then
         Noteworthy_DB[charName] = nil
         table.remove(Noteworthy_DB["character_list"], charId)
         Noteworthy_DB["character_count"] = Noteworthy_DB["character_count"] - 1
