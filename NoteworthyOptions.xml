@@ -564,7 +564,7 @@
                 <Layers>
                     <Layer level="ARTWORK">
                         <FontString name="$parentText"
-                                    text="|cFFFFFFFFSelect a character from the drop down menu to delete their notes, remove it from the list and disable the reminder. This cannot be done for the playing character. Character which notes were deleted will be recreated upon logon, but with placeholder text. All unsaved work will be lost!|r"
+                                    text="|cFFFFFFFFSelect a character from the drop down menu to delete their notes, remove it from the list and disable the reminder. This cannot be done for the playing character. Character notes which were deleted will be recreated upon logon, but with placeholder text. All unsaved work will be lost!|r"
                                     justifyH="LEFT" justifyV="TOP"
                                     wordwrap="true"
                                     inherits="GameFontNormal">

@@ -48,6 +48,7 @@ end
 -- @param dropDownElement name of the drop down menu element
 -- @param withoutPlayerCharacter boolean indicating should the player controled character be excluded from the list
 -- @return nil
+-- @see Noteworthy_ClearDropDownSelection
 function Noteworthy_CreateCharacterListDropDown(dropDownElement, withoutPlayerCharacter)
     UIDropDownMenu_SetWidth(dropDownElement, 100)
     UIDropDownMenu_Initialize(dropDownElement, function(self, level, menuList)
@@ -65,11 +66,20 @@ function Noteworthy_CreateCharacterListDropDown(dropDownElement, withoutPlayerCh
                 UIDropDownMenu_AddButton(info)
             end
         end
+        Noteworthy_ClearDropDownSelection(dropDownElement)
     end)
 end
 
 function Noteworthy_UpdateDropDown(self)
     Noteworthy_ChangeCharacter(self:GetID())
+end
+
+--- Clears the selection of the passed drop down menu.
+-- @param dropDownMenu drop down menu to clear
+-- @return nil
+function Noteworthy_ClearDropDownSelection(dropDownMenu)
+    UIDropDownMenu_SetSelectedID(dropDownMenu, nil)
+    UIDropDownMenu_SetText(dropDownMenu, nil)
 end
 
 
