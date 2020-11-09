@@ -547,7 +547,11 @@ function Noteworthy_RemoveCharacter()
         Noteworthy_DB["character_count"] = Noteworthy_DB["character_count"] - 1
 
         Noteworthy_reminder[charName] = nil
+        Noteworthy_text[charName] = nil
+        Noteworthy_character =  UnitName("player")
+        Noteworthy_plrID = Noteworthy_GetPlrID()
         Noteworthy_DB["Remind_" .. charName] = nil
+        if Noteworthy_DB["last_char"] == charId then Noteworthy_DB["last_char"] = nil end
 
         Noteworthy_CreateDropDownMenus()
         Noteworthy_ResetGadgetInfo()
@@ -630,4 +634,19 @@ function Noteworthy_SetFocus(pos)
         Noteworthy_textbox:SetFocus()
         if pos ~= nil then Noteworthy_textbox:SetCursorPosition(pos) end
     end
+end
+
+--- Asserts if the passed ID corresponds to the player character.
+-- @param charId id to assert
+-- @return true if ID corresponds to the player character otherwise false
+function Noteworthy_isCharacterIdFromCurrentPlayer(charId)
+    local charName = Noteworthy_DB["character_list"][charId]
+    return charName == GetUnitName("player")
+end
+
+--- Takes a phrase and returns it formatted to be displayed in gray color
+-- @param phrase to be formatted
+-- @return formated string
+function Noteworthy_GrayPhrase(phrase)
+    return "|c80808001" .. phrase .. "|r"
 end

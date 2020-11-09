@@ -600,7 +600,7 @@
                 <Scripts>
                     <OnClick>
                             local charId = UIDropDownMenu_GetSelectedID(Noteworthy_DelCharDropDown)
-                            if charId ~= nil then
+                            if charId ~= nil and not Noteworthy_isCharacterIdFromCurrentPlayer(charId) then
                                 StaticPopup_Show("NOTEWORTHY_DELETION_CONFIRM")
                             end
                     </OnClick>

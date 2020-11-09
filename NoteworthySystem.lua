@@ -50,21 +50,27 @@ end
 -- @return nil
 -- @see Noteworthy_ClearDropDownSelection
 function Noteworthy_CreateCharacterListDropDown(dropDownElement, withoutPlayerCharacter)
+    local formattedName = function(id)
+        local charName = Noteworthy_DB["character_list"][id]
+        if withoutPlayerCharacter and Noteworthy_isCharacterIdFromCurrentPlayer(id) then
+            charName = Noteworthy_GrayPhrase(charName)
+        end
+        return charName
+    end
+
     UIDropDownMenu_SetWidth(dropDownElement, 100)
     UIDropDownMenu_Initialize(dropDownElement, function(self, level, menuList)
         for c = 1, Noteworthy_DB["character_count"], 1 do
             local char = Noteworthy_DB["character_list"][c]
-            if char ~= GetUnitName("player") or not withoutPlayerCharacter then
-                local info = UIDropDownMenu_CreateInfo()
-                info.func = function(self)
-                    local newCharId = self:GetID()
-                    UIDropDownMenu_SetSelectedID(dropDownElement, newCharId)
-                    local charName = Noteworthy_DB["character_list"][newCharId]
-                    UIDropDownMenu_SetText(dropDownElement, charName)
-                end
-                info.text = Noteworthy_DB["character_list"][c]
-                UIDropDownMenu_AddButton(info)
+            local info = UIDropDownMenu_CreateInfo()
+            info.func = function(self)
+                local newCharId = self:GetID()
+                UIDropDownMenu_SetSelectedID(dropDownElement, newCharId)
+                local charName = formattedName(newCharId)
+                UIDropDownMenu_SetText(dropDownElement, charName)
             end
+            info.text = formattedName(c)
+            UIDropDownMenu_AddButton(info)
         end
         Noteworthy_ClearDropDownSelection(dropDownElement)
     end)
@@ -79,7 +85,7 @@ end
 -- @return nil
 function Noteworthy_ClearDropDownSelection(dropDownMenu)
     UIDropDownMenu_SetSelectedID(dropDownMenu, nil)
-    UIDropDownMenu_SetText(dropDownMenu, nil)
+    UIDropDownMenu_SetText(dropDownMenu, "")
 end
 
 
