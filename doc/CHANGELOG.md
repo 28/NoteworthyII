@@ -1,5 +1,11 @@
 # Change log
 
+## Unreleased
+- General
+  - Migrate settings page to Interface/AddOns game menu
+  - Introduce character notes migration feature
+  - Introduce character notes deletion feature 
+
 ## v2.0.1
 - General
   - Update game client version to Shadowlands

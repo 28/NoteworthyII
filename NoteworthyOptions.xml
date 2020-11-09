@@ -341,4 +341,275 @@
             <OnLoad function="InterfaceOptions_AddCategory"/>
         </Scripts>
     </Frame>
+
+    <Frame name="Noteworthy_AddOnMgmtOptions" hidden="false">
+        <KeyValues>
+            <KeyValue key="name" value="Character notes"/>
+            <KeyValue key="parent" value="Noteworthy II"/>
+        </KeyValues>
+
+        <Frames>
+            <!-- Character notes migration label -->
+            <Frame name="$parentCharacterNotesMigrateLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-15"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="Character notes migration"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Migration explanation label -->
+            <Frame name="$parentCharacterNotesMigrateExplanationLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-55"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="|cFFFFFFFFMigrate notes from one character to another. By default notes will be appended to the end of the target character's notes as a new paragraph. Ticking the 'Override' box will erase the target character's notes before appending. All unsaved work will be lost! Origin notes can be preserved by ticking the 'Preserve origin', otherwise they will be removed!|r"
+                                    justifyH="LEFT" justifyV="TOP"
+                                    wordwrap="true"
+                                    inherits="GameFontNormal">
+                            <Size x="550" y="50"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- From Character label -->
+            <Frame name="$parentFromCharacterNotesMigrateLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-90"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="From Character:"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    inherits="GameFontNormalSmall"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- From character drop down menu -->
+            <Frame name="Noteworthy_FromCharDropDown" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentFromCharacterNotesMigrateLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="-15" y="-20"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+
+            <!-- To character label -->
+            <Frame name="$parentToCharacterNotesMigrateLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="200" y="-90"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="To Character:"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    inherits="GameFontNormalSmall"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- To character drop down menu -->
+            <Frame name="Noteworthy_ToCharDropDown" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentToCharacterNotesMigrateLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="-15" y="-20"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+
+            <!-- Override checkbox -->
+            <CheckButton name="Noteworthy_OverrideOnMigrateCheckbox"
+                         text="Override|Override receiving character's notes on migration"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_FromCharDropDown" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="15" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </CheckButton>
+
+            <!-- Keep origin notes checkbox -->
+            <CheckButton name="Noteworthy_LeaveOriginCheckbox"
+                         text="Preserve origin|Preserve origin character's notes"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_FromCharDropDown" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="15" y="-30"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </CheckButton>
+
+            <!-- Migrate button -->
+            <Button name="Noteworthy_MigrateButton" text="Migrate" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT"
+                            relativeTo="Noteworthy_LeaveOriginCheckbox"
+                            relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnClick>
+                            local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_FromCharDropDown)
+                            local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_ToCharDropDown)
+                            if fromCharId ~= nil and toCharId ~= nil and fromCharId ~= toCharId then
+                                StaticPopup_Show("NOTEWORTHY_MIGRATION_CONFIRM")
+                            end
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Character notes deletion label -->
+            <Frame name="$parentCharacterNotesDelLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-240"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="Character notes deletion"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Deletion explanation label -->
+            <Frame name="$parentCharacterNotesDelExplanationLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentCharacterNotesDelLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-40"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="|cFFFFFFFFSelect a character from the drop down menu to delete their notes, remove it from the list and disable the reminder. This cannot be done for the playing character. Character notes which were deleted will be recreated upon logon, but with placeholder text. All unsaved work will be lost!|r"
+                                    justifyH="LEFT" justifyV="TOP"
+                                    wordwrap="true"
+                                    inherits="GameFontNormal">
+                            <Size x="550" y="50"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Delete character drop down menu -->
+            <Frame name="Noteworthy_DelCharDropDown" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT"
+                            relativeTo="$parentCharacterNotesDelExplanationLabel"
+                            relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="-15" y="-40"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+
+            <!-- Delete notes button -->
+            <Button name="Noteworthy_DeleteButton" text="Delete notes" inherits="Ghost_ButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_DelCharDropDown" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="25" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnClick>
+                            local charId = UIDropDownMenu_GetSelectedID(Noteworthy_DelCharDropDown)
+                            if charId ~= nil then
+                                StaticPopup_Show("NOTEWORTHY_DELETION_CONFIRM")
+                            end
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+
+        <Scripts>
+            <OnLoad function="InterfaceOptions_AddCategory"/>
+        </Scripts>
+    </Frame>
 </Ui>

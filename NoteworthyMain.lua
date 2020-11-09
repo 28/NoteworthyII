@@ -111,8 +111,8 @@ function Noteworthy_Initialise()
     Noteworthy_ResetGadgetInfo()
     Noteworthy_SetInterface()
 
-    -- configure dropdown menu
-    Noteworthy_CreateDropDown()
+    -- configure dropdown menus
+    Noteworthy_CreateDropDownMenus()
 
     -- set initial tab etc.
     if Noteworthy_DB["remember_page"] and Noteworthy_ValidTab(Noteworthy_DB["last_tab"]) then
@@ -133,6 +133,17 @@ function Noteworthy_Initialise()
     end
 
     print(startupMsg .. " Use buttons or /noteworthy to open.")
+end
+
+--- Creates all Noteworthy II drop down menus
+-- @return nil
+-- @see Noteworthy_CreateDropDown
+-- @see Noteworthy_CreateCharacterListDropDown
+function Noteworthy_CreateDropDownMenus()
+    Noteworthy_CreateDropDown()
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_FromCharDropDown, false)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_ToCharDropDown, false)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_DelCharDropDown, true)
 end
 
 function Noteworthy_ValidTab(tabId)
@@ -494,6 +505,53 @@ end
 function Noteworthy_CreateMacros()
     Ghost_CreateMacro("Noteworthy II", "INV_Misc_Book_08", "/noteworthy")
     Ghost_CreateMacro("QuickNotes", "INV_Misc_Book_11", "/quicknotes")
+end
+
+--- Migrates the character notes from one character to another and updates gadgets.
+-- Migrating notes are concatenated as a new paragraph to the target unless
+-- the 'override' check box is ticked. Origin notes will be removed if 'preserve origin'
+-- checkbutton is ticked, otherwise not.
+-- @return nil
+-- @see Noteworthy_ResetGadgetInfo
+-- @see Noteworthy_ClearDropDownSelection
+function Noteworthy_MigrateCharacterNotes()
+    local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_FromCharDropDown)
+    local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_ToCharDropDown)
+    local override = Noteworthy_OverrideOnMigrateCheckbox:GetChecked() or false
+    local preserveOrigin = Noteworthy_LeaveOriginCheckbox:GetChecked() or false
+    local fromChar = Noteworthy_DB["character_list"][fromCharId]
+    local toChar = Noteworthy_DB["character_list"][toCharId]
+    local notes
+    if override then
+        notes = Noteworthy_DB[fromChar]
+    else
+        notes = Noteworthy_DB[toChar] .. "\n\n" .. Noteworthy_DB[fromChar]
+    end
+    Noteworthy_DB[toChar] = notes
+    if not preserveOrigin then Noteworthy_DB[fromChar] = "" end
+    Noteworthy_ResetGadgetInfo()
+    Noteworthy_ClearDropDownSelection(Noteworthy_FromCharDropDown)
+    Noteworthy_ClearDropDownSelection(Noteworthy_ToCharDropDown)
+end
+
+--- Removes a character from Noteworthy II character lists, notes and reminders.
+-- @return nil
+-- @see Noteworthy_CreateDropDownMenus
+-- @see Noteworthy_ResetGadgetInfo
+function Noteworthy_RemoveCharacter()
+    local charId = UIDropDownMenu_GetSelectedID(Noteworthy_DelCharDropDown)
+    local charName = Noteworthy_DB["character_list"][charId]
+    if charName ~= GetUnitName("player") then
+        Noteworthy_DB[charName] = nil
+        table.remove(Noteworthy_DB["character_list"], charId)
+        Noteworthy_DB["character_count"] = Noteworthy_DB["character_count"] - 1
+
+        Noteworthy_reminder[charName] = nil
+        Noteworthy_DB["Remind_" .. charName] = nil
+
+        Noteworthy_CreateDropDownMenus()
+        Noteworthy_ResetGadgetInfo()
+    end
 end
 
 
