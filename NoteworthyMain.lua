@@ -513,6 +513,7 @@ end
 -- checkbutton is ticked, otherwise not.
 -- @return nil
 -- @see Noteworthy_ResetGadgetInfo
+-- @see Noteworthy_ClearDropDownSelection
 function Noteworthy_MigrateCharacterNotes()
     local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_FromCharDropDown)
     local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_ToCharDropDown)
@@ -529,6 +530,8 @@ function Noteworthy_MigrateCharacterNotes()
     Noteworthy_DB[toChar] = notes
     if not preserveOrigin then Noteworthy_DB[fromChar] = "" end
     Noteworthy_ResetGadgetInfo()
+    Noteworthy_ClearDropDownSelection(Noteworthy_FromCharDropDown)
+    Noteworthy_ClearDropDownSelection(Noteworthy_ToCharDropDown)
 end
 
 --- Removes a character from Noteworthy II character lists, notes and reminders.
