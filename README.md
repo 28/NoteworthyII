@@ -158,15 +158,14 @@ Note that the zip archive already contains the 'NoteworthyII' directory which sh
 This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII';
 3. Start the game; Noteworthy II should be listed in the 'AddOns' game menu.
 
-### Twitch app
+### CurseForge (Overwolf) app
 
-1. Start the [Twitch app](https://www.twitch.tv/downloads);
-2. Navigate to 'Mods' section;
-3. Select 'World of Warcraft' game;
-4. Go to 'Get More Addons' tab;
-5. In the upper right search bar type 'Noteworthy II';
-6. Select the addon from the list and click the 'Install' button;
-7. When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+1. Start the [CurseForge (Overwolf) app](https://curseforge.overwolf.com);
+2. Select 'World of Warcraft' game;
+3. Go to 'Get More Addons' tab;
+4. In the top search bar type 'Noteworthy II';
+5. Click the 'Install' button in the 'Action' column or select the addon and press the 'Install' button on the upper right;
+6. When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
 
 ### WoWUp
 
