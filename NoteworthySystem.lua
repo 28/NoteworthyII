@@ -241,6 +241,9 @@ end
 -- Misc functions
 ----------------------------------------------------------------
 
+-- minimap and floating button tooltip text
+BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy II|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
+
 -- defines a static popup dialog for confirming/denying character notes migration
 StaticPopupDialogs["NOTEWORTHY_MIGRATION_CONFIRM"] = {
     text = "Are you sure you want to migrate notes?",
@@ -263,6 +266,17 @@ StaticPopupDialogs["NOTEWORTHY_DELETION_CONFIRM"] = {
     whileDead = true,
     hideOnEscape = true,
     preferredIndex = 3
+}
+
+-- frame backdrop table
+NOTEWORTHY_PANEL_BACKDROP = {
+    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    tile = true,
+    tileEdge = true,
+    tileSize = 16,
+    edgeSize = 16,
+    insets = { left = 5, right = 5, top = 5, bottom = 5 },
 }
 
 --- Sets the tooltip text for the Noteworthy floating button.

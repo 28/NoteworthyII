@@ -9,24 +9,14 @@ local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
 local TAB_QUICK = 3
-BUTTON_TOOLTIP = "|cFFFFFFFFNoteworthy II|r\nLeft-click: Toggle window\nRight-click: Quick Notes menu"
-NOTEWORTHY_PANEL_BACKDROP = {
-    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-    tile = true,
-    tileEdge = true,
-    tileSize = 16,
-    edgeSize = 16,
-    insets = { left = 5, right = 5, top = 5, bottom = 5 },
-}
+Noteworthy_Snd_Type_File = -10
+Noteworthy_Snd_Type_Kit = -20
 
 -- set saved variable to table to store all settings
 if not Noteworthy_DB then Noteworthy_DB = {} end
 
 -- session vars
 Noteworthy_character = "" -- selected character
-Noteworthy_Snd_Type_File = -10
-Noteworthy_Snd_Type_Kit = -20
 local Noteworthy_plrID = 0 -- player character ID
 local Noteworthy_current_tab = 1 -- ID of current tab
 local Noteworthy_textbox -- current visible textbox (diff to Ghost_CurrentEditBox which is focussed box)
