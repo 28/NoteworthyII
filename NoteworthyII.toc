@@ -1,4 +1,4 @@
-## Interface: 90001
+## Interface: 90002
 ## Title: Noteworthy II
 ## Version: 2.0.1
 ## Notes: Fully featured and configurable notepad utility
