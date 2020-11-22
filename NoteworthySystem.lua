@@ -6,14 +6,24 @@
 ----------------------------------------------------------------
 -- Slash commands
 ----------------------------------------------------------------
+
+-- slash commands
 SLASH_Noteworthy_1, SLASH_Noteworthy_2 = '/noteworthy', '/notes'
 SLASH_QuickNotes_1 = '/quicknotes'
 
-function SlashCmdList.Noteworthy_(msg, editbox)
+--- Creates (assigns) a handler fucntion for the '/noteworthy' command.
+-- @param msg a whole message after the slash command (unused)
+-- @return nil
+-- @see Noteworthy_ToggleView
+function SlashCmdList.Noteworthy_(msg)
     Noteworthy_ToggleView()
 end
 
-function SlashCmdList.QuickNotes_(msg, editbox)
+--- Creates (assigns) a handler fucntion for the '/quicknotes' command.
+-- @param msg a whole message after the slash command (unused)
+-- @return nil
+-- @see Noteworthy_QuickContextMenu
+function SlashCmdList.QuickNotes_(msg)
     Noteworthy_QuickContextMenu()
 end
 
@@ -21,6 +31,12 @@ end
 ----------------------------------------------------------------
 -- Dropdown menu Code
 ----------------------------------------------------------------
+
+--- Creates the character notes drop down menu and fills it with all characters.
+-- The character that is curenlty being played on will be selected. See
+-- Noteworthy_UpdateDropDown for selection change handler fundtion.
+-- @return nil
+-- @see Noteworthy_UpdateDropDown
 function Noteworthy_CreateDropDown()
     UIDropDownMenu_SetWidth(Noteworthy_DropDown, 100)
     UIDropDownMenu_SetText(Noteworthy_DropDown, Noteworthy_character)
@@ -76,6 +92,10 @@ function Noteworthy_CreateCharacterListDropDown(dropDownElement, withoutPlayerCh
     end)
 end
 
+--- Called when character notes drop down menu selection is changed.
+-- @param self the drop down menu
+-- @return nil
+-- @see Noteworthy_ChangeCharacter
 function Noteworthy_UpdateDropDown(self)
     Noteworthy_ChangeCharacter(self:GetID())
 end
@@ -92,8 +112,18 @@ end
 ----------------------------------------------------------------
 -- Edit context menu
 ----------------------------------------------------------------
+
+-- edit menu frame
 local Noteworthy_EditMenuFrame = CreateFrame("Frame", "EditMenuFrame", UIParent, "UIDropDownMenuTemplate")
 
+--- Creates the edit context menu.
+-- Manu that appears when right clicking the edit panel on any notes page. It has 'insert info',
+-- 'insert chat', 'change text color' and 'clear formatting' options.
+-- @return nil
+-- @see Ghost_GetSelectedText
+-- @see Noteworthy_InsertText
+-- @see Ghost_EditBoxSetTextColour
+-- @see Ghost_EditBoxClearEscapes
 function Noteworthy_EditContextMenu()
     -- set disabled flags
     local undo, redo, target, chat, colour = true, true, true, true, true
@@ -160,8 +190,17 @@ end
 ----------------------------------------------------------------
 -- Quick Notes context menu
 ----------------------------------------------------------------
+
+-- quick menu frame
 local Noteworthy_QuickMenuFrame = CreateFrame("Frame", "QuickNotesMenuFrame", UIParent, "UIDropDownMenuTemplate")
 
+--- Creates a quick notes context menu.
+-- It has the 'open quick notes', 'add location', 'add target name', 'add chat', 'edit quick notes', and 'edit my notes'
+-- options.
+-- @return nil
+-- @see Noteworthy_AddQuickNote
+-- @see Noteworthy_QuickEdit
+-- @see Noteworthy_MyEdit
 function Noteworthy_QuickContextMenu()
     -- set disabled flags
     local target, chat = true, true
@@ -202,7 +241,7 @@ end
 -- Misc functions
 ----------------------------------------------------------------
 
--- Defines a static popup dialog for confirming/denying character notes migration.
+-- defines a static popup dialog for confirming/denying character notes migration
 StaticPopupDialogs["NOTEWORTHY_MIGRATION_CONFIRM"] = {
     text = "Are you sure you want to migrate notes?",
     button1 = "Yes",
@@ -214,7 +253,7 @@ StaticPopupDialogs["NOTEWORTHY_MIGRATION_CONFIRM"] = {
     preferredIndex = 3
 }
 
--- Defines a static popup dialog for confirming/denying character notes deletion.
+-- defines a static popup dialog for confirming/denying character notes deletion
 StaticPopupDialogs["NOTEWORTHY_DELETION_CONFIRM"] = {
     text = "Are you sure you want to delete character notes?",
     button1 = "Yes",
@@ -226,6 +265,9 @@ StaticPopupDialogs["NOTEWORTHY_DELETION_CONFIRM"] = {
     preferredIndex = 3
 }
 
+--- Sets the tooltip text for the Noteworthy floating button.
+-- @param button the floating button
+-- @return nil
 function Noteworthy_ButtonTooltip(button)
     if (button.dragging) then return end
 
@@ -233,6 +275,10 @@ function Noteworthy_ButtonTooltip(button)
     GameTooltip:SetText(BUTTON_TOOLTIP)
 end
 
+--- Plays the passed sound file.
+-- @param snd a table representing the sound Noteworthy_Snd_Type_Kit for soundkid file id or Noteworthy_Snd_Type_File
+-- for the file path
+-- @return nil
 function Noteworthy_PlaySound(snd)
     if Noteworthy_DB["play_sounds"] then
         if snd.type == Noteworthy_Snd_Type_File then

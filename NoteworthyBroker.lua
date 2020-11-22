@@ -2,13 +2,15 @@
 -- Broker code
 --==============================================================
 
+-- LDB constants
 LDB = LibStub("LibDataBroker-1.1");
 ldbicon = LibStub("LibDBIcon-1.0", true);
 
+--- Creates a new LDB data object for Noteworthy II minimap button.
+-- Only works if LDB and LDB icon libraries are loaded.
+-- @return nil
 function Noteworthy_InitBroker()
     if LDB then
-        -- create LDB object
-        --noinspection GlobalCreationOutsideO
         Noteworthy_LDB = LDB:NewDataObject("Noteworthy", {
             label = "Noteworthy II",
             type = "launcher",

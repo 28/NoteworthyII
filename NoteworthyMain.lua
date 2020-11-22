@@ -39,16 +39,43 @@ local Noteworthy_bufferID = 1 -- current buffer entry
 ----------------------------------------------------------------
 -- Initialise code
 ----------------------------------------------------------------
--- get Noteworthy charactger id
+
+--- Returns the character ID for the character stored in Noteworthy_character var.
+-- @return the character ID or 0 if the character is not in the table
+-- @see Noteworthy_character
 function Noteworthy_GetPlrID()
     for c = 1, Noteworthy_DB["character_count"], 1 do
         if Noteworthy_DB["character_list"][c] == Noteworthy_character then return c end
     end
-
-    return 0 -- return 0 if character not in table
+    return 0
 end
 
--- variable initialisation
+--- Initializes Noteworthy II on startup.
+-- 1. Sets the Noteworthy_character var
+-- 2. Initializes default setting values is needed.
+-- 3. Sets default shared notes if needed.
+-- 4. Sets default quick notes if needed.
+-- 5. Sets defailt character notes for current character if needed.
+-- 6. Applies last session options if available.
+-- 7. Initializes LDB broker.
+-- 8. Updates Noteworthy UI.
+-- 9. Populates drop down menus.
+-- 10. Sets initial character tab and populates it.
+-- 11. Fires the reminder for current char if set.
+-- @return nil
+-- @see Noteworthy_character
+-- @see Noteworthy_SetDefaults
+-- @see Noteworthy_InitBroker
+-- @see Noteworthy_GetPlrID
+-- @see Noteworthy_ResetOptions
+-- @see Noteworthy_ResetGadgetInfo
+-- @see Noteworthy_SetInterface
+-- @see Noteworthy_CreateDropDownMenus
+-- @see Noteworthy_ValidTab
+-- @see Noteworthy_SetTab
+-- @see Noteworthy_ChangeCharacter
+-- @see Ghost_CursorPos
+-- @see Noteworthy_SetTextFocus
 function Noteworthy_Initialise()
     local startupMsg = "|cFFFF7D0ANoteworthy II V" .. NOTEWORTHY_VTEXT .. " loaded.|r"
 
@@ -66,7 +93,7 @@ function Noteworthy_Initialise()
         Noteworthy_SetDefaults()
     end
     if Noteworthy_DB["version"] ~= NOTEWORTHY_VERSION then
-        startupMsg = "|cFF00FF00Noteworthy II updated to V" .. NOTEWORTHY_VTEXT .. "|r"
+        startupMsg = "|cFF00FF00Noteworthy II updated to V" .. NOTEWORTHY_VTEXT .. ".|r"
         Noteworthy_SetDefaults()
     end
 
@@ -146,10 +173,17 @@ function Noteworthy_CreateDropDownMenus()
     Noteworthy_CreateCharacterListDropDown(Noteworthy_DelCharDropDown, true)
 end
 
+--- Assers if passed tab ID is valid/existing.
+-- Introduced for version compatibility in case that last session remebered a tab that is no longer available
+-- (like settings tab that was removed in 2.1).
+-- @param tabId ID to check
+-- @return true if tab ID is valid, otherwise false
 function Noteworthy_ValidTab(tabId)
     return tabId ~= nil and (tabId == TAB_CHAR or tabId == TAB_SHARED or tabId == TAB_QUICK)
 end
 
+--- Sets the default setting values with regards to the version being upgraded to.
+-- @return nil
 function Noteworthy_SetDefaults()
     -- V1.0 settings
     if Noteworthy_DB["initialised"] == nil then
@@ -196,8 +230,16 @@ end
 ----------------------------------------------------------------
 -- Core event functions
 ----------------------------------------------------------------
+
+--- Core Noteworthy II handler function.
+-- Handles log in, entering combat and log off.
+-- @param event
+-- @return nil
+-- @see Noteworthy_Initialise
+-- @see Noteworthy_AutoCloseSave
 function Noteworthy_EventHandler(event)
     if (event == "VARIABLES_LOADED") then
+        -- log in
         Noteworthy_Initialise()
 
     elseif event == "PLAYER_REGEN_DISABLED" then
@@ -205,7 +247,7 @@ function Noteworthy_EventHandler(event)
         if Noteworthy_DB["combat_close"] then Noteworthy_AutoCloseSave(true) end
 
     elseif event == "PLAYER_LEAVING_WORLD" then
-        -- logoff
+        -- log off
         Noteworthy_DB["last_tab"] = Noteworthy_current_tab
         Noteworthy_DB["last_char"] = UIDropDownMenu_GetSelectedID(Noteworthy_DropDown)
         Noteworthy_DB["last_curs"] = Ghost_CursorPos
@@ -214,6 +256,12 @@ function Noteworthy_EventHandler(event)
     end
 end
 
+--- Sets the tab with the passed tab ID.
+-- @param tab ID od the tab to set
+-- @return nil
+-- @see Noteworthy_SaveGadgetInfo
+-- @see Noteworthy_SetTextFocus
+-- @see Noteworthy_PlaySound
 function Noteworthy_SetTab(tab)
     CloseDropDownMenus()
     Noteworthy_current_tab = tab
@@ -250,6 +298,13 @@ function Noteworthy_SetTab(tab)
     end
 end
 
+--- Changes the character in the character notes when a new value is selected in the drop down menu.
+-- @param newCharacterID ID of the character to set
+-- @return nil
+-- @see Noteworthy_SaveGadgetInfo
+-- @see Noteworthy_UpdateCharacterGadgets
+-- @see Noteworthy_SetTextFocus
+-- @see Noteworthy_PlaySound
 function Noteworthy_ChangeCharacter(newCharacterID)
     -- save current info
     Noteworthy_reminder[Noteworthy_character] = Noteworthy_ReminderCheckbox:GetChecked()
@@ -270,8 +325,14 @@ function Noteworthy_ChangeCharacter(newCharacterID)
     end
 end
 
-function Noteworthy_ChatFilter(_, event, msg, author)
-    -- allow all text through, storing it in buffer (up to MAX_CHAT_LINES)
+--- Noteworthy chat filter.
+-- Allow all text through, storing it in buffer (up to MAX_CHAT_LINES).
+-- @param self the frame that registrated the event (unused)
+-- @param event event type
+-- @param msg chat message
+-- @param author message author
+-- @return false always return false
+function Noteworthy_ChatFilter(self, event, msg, author)
     Noteworthy_bufferTxt[Noteworthy_bufferID] = "[" .. author .. "] " .. msg
     if event == "CHAT_MSG_BN_WHISPER_INFORM" or event == "CHAT_MSG_WHISPER_INFORM" then
         Noteworthy_bufferTxt[Noteworthy_bufferID] = "To " .. Noteworthy_bufferTxt[Noteworthy_bufferID]
@@ -287,6 +348,12 @@ end
 ----------------------------------------------------------------
 -- Button/menu triggered actions
 ----------------------------------------------------------------
+
+--- Left click on Noteworhty button handler.
+-- @param button the button being pressed
+-- @return nil
+-- @see Noteworthy_ToggleView
+-- @see Noteworthy_QuickContextMenu
 function Noteworthy_ButtonClick(button)
     if button == "LeftButton" then
         Noteworthy_ToggleView()
@@ -295,6 +362,11 @@ function Noteworthy_ButtonClick(button)
     end
 end
 
+--- Toggles the Noteworthy frame visibility.
+-- If visible close the frame with auto save (if available). If hidden displays it.
+-- @retrun nil
+-- @see Noteworthy_AutoCloseSave
+-- @see Noteworthy_ShowNotepad
 function Noteworthy_ToggleView()
     if Noteworthy_MainWindow:IsVisible() then
         Noteworthy_AutoCloseSave(true)
@@ -303,6 +375,10 @@ function Noteworthy_ToggleView()
     end
 end
 
+--- Shows the Noteworthy frame.
+-- @param pos the cursor possition to set on the displayed frame
+-- @return nil
+-- @see Noteworthy_SetTextFocus
 function Noteworthy_ShowNotepad(pos)
     CloseDropDownMenus()
     Noteworthy_AlertWindow:Hide()
@@ -310,7 +386,10 @@ function Noteworthy_ShowNotepad(pos)
     Noteworthy_SetTextFocus(pos)
 end
 
--- save current changes and hide window
+--- Saves current changes and hides the frame.
+-- @param playSoundFx boolean indicating should the close/save sound be played.
+-- @return nil
+-- @see Noteworthy_SaveGadgetInfo
 function Noteworthy_SaveChanges(playSoundFx)
     CloseDropDownMenus()
 
@@ -322,7 +401,9 @@ function Noteworthy_SaveChanges(playSoundFx)
     end
 end
 
--- revert to previous data and hide window
+--- Reverts to previous data and hides the frame.
+-- @return nil
+-- @see Noteworthy_ResetGadgetInfo
 function Noteworthy_CancelChanges()
     CloseDropDownMenus()
 
@@ -332,6 +413,11 @@ function Noteworthy_CancelChanges()
     end
 end
 
+--- Saves the current state if save on close if available otherwise discards the changes.
+-- @param playSoundFx a boolean indicating shoudl the close/save sound be played
+-- @return nil
+-- @see Noteworthy_SaveChanges
+-- @see Noteworthy_CancelChanges
 function Noteworthy_AutoCloseSave(playSoundFx)
     if Noteworthy_DB["save_on_close"] then
         Noteworthy_SaveChanges(playSoundFx)
@@ -340,12 +426,17 @@ function Noteworthy_AutoCloseSave(playSoundFx)
     end
 end
 
+--- Retrieves the current player location in a formatted coodinates string.
+-- @return a formated coordinates string
 function Noteworthy_GetLocation()
     local x, y = C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit("player"), "player"):GetXY()
 
     return GetRealZoneText() .. " " .. format(Noteworthy_DB["coord_format"], x * 100, y * 100)
 end
 
+--- Retrieves the passed number of chat entries from the chat buffer.
+-- @param entries the numbe of entries to retrieve
+-- @return the string of appended chat lines from the buffer
 function Noteworthy_GetChat(entries)
     local entryID = Noteworthy_bufferID
     local text = ""
@@ -362,19 +453,25 @@ function Noteworthy_GetChat(entries)
     return text
 end
 
+--- Inserts the passed text to the current visible text box.
+-- @param text to insert
+-- @return nil
 function Noteworthy_InsertText(text)
     CloseDropDownMenus()
     if Noteworthy_textbox then Noteworthy_textbox:Insert(text) end
 end
 
+--- Adds a quick note to the quick notes DB and panel.
+-- Will add a player and timestamp prefix if the that setting is available.
+-- Will open for edit if that setting is available.
+-- @param quicknote text to add
+-- @return nil
 function Noteworthy_AddQuickNote(quicknote)
     CloseDropDownMenus()
 
     if quicknote == nil or quicknote == "" then
-        print("Noteworthy II quick note NOT saved (no text)")
+        print("Noteworthy II quick note NOT saved (no text).")
     else
-        Ghost_UndoEnabled = 0
-
         -- check for prefix
         if Noteworthy_DB["qnote_prefix"] then
             quicknote = date(Noteworthy_DB["date_time_format"]) .. " (" .. UnitName("player") .. "): " .. "\n" .. quicknote .. "\n"
@@ -395,18 +492,23 @@ function Noteworthy_AddQuickNote(quicknote)
         if Noteworthy_DB["qnote_edit"] then
             Noteworthy_QuickEdit()
         else
-            print("Noteworthy II quick note saved")
+            print("Noteworthy II quick note saved.")
         end
-
-        Ghost_UndoEnabled = 1
     end
 end
 
+--- Open the Noteworthy frame on quick notes tab.
+-- @return nil
+-- @see Noteworthy_ShowNotepad
 function Noteworthy_QuickEdit()
     Noteworthy_SetTab(TAB_QUICK)
     Noteworthy_ShowNotepad(0)
 end
 
+--- Open the Noteworthy frame on character notes tab on current selecter character.
+-- @return nil
+-- @see Noteworthy_ChangeCharacter
+-- @see Noteworthy_ShowNotepad
 function Noteworthy_MyEdit()
     Noteworthy_SetTab(TAB_CHAR)
     Noteworthy_ChangeCharacter(Noteworthy_plrID)
@@ -417,8 +519,12 @@ end
 ----------------------------------------------------------------
 -- Close/save/options functions
 ----------------------------------------------------------------
+
+--- Updates all visible elements with stored DB values.
+-- Stores the working copy of character notes.
+-- @return nil
+-- @see Noteworthy_UpdateCharacterGadgets
 function Noteworthy_ResetGadgetInfo()
-    -- store working copy of character notes
     Noteworthy_text = {}
 
     for c = 1, Noteworthy_DB["character_count"], 1 do
@@ -433,8 +539,8 @@ function Noteworthy_ResetGadgetInfo()
     Noteworthy_UpdateCharacterGadgets()
 end
 
----
---
+--- Resets all the settings with the values from DB.
+-- @return nil
 function Noteworthy_ResetOptions()
     Noteworthy_RememberPageCheckbox:SetChecked(Noteworthy_DB["remember_page"])
     Noteworthy_FocusCheckbox:SetChecked(Noteworthy_DB["focus_text"])
@@ -450,12 +556,19 @@ function Noteworthy_ResetOptions()
     Noteworthy_QNoteCursorCheckbox:SetChecked(Noteworthy_DB["qnote_cursor"])
 end
 
+--- Updates all visible UI elements on the character notes page.
+-- @return nil
 function Noteworthy_UpdateCharacterGadgets()
     _G[Noteworthy_ReminderCheckbox:GetName() .. "Text"]:SetText("Remind " .. Noteworthy_character .. " at logon")
     Noteworthy_ReminderCheckbox:SetChecked(Noteworthy_reminder[Noteworthy_character])
     Noteworthy_TextAreaCEditBox:SetText(Noteworthy_text[Noteworthy_character])
 end
 
+--- Saves all notes current state.
+-- Saves the current state of shared and quick notes. Saves the notes for all characters available.
+-- @param playSoundFx a boolean indicating should the close/save sound be played
+-- @return nil
+-- @see Noteworthy_PlaySound
 function Noteworthy_SaveGadgetInfo(playSoundFx)
     -- save text area text
     Noteworthy_DB["shared_text"] = Noteworthy_TextAreaSEditBox:GetText()
@@ -502,6 +615,9 @@ function Noteworthy_SaveFlagOptions(flagName, flagValue, updateInterface)
     if updateInterface then Noteworthy_SetInterface(false) end
 end
 
+--- Creates noteworthy and quick notes macros.
+-- @return nil
+-- @see Ghost_CreateMacro
 function Noteworthy_CreateMacros()
     Ghost_CreateMacro("Noteworthy II", "INV_Misc_Book_08", "/noteworthy")
     Ghost_CreateMacro("QuickNotes", "INV_Misc_Book_11", "/quicknotes")
@@ -548,7 +664,7 @@ function Noteworthy_RemoveCharacter()
 
         Noteworthy_reminder[charName] = nil
         Noteworthy_text[charName] = nil
-        Noteworthy_character =  UnitName("player")
+        Noteworthy_character = UnitName("player")
         Noteworthy_plrID = Noteworthy_GetPlrID()
         Noteworthy_DB["Remind_" .. charName] = nil
         if Noteworthy_DB["last_char"] == charId then Noteworthy_DB["last_char"] = nil end
@@ -563,7 +679,9 @@ end
 -- Other event functions
 ----------------------------------------------------------------
 
--- set interface from options
+--- Sets the minimap button, floating button and adds/removes the chat filter.
+-- @param updateMinimap a boolean indicating should the minimap button state be updated
+-- @return nil
 function Noteworthy_SetInterface(updateMinimap)
     -- minimap button (only show/hide if changed)
     if updateMinimap then
@@ -621,14 +739,19 @@ function Noteworthy_SetInterface(updateMinimap)
     end
 end
 
--- set focus to current text box if auto focus enabled
+--- Set the focus to current text box if auto focus enabled.
+-- @param pos the position to set the cursor to
+-- @return nil
+-- @see Noteworthy_SetFocus
 function Noteworthy_SetTextFocus(pos)
     if Noteworthy_DB["focus_text"] then
         Noteworthy_SetFocus(pos)
     end
 end
 
--- set focus and cursor position
+--- Sets the focus and cursor position on the current visible textbox.
+-- @param pos the position to set the cursor to
+-- @return nil
 function Noteworthy_SetFocus(pos)
     if Noteworthy_textbox then
         Noteworthy_textbox:SetFocus()
