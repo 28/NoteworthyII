@@ -24,3 +24,4 @@ NoteworthySystem.lua
 NoteworthyTemplates.xml
 NoteworthyWindows.xml
 NoteworthyButton.xml
+NoteworthyOptions.xml
