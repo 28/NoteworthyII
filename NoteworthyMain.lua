@@ -3,7 +3,7 @@
 --==============================================================
 
 -- constants
-local NOTEWORTHY_VERSION = 2000
+local NOTEWORTHY_VERSION = 200000
 local NOTEWORTHY_VTEXT = "2.0.1"
 local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
@@ -210,7 +210,7 @@ function Noteworthy_SetDefaults()
 
     --V2.0 did not introduce new settings
 
-    if Noteworthy_DB["version"] == nil then Noteworthy_DB["version"] = 2000 end
+    if Noteworthy_DB["version"] == nil then Noteworthy_DB["version"] = 200000 end
 
     Noteworthy_DB["initialised"] = true
     Noteworthy_DB["version"] = NOTEWORTHY_VERSION
