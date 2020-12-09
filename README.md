@@ -7,7 +7,7 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current version:&nbsp;2.0.1    
+Current version:&nbsp;2.1.0    
 Maintainer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dejan Josifović (aka Turuvid, Argent Dawn)  
 Original author:&nbsp;&nbsp;Ghost Dancer (aka ZathrasEU)
 
@@ -295,9 +295,10 @@ All scripts must be run from the *tools* directory.
 There is no schedule or release date for these features, they are here only for the record.
 
 1. Undo feature
-2. Move settings to the Interface/Addon game menu
+2. ~~Move settings to the Interface/Addon game menu~~ (Done in v2.1.0)
 3. Restructure the source code to make it more manageable (decide what to do with GhostLib)
-4. Add entries from Combat log to Quick Notes
+4. ~~Add entries from Combat log to Quick Notes~~ (Decided to omit this as it is to complicated to be a nice-to-have
+feature. There are better add-ons that deal with this problem.)
 
 #### Requests from the community
 
@@ -312,9 +313,9 @@ named tabs in the character notes panel, but not yet confirmed.
 
 - Noteworthy II main window drag can sometimes misbehave like jumping on screen on mouse key. This will be solved
 as soon as possible. If it becomes too irritating, reload the UI with `/reload` command.
-- If a character who has valid notes (they at least logged in with Noteworthy II on) is deleted, their notes remain
+- ~~If a character who has valid notes (they at least logged in with Noteworthy II on) is deleted, their notes remain
 present in the character notes panel without the option to be removed. This will be handled in one of the upcoming
-releases.
+releases.~~ (v2.1.0 introduced migrate and delete character notes feature)
 - Sometimes the cursor can misbehave during notes writing (any note type) - randomly change position in the text.
 I'm still investigating the issue and hopefully it will be solved as soon as possible.
 
