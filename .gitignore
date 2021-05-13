@@ -1,6 +1,12 @@
+# Lua
 luac.out
 *.src.rock
 *.zip
 *.tar.gz
-/.idea
+
+# API
 /Interface
+
+# Idea
+/.idea
+*.iml

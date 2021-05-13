@@ -15,9 +15,9 @@ lib\LibStub.lua
 lib\CallbackHandler-1.0.lua
 lib\LibDataBroker-1.1.lua
 lib\LibDBIcon-1.0.lua
-lib\GhostLib\GhostLib.lua
-lib\GhostLib\GhostLib.xml
 
+GhostLib.lua
+GhostLib.xml
 NoteworthyBroker.lua
 NoteworthyMain.lua
 NoteworthySystem.lua
