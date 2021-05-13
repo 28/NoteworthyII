@@ -4,6 +4,11 @@ luac.out
 *.zip
 *.tar.gz
 
+# Java
+target
+*.jar
+!nww.jar
+
 # API
 /Interface
 
