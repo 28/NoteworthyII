@@ -191,19 +191,19 @@ philosophy.
 
 Noteworthy II project file structure:
 ```
-+- .
++- src
+	+- lua
+		|- GhostLib.lua ---> Code for text editing
+		|- NoteworthyBroker.lua ---> Contains LDB code for Noteworthy II
+		|- NoteworthyMain.lua ---> Main library code
+		|- NoteworthySystem.lua ---> Code for menus, commands and misc
+	+- xml
+		|- GhostLib.xml ---> Reusable XML templates
+		|- NoteworthyButton.xml ---> Code for the floating button
+		|- NoteworthyOptions.xml ---> Noteworthy II settings that appear in Interface/AddOns game menu
+		|- NoteworthyTemplates.xml ---> Noteworthy II specific reusable XML templates
+		|- NoteworthyWindows.xml ---> Noteworthy II main XML file (main and alert windows)
 |- NoteworthyII.toc ---> The TOC file
-|- NoteworthyBroker.lua ---> Contains LDB code for Noteworthy II
-|- NoteworthyButton.xml ---> Code for the floating button
-|- NoteworthyMain.lua ---> Main library code
-|- NoteworthyOptions.xml ---> Noteworthy II settings that appear in Interface/AddOns game menu
-|- NoteworthySystem.lua ---> Code for menus, commands and misc
-|- NoteworthyTemplates.xml ---> Noteworthy II specific reusable XML templates
-|- NoteworthyWindows.xml ---> Noteworthy II main XML file (main and alert windows)
-+- lib
-   +- GhostLib
-      |- GhostLib.xml ---> Reusable XML templates
-      |- GhostLib.lua ---> Code for text editing
 ```
 
 Noteworthy II XML structure leverages heavily on inheritance, and
@@ -222,73 +222,34 @@ See the change log file [here](https://raw.githubusercontent.com/28/NoteworthyII
 Dependency management and updating is done manually. All libraries are
 packaged with Noteworthy II.
 
-1. GhostLib  
-An utility library made by Ghost Dancer. Developed with Noteworthy II.  
-Located [here](https://github.com/28/NoteworthyII/tree/master/lib/GhostLib).
-
-2. CallbackHandler  
+1. CallbackHandler  
 CallbackHandler is a back-end utility library that makes it easy for
 a library to fire its events to interested parties.  
 Last updated on 24.07.2019.  
 Located [here](https://www.curseforge.com/wow/addons/callbackhandler).
 
-3. LibDataBroker  
+2. LibDataBroker  
 LibDataBroker is a small WoW addon library designed to provide a MVC
 interface for use in various addons.  
 Last updated on 09.10.2018.  
 Located [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
 
-4. LibDBIcon  
+3. LibDBIcon  
 LibDBIcon is a small library you can throw in your LDB addon that will
 create a small minimap icon for you and nothing more.  
 Last updated on 24.07.2019.  
 Located [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
 
-5. LibStub  
+4. LibStub  
 LibStub is a minimalist versioning library that allows other
 libraries to easily register themselves and upgrade.  
 Last updated on 24.07.2019.  
 Located [here](https://www.curseforge.com/wow/addons/libstub).
 
-### Tools
+### Noteworthy Wrapper
 
-There are a couple of helpful things located in the [tools](https://github.com/28/NoteworthyII/tree/master/tools) directory.
-
-- local_deploy.ps1 - A script that copies all required Noteworthy II files
-to the WoW installation directory. The root of install the directory can be
-passed as a script parameter (enclosed in quotes) otherwise the
-environment variable *WOWIL* will be used. The variable value should
-be the root of WoW retail installation directory (with `_retail_` part). The script performs a
-clean copy as it deletes the contents of the destination directory
-first.
-
-``` powershell
-# in tools directory
-> .\local_deploy.ps1 "C:\Games\Wow\_retail_"
-Successfully installed Noteworthy II to C:\Games\Wow\_retail_\Interface\AddOns\NoteworthyII.
-
-# or with environment variable
-> $env:WOWIL = "C:\Games\Wow\_retail_"
-> .\local_deploy.ps1
-Successfully installed Noteworthy II to C:\Games\Wow\_retail_\Interface\AddOns\NoteworthyII.
-```
-
-- package.ps1 - Packages the whole project to an archive. Accepts
-version parameter that will be appended to the archive name. If no
-parameter is passed the current timestamp will be appended. Archive
-contains a folder called *Noteworthy* with addon files only.
-
-``` powershell
-# in tools directory
-> .\package.ps1
-Created archive 'C:\dev\NoteworthyII\NoteworthyII_10012020151502.zip'.
-
-# with version
-> .\package.ps1 "2.0"
-Created archive 'C:\dev\NoteworthyII\NoteworthyII-v2.0.zip'.
-```
-
-All scripts must be run from the *tools* directory.
+Noteworthy Wrapper is a custom-made build tool for Noteworthy II.
+See the [documentation](/noteworthy-wrapper/README.md) for more info.
 
 ### Upcoming
 
@@ -296,7 +257,8 @@ There is no schedule or release date for these features, they are here only for 
 
 1. Undo feature
 2. ~~Move settings to the Interface/Addon game menu~~ (Done in v2.1.0)
-3. Restructure the source code to make it more manageable (decide what to do with GhostLib)
+3. ~~Restructure the source code to make it more manageable (decide what to do with GhostLib)~~ (New structure implemented
+and GhostLib is merged to Noteworthy II source.)
 4. ~~Add entries from Combat log to Quick Notes~~ (Decided to omit this as it is to complicated to be a nice-to-have
 feature. There are better add-ons that deal with this problem.)
 
