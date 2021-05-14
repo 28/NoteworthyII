@@ -222,22 +222,22 @@ See the change log file [here](https://raw.githubusercontent.com/28/NoteworthyII
 Dependency management and updating is done manually. All libraries are
 packaged with Noteworthy II.
 
-1. CallbackHandler  
+1. CallbackHandler-1.0  
 CallbackHandler is a back-end utility library that makes it easy for
 a library to fire its events to interested parties.  
 Last updated on 24.07.2019.  
 Located [here](https://www.curseforge.com/wow/addons/callbackhandler).
 
-2. LibDataBroker  
+2. LibDataBroker-1.1  
 LibDataBroker is a small WoW addon library designed to provide a MVC
 interface for use in various addons.  
 Last updated on 09.10.2018.  
 Located [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
 
-3. LibDBIcon  
+3. LibDBIcon-1.0  
 LibDBIcon is a small library you can throw in your LDB addon that will
 create a small minimap icon for you and nothing more.  
-Last updated on 24.07.2019.  
+Last updated on 14.05.2021.  
 Located [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
 
 4. LibStub  
