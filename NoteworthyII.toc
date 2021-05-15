@@ -1,6 +1,6 @@
 ## Interface: 90005
 ## Title: Noteworthy II
-## Version: 2.1.0
+## Version: 2.1.1
 ## Notes: Fully featured and configurable notepad utility
 ## Author: Dejan Josifovic (aka Turuvid, Argent Dawn)
 ## X-Original-Author: Ghost Dancer (aka ZathrasEU)
