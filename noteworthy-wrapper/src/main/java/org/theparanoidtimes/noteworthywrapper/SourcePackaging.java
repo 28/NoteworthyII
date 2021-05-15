@@ -51,7 +51,7 @@ public final class SourcePackaging {
                 System.out.println("Zipping: " + path);
                 File file = path.toFile();
                 try (FileInputStream fileInputStream = new FileInputStream(file)) {
-                    ZipEntry zipEntry = new ZipEntry(subfolderName + file.getName());
+                    ZipEntry zipEntry = new ZipEntry(PACKAGE_NAME + "/" + subfolderName + file.getName());
                     zipOutputStream.putNextEntry(zipEntry);
 
                     byte[] bytes = new byte[BUFFER_SIZE];

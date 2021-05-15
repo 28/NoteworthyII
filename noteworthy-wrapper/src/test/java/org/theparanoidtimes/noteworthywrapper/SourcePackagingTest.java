@@ -49,12 +49,12 @@ class SourcePackagingTest {
 
         ZipFile zipFile = new ZipFile(finalName);
         Set<String> zippedFilesSet = zipFile.stream().map(ZipEntry::getName).collect(Collectors.toSet());
-        assertThat(zippedFilesSet).contains("test.lua");
-        assertThat(zippedFilesSet).contains("test.xml");
-        assertThat(zippedFilesSet).contains("lib/testlib.lua");
-        assertThat(zippedFilesSet).contains("NoteworthyII.toc");
-        assertThat(zippedFilesSet).contains("README.md");
-        assertThat(zippedFilesSet).contains("LICENSE.txt");
+        assertThat(zippedFilesSet).contains("NoteworthyII/test.lua");
+        assertThat(zippedFilesSet).contains("NoteworthyII/test.xml");
+        assertThat(zippedFilesSet).contains("NoteworthyII/lib/testlib.lua");
+        assertThat(zippedFilesSet).contains("NoteworthyII/NoteworthyII.toc");
+        assertThat(zippedFilesSet).contains("NoteworthyII/README.md");
+        assertThat(zippedFilesSet).contains("NoteworthyII/LICENSE.txt");
     }
 
     @Test
@@ -68,11 +68,11 @@ class SourcePackagingTest {
 
         ZipFile zipFile = new ZipFile(finalName);
         Set<String> zippedFilesSet = zipFile.stream().map(ZipEntry::getName).collect(Collectors.toSet());
-        assertThat(zippedFilesSet).contains("test.lua");
-        assertThat(zippedFilesSet).contains("test.xml");
-        assertThat(zippedFilesSet).contains("lib/testlib.lua");
-        assertThat(zippedFilesSet).contains("NoteworthyII.toc");
-        assertThat(zippedFilesSet).contains("README.md");
-        assertThat(zippedFilesSet).contains("LICENSE.txt");
+        assertThat(zippedFilesSet).contains("NoteworthyII/test.lua");
+        assertThat(zippedFilesSet).contains("NoteworthyII/test.xml");
+        assertThat(zippedFilesSet).contains("NoteworthyII/lib/testlib.lua");
+        assertThat(zippedFilesSet).contains("NoteworthyII/NoteworthyII.toc");
+        assertThat(zippedFilesSet).contains("NoteworthyII/README.md");
+        assertThat(zippedFilesSet).contains("NoteworthyII/LICENSE.txt");
     }
 }
