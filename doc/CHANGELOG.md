@@ -1,5 +1,10 @@
 # Change log
 
+# v2.1.1
+- General
+  - Update interface version
+  - Introduce Noteworthy wrapper build tool
+
 ## v2.1.0
 - General
   - Migrate settings page to Interface/AddOns game menu
