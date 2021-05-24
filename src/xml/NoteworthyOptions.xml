@@ -446,7 +446,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="200" y="-90"/>
+                            <AbsDimension x="250" y="-90"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
