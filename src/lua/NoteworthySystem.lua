@@ -38,7 +38,7 @@ end
 -- @return nil
 -- @see Noteworthy_UpdateDropDown
 function Noteworthy_CreateDropDown()
-    UIDropDownMenu_SetWidth(Noteworthy_DropDown, 100)
+    UIDropDownMenu_SetWidth(Noteworthy_DropDown, 200)
     UIDropDownMenu_SetText(Noteworthy_DropDown, Noteworthy_character)
 
     UIDropDownMenu_Initialize(Noteworthy_DropDown, function(self, level, menuList)
@@ -74,7 +74,7 @@ function Noteworthy_CreateCharacterListDropDown(dropDownElement, withoutPlayerCh
         return charName
     end
 
-    UIDropDownMenu_SetWidth(dropDownElement, 100)
+    UIDropDownMenu_SetWidth(dropDownElement, 200)
     UIDropDownMenu_Initialize(dropDownElement, function(self, level, menuList)
         for c = 1, Noteworthy_DB["character_count"], 1 do
             local char = Noteworthy_DB["character_list"][c]
@@ -141,7 +141,7 @@ function Noteworthy_EditContextMenu()
             notCheckable = true,
             menuList = {
                 { text = "Current Location", func = function() Noteworthy_InsertText(Noteworthy_GetLocation()) end, notCheckable = true },
-                { text = "Character Name", func = function() Noteworthy_InsertText(UnitName("player")) end, notCheckable = true },
+                { text = "Character Name", func = function() Noteworthy_InsertText(Noteworthy_CreatePlayerName()) end, notCheckable = true },
                 { text = "Target Name", func = function() Noteworthy_InsertText(UnitName("target")) end, notCheckable = true, disabled = target },
                 { text = "Date", func = function() Noteworthy_InsertText(date(Noteworthy_DB["date_only_format"])) end, notCheckable = true },
                 { text = "Date and Time", func = function() Noteworthy_InsertText(date(Noteworthy_DB["date_time_format"])) end, notCheckable = true }
