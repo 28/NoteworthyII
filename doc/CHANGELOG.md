@@ -2,7 +2,7 @@
 
 # v2.2.0
 - General
-  - Characters are now saved as 'Character-Realm'
+  - Character notes are now saved as 'Character-Realm'
 - UI
   - Noteworthy window size changed to 400x450
   - Reminder window size changed to 350x100    
