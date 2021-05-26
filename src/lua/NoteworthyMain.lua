@@ -3,8 +3,8 @@
 --==============================================================
 
 -- constants
-local NOTEWORTHY_VERSION = 200000
-local NOTEWORTHY_VTEXT = "2.1.1"
+local NOTEWORTHY_VERSION = 202000
+local NOTEWORTHY_VTEXT = "2.2.0"
 local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
@@ -69,7 +69,7 @@ end
 function Noteworthy_Initialise()
     local startupMsg = "|cFFFF7D0ANoteworthy II V" .. NOTEWORTHY_VTEXT .. " loaded.|r"
 
-    Noteworthy_character = UnitName("player")
+    Noteworthy_character = Noteworthy_CreatePlayerName()
 
     -- TODO: For dev only - check if commented before release/upload
     -- Noteworthy_DB["version"] = 1100		-- temporarily uncomment this line & change number to reset to previous version
@@ -208,9 +208,14 @@ function Noteworthy_SetDefaults()
         Noteworthy_DB["snd_pageclose"] = { type = Noteworthy_Snd_Type_Kit, snd = SOUNDKIT.IG_QUEST_LIST_CLOSE }
     end
 
-    --V2.0 did not introduce new settings
-
-    if Noteworthy_DB["version"] == nil then Noteworthy_DB["version"] = 200000 end
+    -- V2.2.0 settings
+    if Noteworthy_DB["version"] < 202000 then
+        Noteworthy_DB["version"] = 202000
+        -- print this message only when updating to this version (newly installed Noteworthy does not have old format character names)
+        if Noteworthy_DB["initialised"] == true then
+            print("|c00FFFF00Noteworthy II changed the way it stores character notes. All notes are stored as 'Character-Realm' instead of only 'Character'. If you have notes stored in the old format, use the character migration/deletion options from addon settings menu to move your notes.|r")
+        end
+    end
 
     Noteworthy_DB["initialised"] = true
     Noteworthy_DB["version"] = NOTEWORTHY_VERSION
@@ -464,7 +469,7 @@ function Noteworthy_AddQuickNote(quicknote)
     else
         -- check for prefix
         if Noteworthy_DB["qnote_prefix"] then
-            quicknote = date(Noteworthy_DB["date_time_format"]) .. " (" .. UnitName("player") .. "): " .. "\n" .. quicknote .. "\n"
+            quicknote = date(Noteworthy_DB["date_time_format"]) .. " (" .. Noteworthy_CreatePlayerName() .. "): " .. "\n" .. quicknote .. "\n"
         end
 
         -- save existing text first (in case window already open and page edited)
@@ -647,14 +652,15 @@ end
 function Noteworthy_RemoveCharacter()
     local charId = UIDropDownMenu_GetSelectedID(Noteworthy_DelCharDropDown)
     local charName = Noteworthy_DB["character_list"][charId]
-    if charName ~= GetUnitName("player") then
+    local currentPlayerName = Noteworthy_CreatePlayerName()
+    if charName ~= currentPlayerName then
         Noteworthy_DB[charName] = nil
         table.remove(Noteworthy_DB["character_list"], charId)
         Noteworthy_DB["character_count"] = Noteworthy_DB["character_count"] - 1
 
         Noteworthy_reminder[charName] = nil
         Noteworthy_text[charName] = nil
-        Noteworthy_character = UnitName("player")
+        Noteworthy_character = currentPlayerName
         Noteworthy_plrID = Noteworthy_GetPlrID()
         Noteworthy_DB["Remind_" .. charName] = nil
         if Noteworthy_DB["last_char"] == charId then Noteworthy_DB["last_char"] = nil end
@@ -754,12 +760,18 @@ end
 -- @return true if ID corresponds to the player character otherwise false
 function Noteworthy_isCharacterIdFromCurrentPlayer(charId)
     local charName = Noteworthy_DB["character_list"][charId]
-    return charName == GetUnitName("player")
+    return charName == Noteworthy_CreatePlayerName()
 end
 
---- Takes a phrase and returns it formatted to be displayed in gray color
+--- Creates a Character-Realm name for the current playing character.
+-- @return current playing character name with realm suffix
+function Noteworthy_CreatePlayerName()
+    return GetUnitName("player") .. "-" .. GetRealmName()
+end
+
+--- Takes a phrase and returns it formatted to be displayed in gray color.
 -- @param phrase to be formatted
--- @return formated string
+-- @return formatted string
 function Noteworthy_GrayPhrase(phrase)
     return "|c80808001" .. phrase .. "|r"
 end
