@@ -266,8 +266,8 @@ feature. There are better add-ons that deal with this problem.)
 
 These have a slightly higher priority.
 
-1. Character notes should be saved as 'Character-Realm' instead of just 'Character' so that same-named characters
-from different realms can have their own notes.
+1. ~~Character notes should be saved as 'Character-Realm' instead of just 'Character' so that same-named characters
+from different realms can have their own notes.~~ (Introduced in V2.2.0)
 2. Multiple personal notes per character. It will be easier to divide the notes per topic. Leaning toward the multiple
 named tabs in the character notes panel, but not yet confirmed.
 
