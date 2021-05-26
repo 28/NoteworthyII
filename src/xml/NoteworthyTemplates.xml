@@ -8,7 +8,11 @@
     xsi:schemaLocation="http://www.blizzard.com/wow/ui ./Interface/FrameXML/UI.xsd">
 
     <!-- Background panel template -->
-    <Frame name="Noteworthy_PanelTemplate" inherits="Ghost_PanelTemplate" virtual="true">
+    <Frame name="Noteworthy_PanelTemplate" inherits="BackdropTemplate" virtual="true">
+        <KeyValues>
+            <KeyValue key="backdropInfo" value="NOTEWORTHY_PANEL_BACKDROP" type="global"/>
+        </KeyValues>
+
         <Size>
             <AbsDimension x="360" y="315"/>
         </Size>

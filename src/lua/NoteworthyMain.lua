@@ -11,6 +11,15 @@ local TAB_SHARED = 2
 local TAB_QUICK = 3
 Noteworthy_Snd_Type_File = -10
 Noteworthy_Snd_Type_Kit = -20
+NOTEWORTHY_PANEL_BACKDROP = {
+    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    tile = true,
+    tileEdge = true,
+    tileSize = 16,
+    edgeSize = 16,
+    insets = { left = 5, right = 5, top = 5, bottom = 5 },
+}
 
 -- set saved variable to table to store all settings
 if not Noteworthy_DB then Noteworthy_DB = {} end
