@@ -87,6 +87,24 @@
 
                 <Scripts>
                     <OnMouseUp>if button == "RightButton" then Noteworthy_EditContextMenu() end</OnMouseUp>
+                    <OnKeyUp>
+                        -- pushes text changes on each keyboard key release
+                        if Noteworthy_UndoEnabled() then
+                            Noteworthy_UndoPush()
+                        end
+                    </OnKeyUp>
+                    <OnEditFocusLost>
+                        -- pushes text changes when main window focus is lost
+                        if Noteworthy_UndoEnabled() then
+                            Noteworthy_UndoPush()
+                        end
+                    </OnEditFocusLost>
+                    <OnEditFocusGained>
+                        -- pushes text changes when main window focus is gained in order to add the 'initial state' to the undo stack
+                        if Noteworthy_UndoEnabled() then
+                            Noteworthy_UndoPush()
+                        end
+                    </OnEditFocusGained>
                 </Scripts>
             </EditBox>
         </ScrollChild>

@@ -9,6 +9,7 @@ local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
 local TAB_QUICK = 3
+local MAX_UNDO_STACK_SIZE = 50
 Noteworthy_Snd_Type_File = -10
 Noteworthy_Snd_Type_Kit = -20
 NOTEWORTHY_PANEL_BACKDROP = {
@@ -33,6 +34,11 @@ local Noteworthy_text = {} -- character notes text
 local Noteworthy_reminder = {} -- character reminder flags
 local Noteworthy_bufferTxt = {} -- text buffer for quick notes
 local Noteworthy_bufferID = 1 -- current buffer entry
+local Noteworthy_Undo_Stack = { -- a table of undo stacks per tab
+    [TAB_CHAR] = {},
+    [TAB_SHARED] = {},
+    [TAB_QUICK] = {}
+}
 
 
 ----------------------------------------------------------------
@@ -54,7 +60,7 @@ end
 -- 2. Initializes default setting values is needed.
 -- 3. Sets default shared notes if needed.
 -- 4. Sets default quick notes if needed.
--- 5. Sets defailt character notes for current character if needed.
+-- 5. Sets default character notes for current character if needed.
 -- 6. Applies last session options if available.
 -- 7. Initializes LDB broker.
 -- 8. Updates Noteworthy UI.
@@ -131,7 +137,7 @@ function Noteworthy_Initialise()
     -- broker setup
     Noteworthy_InitBroker()
 
-    -- set gadgdets from saved vars
+    -- set gadgets from saved vars
     Noteworthy_VersionLabelText:SetText("V" .. NOTEWORTHY_VTEXT)
     Noteworthy_ResetOptions()
     Noteworthy_ResetGadgetInfo()
@@ -172,8 +178,8 @@ function Noteworthy_CreateDropDownMenus()
     Noteworthy_CreateCharacterListDropDown(Noteworthy_DelCharDropDown, true)
 end
 
---- Assers if passed tab ID is valid/existing.
--- Introduced for version compatibility in case that last session remebered a tab that is no longer available
+--- Asserts if passed tab ID is valid/existing.
+-- Introduced for version compatibility in case that last session remembered a tab that is no longer available
 -- (like settings tab that was removed in 2.1).
 -- @param tabId ID to check
 -- @return true if tab ID is valid, otherwise false
@@ -224,6 +230,12 @@ function Noteworthy_SetDefaults()
         if Noteworthy_DB["initialised"] == true then
             print("|c00FFFF00Noteworthy II changed the way it stores character notes. All notes are stored as 'Character-Realm' instead of only 'Character'. If you have notes stored in the old format, use the character migration/deletion options from addon settings menu to move your notes.|r")
         end
+    end
+
+    -- V2.3.0 settings
+    if Noteworthy_DB["version"] < 203000 then
+        Noteworthy_DB["version"] = 203000
+        Noteworthy_DB["undo"] = false
     end
 
     Noteworthy_DB["initialised"] = true
@@ -331,7 +343,7 @@ end
 
 --- Noteworthy chat filter.
 -- Allow all text through, storing it in buffer (up to MAX_CHAT_LINES).
--- @param self the frame that registrated the event (unused)
+-- @param self the frame that registered the event (unused)
 -- @param event event type
 -- @param msg chat message
 -- @param author message author
@@ -353,7 +365,7 @@ end
 -- Button/menu triggered actions
 ----------------------------------------------------------------
 
---- Left click on Noteworhty button handler.
+--- Left click on Noteworthy button handler.
 -- @param button the button being pressed
 -- @return nil
 -- @see Noteworthy_ToggleView
@@ -368,7 +380,7 @@ end
 
 --- Toggles the Noteworthy frame visibility.
 -- If visible close the frame with auto save (if available). If hidden displays it.
--- @retrun nil
+-- @return nil
 -- @see Noteworthy_AutoCloseSave
 -- @see Noteworthy_ShowNotepad
 function Noteworthy_ToggleView()
@@ -380,7 +392,7 @@ function Noteworthy_ToggleView()
 end
 
 --- Shows the Noteworthy frame.
--- @param pos the cursor possition to set on the displayed frame
+-- @param pos the cursor position to set on the displayed frame
 -- @return nil
 -- @see Noteworthy_SetTextFocus
 function Noteworthy_ShowNotepad(pos)
@@ -391,11 +403,14 @@ function Noteworthy_ShowNotepad(pos)
 end
 
 --- Saves current changes and hides the frame.
+-- Also empties the undo stacks.
 -- @param playSoundFx boolean indicating should the close/save sound be played.
 -- @return nil
 -- @see Noteworthy_SaveGadgetInfo
+-- @see Noteworthy_EmptyUndoStack()
 function Noteworthy_SaveChanges(playSoundFx)
     CloseDropDownMenus()
+    Noteworthy_EmptyUndoStack()
 
     if Noteworthy_MainWindow:IsVisible() then
         playSoundFx = playSoundFx or true
@@ -406,10 +421,13 @@ function Noteworthy_SaveChanges(playSoundFx)
 end
 
 --- Reverts to previous data and hides the frame.
+-- Also empties the undo stacks.
 -- @return nil
 -- @see Noteworthy_ResetGadgetInfo
+-- @see Noteworthy_EmptyUndoStack()
 function Noteworthy_CancelChanges()
     CloseDropDownMenus()
+    Noteworthy_EmptyUndoStack()
 
     if Noteworthy_MainWindow:IsVisible() then
         Noteworthy_ResetGadgetInfo()
@@ -418,7 +436,7 @@ function Noteworthy_CancelChanges()
 end
 
 --- Saves the current state if save on close if available otherwise discards the changes.
--- @param playSoundFx a boolean indicating shoudl the close/save sound be played
+-- @param playSoundFx a boolean indicating should the close/save sound be played
 -- @return nil
 -- @see Noteworthy_SaveChanges
 -- @see Noteworthy_CancelChanges
@@ -430,8 +448,8 @@ function Noteworthy_AutoCloseSave(playSoundFx)
     end
 end
 
---- Retrieves the current player location in a formatted coodinates string.
--- @return a formated coordinates string
+--- Retrieves the current player location in a formatted coordinates string.
+-- @return a formatted coordinates string
 function Noteworthy_GetLocation()
     local x, y = C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit("player"), "player"):GetXY()
 
@@ -439,7 +457,7 @@ function Noteworthy_GetLocation()
 end
 
 --- Retrieves the passed number of chat entries from the chat buffer.
--- @param entries the numbe of entries to retrieve
+-- @param entries the number of entries to retrieve
 -- @return the string of appended chat lines from the buffer
 function Noteworthy_GetChat(entries)
     local entryID = Noteworthy_bufferID
@@ -458,18 +476,25 @@ function Noteworthy_GetChat(entries)
 end
 
 --- Inserts the passed text to the current visible text box.
+-- Also triggers the undo push of the text box which was modified.
 -- @param text to insert
 -- @return nil
+-- @see Noteworthy_UndoEnabled()
+-- @see Noteworthy_UndoPush()
 function Noteworthy_InsertText(text)
     CloseDropDownMenus()
     if Noteworthy_textbox then Noteworthy_textbox:Insert(text) end
+    if Noteworthy_UndoEnabled() then Noteworthy_UndoPush() end
 end
 
 --- Adds a quick note to the quick notes DB and panel.
 -- Will add a player and timestamp prefix if the that setting is available.
 -- Will open for edit if that setting is available.
+-- Also triggers the undo push of the text box which was modified.
 -- @param quicknote text to add
 -- @return nil
+-- @see Noteworthy_UndoEnabled()
+-- @see Noteworthy_UndoPush()
 function Noteworthy_AddQuickNote(quicknote)
     CloseDropDownMenus()
 
@@ -492,6 +517,11 @@ function Noteworthy_AddQuickNote(quicknote)
             Noteworthy_TextAreaQEditBox:SetText(Noteworthy_DB["quick_text"])
         end
 
+        -- add inserted text to undo stack
+        if Noteworthy_UndoEnabled() then
+            Noteworthy_UndoPush()
+        end
+
         -- check for edit
         if Noteworthy_DB["qnote_edit"] then
             Noteworthy_QuickEdit()
@@ -509,7 +539,7 @@ function Noteworthy_QuickEdit()
     Noteworthy_ShowNotepad(0)
 end
 
---- Open the Noteworthy frame on character notes tab on current selecter character.
+--- Open the Noteworthy frame on character notes tab on current selected character.
 -- @return nil
 -- @see Noteworthy_ChangeCharacter
 -- @see Noteworthy_ShowNotepad
@@ -553,6 +583,7 @@ function Noteworthy_ResetOptions()
     Noteworthy_PageSaveCheckbox:SetChecked(Noteworthy_DB["save_on_page_change"])
     Noteworthy_SoundCheckbox:SetChecked(Noteworthy_DB["play_sounds"])
     Noteworthy_ChatLoggingCheckbox:SetChecked(Noteworthy_DB["chat_logging"])
+    Noteworthy_UndoCheckbox:SetChecked(Noteworthy_DB["undo"])
     Noteworthy_MiniButtonCheckbox:SetChecked(not Noteworthy_DB["minimap_button"].hide)
     Noteworthy_ShowIconCheckbox:SetChecked(Noteworthy_DB["show_floating_button"])
     Noteworthy_QNotePrefixCheckbox:SetChecked(Noteworthy_DB["qnote_prefix"])
@@ -630,7 +661,7 @@ end
 --- Migrates the character notes from one character to another and updates gadgets.
 -- Migrating notes are concatenated as a new paragraph to the target unless
 -- the 'override' check box is ticked. Origin notes will be removed if 'preserve origin'
--- checkbutton is ticked, otherwise not.
+-- checkbox is ticked, otherwise not.
 -- @return nil
 -- @see Noteworthy_ResetGadgetInfo
 -- @see Noteworthy_ClearDropDownSelection
@@ -679,6 +710,107 @@ function Noteworthy_RemoveCharacter()
     end
 end
 
+
+----------------------------------------------------------------
+-- Undo functions
+----------------------------------------------------------------
+
+--- Performs the undo action.
+-- Takes the last entry from the undo stack of the current tab and
+-- sets it to its edit box.
+-- @return nil
+function Noteworthy_PerformUndo()
+    local undoText = Noteworthy_UndoPop(Noteworthy_current_tab)
+    if undoText then
+        Noteworthy_SetTextForTab(Noteworthy_current_tab, undoText)
+    end
+end
+
+--- Pushes the text from the edit box from the current tab into the undo stack.
+-- Does nothing if edit box is empty or if the text is the same as the last entry in the undo stack.
+-- If stack exceeds the MAX_UNDO_STACK_SIZE removes the first/oldest entry before inserting the new one.
+-- @return nil
+function Noteworthy_UndoPush()
+    local stack = Noteworthy_Undo_Stack[Noteworthy_current_tab]
+    local lastText = Noteworthy_UndoPeek(Noteworthy_current_tab)
+    local text = Noteworthy_GetTextFromTab(Noteworthy_current_tab)
+    if text and (not lastText or text ~= lastText) then
+        local i = #stack + 1
+        if i > MAX_UNDO_STACK_SIZE then
+            table.remove(stack, 1)
+            i = #stack + 1
+        end
+        stack[i] = text
+    end
+end
+
+--- Retrieves the last entry from the undo stack for the given tab.
+-- If the last entry is equal to the current text in the tab's edit box dumps it and retrieves the next value
+-- (continues to do so until the texts are different).
+-- @param stackId the ID of the undo stack (tab ID)
+-- @return the first stack entry that is different than the current text in the tab's edit box
+function Noteworthy_UndoPop(stackId)
+    local stack = Noteworthy_Undo_Stack[stackId]
+    local currentText = Noteworthy_GetTextFromTab(stackId)
+    if #stack > 0 then
+        local result
+        repeat
+            result = table.remove(stack, #stack)
+        until (result ~= currentText)
+        return result
+    end
+end
+
+--- Retrieves the last entry from the undo stack
+-- @param stackId the ID of the undo stack
+-- @return the last entry from the undo stack
+function Noteworthy_UndoPeek(stackId)
+    local stack = Noteworthy_Undo_Stack[stackId]
+    return stack[#stack]
+end
+
+--- Retrieves the text from the given tab's edit box.
+-- @param tabId the tab to retrieve text from
+-- @return the text from the tab
+function Noteworthy_GetTextFromTab(tabId)
+    if tabId == TAB_CHAR then
+        return Noteworthy_TextAreaCEditBox:GetText()
+    elseif tabId == TAB_QUICK then
+        return Noteworthy_TextAreaQEditBox:GetText()
+    else
+        return Noteworthy_TextAreaSEditBox:GetText()
+    end
+end
+
+--- Sets the given text to the given tab's edit box.
+-- @param tabId the ID of the tab to add text to
+-- @param text the text to add
+-- @return nil
+function Noteworthy_SetTextForTab(tabId, text)
+    if tabId == TAB_CHAR then
+        return Noteworthy_TextAreaCEditBox:SetText(text)
+    elseif tabId == TAB_QUICK then
+        return Noteworthy_TextAreaQEditBox:SetText(text)
+    else
+        return Noteworthy_TextAreaSEditBox:SetText(text)
+    end
+end
+
+--- Reinitializes/empties the undo stack.
+-- @return nil
+function Noteworthy_EmptyUndoStack()
+    Noteworthy_Undo_Stack = {
+        [TAB_CHAR] = {},
+        [TAB_SHARED] = {},
+        [TAB_QUICK] = {}
+    }
+end
+
+--- Asserts if Noteworthy undo feature is on.
+-- @return true if undo is on, otherwise false
+function Noteworthy_UndoEnabled()
+    return Noteworthy_DB["undo"] == true
+end
 
 ----------------------------------------------------------------
 -- Other event functions
