@@ -3,8 +3,8 @@
 --==============================================================
 
 -- constants
-local NOTEWORTHY_VERSION = 202000
-local NOTEWORTHY_VTEXT = "2.2.0"
+local NOTEWORTHY_VERSION = 203000
+local NOTEWORTHY_VTEXT = "2.3.0-beta"
 local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
