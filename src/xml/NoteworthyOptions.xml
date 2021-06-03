@@ -264,7 +264,7 @@
 
             <!-- Chat logging checkbox -->
             <CheckButton name="Noteworthy_ChatLoggingCheckbox"
-                         text="Chat logging|Disabling will prevent chat log copying but MIGHT improve performance"
+                         text="Chat logging|Disabling will prevent chat log copying but should improve performance"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="$parentPerformanceLabel"
@@ -273,6 +273,22 @@
                 <Scripts>
                     <OnClick>
                             Noteworthy_SaveFlagOptions("chat_logging", self:GetChecked(), true)
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Undo checkbox -->
+            <CheckButton name="Noteworthy_UndoCheckbox"
+                         text="Undo|Disabling will prevent undoing text typing but should improve performance"
+                         inherits="Ghost_CheckboxTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT"
+                            relativeTo="Noteworthy_ChatLoggingCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        Noteworthy_SaveFlagOptions("undo", self:GetChecked(), true)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -286,7 +302,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="10" y="-270"/>
+                            <AbsDimension x="10" y="-295"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
