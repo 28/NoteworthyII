@@ -335,6 +335,12 @@ function Noteworthy_ChangeCharacter(newCharacterID)
     -- set gadget info for new character
     Noteworthy_UpdateCharacterGadgets()
 
+    -- reset undo stack for character
+    if Noteworthy_UndoEnabled() then
+        Noteworthy_EmptyUndoStack()
+        Noteworthy_UndoPush()
+    end
+
     if (Noteworthy_MainWindow:IsVisible()) then
         Noteworthy_SetTextFocus()
         Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
