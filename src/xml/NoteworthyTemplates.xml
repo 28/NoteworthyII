@@ -99,12 +99,12 @@
                             Noteworthy_UndoPush()
                         end
                     </OnEditFocusLost>
-                    <OnEditFocusGained>
+                    <OnShow>
                         -- pushes text changes when main window focus is gained in order to add the 'initial state' to the undo stack
                         if Noteworthy_UndoEnabled() then
                             Noteworthy_UndoPush()
                         end
-                    </OnEditFocusGained>
+                    </OnShow>
                 </Scripts>
             </EditBox>
         </ScrollChild>
