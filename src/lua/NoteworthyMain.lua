@@ -156,6 +156,9 @@ function Noteworthy_Initialise()
     end
 
     print(startupMsg .. " Use buttons or /noteworthy to open.")
+
+    -- TODO: only for beta version
+    print("This is a beta version of Noteworthy II. Please keep an eye for bugs and issues. If you can, report anything suspicious you find on https://www.curseforge.com/wow/addons/noteworthy-ii or https://github.com/28/NoteworthyII/issues. Also, if possible you can send me an IGM at Turuvid on ArgentDawn. Thank you!")
 end
 
 --- Creates all Noteworthy II drop down menus
