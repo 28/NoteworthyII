@@ -229,7 +229,7 @@ function Noteworthy_SetDefaults()
     -- V2.3.0 settings
     if Noteworthy_DB["version"] < 203000 then
         Noteworthy_DB["version"] = 203000
-        Noteworthy_DB["undo"] = false
+        Noteworthy_DB["undo"] = true
     end
 
     Noteworthy_DB["initialised"] = true
