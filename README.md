@@ -182,6 +182,15 @@ delete your old 'Noteworthy' folder first (your settings and data will be unaffe
 v2.0 folder now has a different name).
 This is just to clear out some old files that are no longer being used.
 
+## Supporting Noteworthy II
+
+<a href='https://ko-fi.com/R5R44ZAXR' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
+If you like Noteworthy II and want to support its development,
+consider buying me a [Ko-fi](https://ko-fi.com/djosifovic).
+
+Thank you!
+
 ## Development
 
 Noteworthy II development is meant to go in cycles. Code is developed in a
