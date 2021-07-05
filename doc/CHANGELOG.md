@@ -1,5 +1,9 @@
 # Change log
 
+# v2.2.1
+- General
+  - Update interface version
+
 # v2.2.0
 - General
   - Character notes are now saved as 'Character-Realm'
