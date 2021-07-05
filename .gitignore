@@ -3,6 +3,8 @@ luac.out
 *.src.rock
 *.zip
 *.tar.gz
+*.md5
+*.sha1
 
 # Java
 target
