@@ -4,7 +4,7 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current version:&nbsp;2.2.1  
+Current version:&nbsp;2.3.0  
 Maintainer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drow_28 (aka Turuvid, Argent Dawn)  
 Original author:&nbsp;&nbsp;Ghost Dancer (aka ZathrasEU)
 
@@ -24,6 +24,7 @@ Overview of features:
 * Notepad window toggled via minimap/floating button, slash commands, macro or as LDB plug-in.
 * Notepad behavior controlled via comprehensive settings.
 * Full LDB support.
+* Undo changes support.
 
 This is a continuation of development of the original Noteworthy, which can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
 The original author approved it.
@@ -48,7 +49,8 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 * Right click on editbox -&gt; Close Menu: Close the pop-up menu.
 * The Save button saves all notes and settings, and then closes the window.
 * The Cancel button closes the window, losing all changes since opening it (see also 'Save on auto close' checkbox below)
-* Press Esc or click outside notepad window to remove focus from the notepad (e.g. to type in the chat) and close pop-up menus (press Esc again to close Noteworthy II).
+* Press Esc or click outside notepad window to remove focus from the notepad (e.g., to type in the chat) and close pop-up menus (press Esc again to close Noteworthy II).
+* The Undo button reverts a number of last changes (typing, text insert, etc.)
 * Character notes tab is for storing notes specific to each of your characters (defaults to the current character and can be changed in the drop down menu).
 * Each character's notes page is created the first time you log on with that character.
 * Setting a reminder for a character will show an alert window when logging on with that character:
@@ -70,7 +72,8 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 * Settings tab -&gt; Save on page change checkbox: Save changes when changing page
 * Settings tab -&gt; Sound effects checkbox: Play sound effects when changing pages and saving
 * Settings tab -&gt; Sound effects checkbox: Play sound effects when changing pages and saving
-* Settings tab -&gt; Chat logging: Disabling will prevent chat log copying but MIGHT improve performance
+* Settings tab -&gt; Chat logging: Disabling will prevent chat log copying but should improve performance
+* Settings tab -&gt; Undo: Disabling will prevent undoing note changes but should improve performance
 * Settings tab -&gt; Minimap button checkbox: Show minimap toggle button
 * Settings tab -&gt; Floating button checkbox: Show floating toggle button
 * Settings tab -&gt; Create Macros button: Creates Noteworthy II and QuickNotes macros.
