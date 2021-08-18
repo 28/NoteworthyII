@@ -21,6 +21,27 @@
         </Anchors>
 
         <Frames>
+            <!-- Undo button -->
+            <Button name="$parentUndoButton" text="Undo" inherits="Ghost_ButtonTemplate">
+                <Size>
+                    <AbsDimension x="42" y="20"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-30" y="-6"/>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnClick>
+                        if Noteworthy_UndoEnabled() then
+                            Noteworthy_PerformUndo()
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+
             <!-- Close (X) button -->
             <Button name="$parentCloseButton" parentKey="close" inherits="UIPanelCloseButton">
                 <Anchors>
@@ -46,10 +67,10 @@
 
                 <Scripts>
                     <OnMouseDown>
-                            Noteworthy_MainWindow:StartMoving()
+                        Noteworthy_MainWindow:StartMoving()
                     </OnMouseDown>
                     <OnMouseUp>
-                            Noteworthy_MainWindow:StopMovingOrSizing()
+                        Noteworthy_MainWindow:StopMovingOrSizing()
                     </OnMouseUp>
                 </Scripts>
             </Frame>
@@ -201,34 +222,34 @@
 
         <Scripts>
             <OnLoad inherit="prepend">
-                    self:RegisterEvent("VARIABLES_LOADED")
-                    self:RegisterEvent("ADDON_LOADED")
-                    self:RegisterEvent("PLAYER_REGEN_DISABLED")
-                    self:RegisterEvent("PLAYER_LEAVING_WORLD")
-                    self:RegisterForDrag("LeftButton")
+                self:RegisterEvent("VARIABLES_LOADED")
+                self:RegisterEvent("ADDON_LOADED")
+                self:RegisterEvent("PLAYER_REGEN_DISABLED")
+                self:RegisterEvent("PLAYER_LEAVING_WORLD")
+                self:RegisterForDrag("LeftButton")
 
-                    self.elapsed = 0
-                    PanelTemplates_SetNumTabs(Noteworthy_MainWindow, 3)
+                self.elapsed = 0
+                PanelTemplates_SetNumTabs(Noteworthy_MainWindow, 3)
 
-                    Noteworthy_MainWindowTitle:SetText("Noteworthy II")
-                    self:SetClampedToScreen(true)
+                Noteworthy_MainWindowTitle:SetText("Noteworthy II")
+                self:SetClampedToScreen(true)
 
                 <!-- Make frame closeable on ESC -->
-                    tinsert(UISpecialFrames, self:GetName());
+                tinsert(UISpecialFrames, self:GetName());
             </OnLoad>
 
             <OnReceiveDrag>
-                    Ghost_EditBoxDrag()
+                Ghost_EditBoxDrag()
             </OnReceiveDrag>
             <OnEvent>
-                    Noteworthy_EventHandler(event)
+                Noteworthy_EventHandler(event)
             </OnEvent>
             <OnShow>
-                    Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
+                Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
             </OnShow>
             <OnHide>
-                    Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
-                    CloseDropDownMenus()
+                Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])
+                CloseDropDownMenus()
             </OnHide>
         </Scripts>
     </Frame>
@@ -296,8 +317,8 @@
 
         <Scripts>
             <OnLoad inherit="prepend">
-                    Noteworthy_AlertWindowTitle:SetText("Noteworthy II")
-                    self:SetClampedToScreen(true)
+                Noteworthy_AlertWindowTitle:SetText("Noteworthy II")
+                self:SetClampedToScreen(true)
             </OnLoad>
         </Scripts>
     </Frame>

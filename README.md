@@ -7,7 +7,7 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current version:&nbsp;2.2.1    
+Current version:&nbsp;2.3.0-beta    
 Maintainer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dejan Josifović (aka Turuvid, Argent Dawn)  
 Original author:&nbsp;&nbsp;Ghost Dancer (aka ZathrasEU)
 
@@ -181,15 +181,6 @@ NOTE: If you are updating to V2.0 (or higher) from an earlier version, please
 delete your old 'Noteworthy' folder first (your settings and data will be unaffected;
 v2.0 folder now has a different name).
 This is just to clear out some old files that are no longer being used.
-
-## Supporting Noteworthy II
-
-<a href='https://ko-fi.com/R5R44ZAXR' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-If you like Noteworthy II and want to support its development,
-consider buying me a [Ko-fi](https://ko-fi.com/djosifovic).
-
-Thank you!
 
 ## Development
 
