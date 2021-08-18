@@ -279,7 +279,7 @@
 
             <!-- Undo checkbox -->
             <CheckButton name="Noteworthy_UndoCheckbox"
-                         text="Undo|Disabling will prevent undoing text typing but should improve performance"
+                         text="Undo|Disabling will prevent undoing note changes but should improve performance"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
                     <Anchor point="TOPLEFT"
