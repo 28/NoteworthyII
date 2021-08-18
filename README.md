@@ -7,7 +7,7 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current version:&nbsp;2.3.0-beta    
+Current version:&nbsp;2.3.0    
 Maintainer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dejan Josifović (aka Turuvid, Argent Dawn)  
 Original author:&nbsp;&nbsp;Ghost Dancer (aka ZathrasEU)
 
@@ -32,6 +32,7 @@ even when notepad is closed.
 macro or as LDB plug-in.
 - Notepad behavior controlled via comprehensive settings.
 - Full LDB support.
+- Undo changes support.
 
 This is a continuation of development of the original Noteworthy, which
 can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
@@ -73,7 +74,8 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
   - The Save button saves all notes and settings, and then closes the window.
   - The Cancel button closes the window, losing all changes since opening it
 	(see also 'Save on auto close' checkbox below)
-  - Press Esc or click outside notepad window to remove focus from the notepad (e.g. to type in the chat) and close pop-up menus (press Esc again to close Noteworthy II).
+  - Press Esc or click outside notepad window to remove focus from the notepad (e.g., to type in the chat) and close pop-up menus (press Esc again to close Noteworthy II).
+  - The Undo button reverts a number of last changes (typing, text insert, etc.)
 - Character Notes tab:
   - This tab is for storing notes specific to each of your characters.
   - It defaults to the current logged on character and can be changed via the drop down menu.
@@ -119,9 +121,12 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 	- Enabled: Sounds effects are played.
 	- Disabled: Sounds effects are not played.
 - Settings page - Interface/AddOns/Noteworthy II (Performance):
-  - Chat logging: Disabling will prevent chat log copying but MIGHT improve performance
+  - Chat logging: Disabling will prevent chat log copying but should improve performance
 	- Enabled: Enables copying of chat logs using message filters.
 	- Disabled: Disables message filters required for copy chat logs feature.
+  - Undo: Disabling will prevent undoing note changes but should improve performance
+	- Enabled: Enables the Undo button and undo feature - revert any change made on any note type.
+	- Disabled: The undo button and undo feature will not work (Nothing will happen when the button is pressed).
 - Settings page - Interface/AddOns/Noteworthy II(Buttons):
   - Minimap button checkbox: Show minimap toggle button
 	- Enabled: Enables a minimap button to toggle the notepad window.
@@ -264,8 +269,8 @@ See the [documentation](/noteworthy-wrapper/README.md) for more info.
 
 There is no schedule or release date for these features, they are here only for the record.
 
-1. Undo feature
-2. ~~Move settings to the Interface/Addon game menu~~ (Done in v2.1.0)
+1. ~~Undo feature~~ (Done in V2.3.0)
+2. ~~Move settings to the Interface/Addon game menu~~ (Done in V2.1.0)
 3. ~~Restructure the source code to make it more manageable (decide what to do with GhostLib)~~ (New structure implemented
 and GhostLib is merged to Noteworthy II source.)
 4. ~~Add entries from Combat log to Quick Notes~~ (Decided to omit this as it is to complicated to be a nice-to-have
