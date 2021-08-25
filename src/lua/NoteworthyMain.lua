@@ -751,12 +751,19 @@ end
 -- @return the first stack entry that is different than the current text in the tab's edit box
 function Noteworthy_UndoPop(stackId)
     local stack = Noteworthy_Undo_Stack[stackId]
-    local currentText = Noteworthy_GetTextFromTab(stackId)
     if #stack > 0 then
+        local currentText = Noteworthy_GetTextFromTab(stackId)
+        local lastEntry = Noteworthy_UndoPeek(stackId)
         local result
-        repeat
-            result = table.remove(stack, #stack)
-        until (result ~= currentText)
+        if #stack == 1 then
+            if (currentText ~= lastEntry) then
+                result = Noteworthy_UndoPeek(stackId) -- preserve initial state
+            end
+        else
+            repeat
+                result = table.remove(stack, #stack) -- should not remove initial state because of equality
+            until (result ~= currentText)
+        end
         return result
     end
 end
