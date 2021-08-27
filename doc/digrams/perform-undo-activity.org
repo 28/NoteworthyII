@@ -1,0 +1,37 @@
+* Perform undo command activity diagram
+  This diagram depicts what happens when the 'Undo' button is pressed.
+
+  When the button is pressed the stack size is checked to see if anything
+  is saved. If not, the action is completed. If anything is saved then
+  stack size must be asserted. If there is only one element is saved
+  it is presumed that it is the initial state - the first text version
+  saved when the window is opened. In this case only the copy is returned
+  without removing the element from the stack. This is done to preserve
+  the initial state for future text changes that will be added to the stack.
+  In case there are more elements saved, the first one that differs from
+  the current text is returned and all elements up to and including that
+  one are removed from the stack.
+
+  #+BEGIN_SRC plantuml :file ./perform-undo-activity.png
+    start
+    :Press undo button;
+    if (stack empty?) then (yes)
+        :return nil;
+        stop
+    else (no)
+        if (stack size?) equals (1) then
+            :return peek stack;
+        else (>1)
+            repeat
+                :pop stack;
+            repeat while (last entry equal to current text?) is (yes)
+            ->no;
+            :return last entry;
+            stop
+        endif
+    endif
+    stop
+  #+END_SRC
+
+  #+RESULTS:
+  [[file:./perform-undo-activity.png]]
