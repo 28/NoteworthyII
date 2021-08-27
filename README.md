@@ -225,7 +225,7 @@ components are located in multiple files. Here is a diagram of
 inheritance trying to explain which component is in which file and 
 which component inherits which.
 
-![Noteworthy XML inheritance](https://raw.githubusercontent.com/28/NoteworthyII/master/doc/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
+![Noteworthy XML inheritance](https://raw.githubusercontent.com/28/NoteworthyII/master/doc/diagrams/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
 
 ### Change log
 
