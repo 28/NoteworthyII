@@ -1,0 +1,158 @@
+* Noteworthy II Wireframes
+  This document describes the look and feel of the character notes
+  screen in Noteworthy II.
+** Current look
+*** V 2.3.0 - latest version for Retail and Classic (era)
+    This is the current look of the character notes screen as of version
+    2.3.0. The textbox displays the notes of the character that is selected
+    in the drop-down menu above. 'Save' button saves all changes made in the
+    textbox and closes the screen. 'Cancel' button discards all changes
+    and closes the screen.
+    #+BEGIN_SRC plantuml :file ./character-notes-v2.3.0-wireframe.png
+      @startsalt
+      {+
+      { Page: | ^Turuvid-Argent Dawn^ }
+      {SI
+       Character notes                                            .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+      }
+      { [] | Remind Turuvid-Argent Dawn at logon }
+      { [Save] | [Cancel] }
+      }
+      @endsalt
+    #+END_SRC
+
+    #+RESULTS:
+    [[file:./character-notes-v2.3.0-wireframe.png]]
+
+** Note categories look proposals
+   A new feature is in the development for Noteworthy II - the character
+   notes categories. It will enable players to further divide character
+   notes into smaller units. The idea is to have unlimited categories
+   with the ability to add new ones and delete existing ones. This is
+   a collection of wireframes that display this new feature in the
+   Noteworthy II UI. None of them is implemented.
+*** Tabbed look
+    In this iteration categories are displayed in tabs above the
+    textbox. Clicking on the tab displays the notes for that
+    category.
+
+    Adding and removing of tabs is tricky in WoW UI framework and
+    many tabs can render them unreadable make it that this version
+    is least likely to be implemented.
+    #+BEGIN_SRC plantuml :file ./tabbed-look-categories-wireframe.png
+      @startsalt
+      {+
+      { Page: | ^Turuvid-Argent Dawn^ }
+      {+
+      {/ <b>General | Achievements | Fishing | Cooking | ...}
+      {SI
+       Character notes                                                               .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+      }
+      }
+      { [] | Remind Turuvid-Argent Dawn at logon }
+      { [Save] | [Cancel] }
+      }
+      @endsalt
+    #+END_SRC
+
+    #+RESULTS:
+    [[file:./tabbed-look-categories-wireframe.png]]
+
+*** Drop down menu look
+    This iteration packs the note categories in a drop-down menu exactly
+    the same as for character choice. Selecting the item in the drop-down
+    menu displays the notes for that category in the textbox.
+
+    This is the simplest solution in terms of implementing so it is currently
+    the main candidate.
+    #+BEGIN_SRC plantuml :file ./combo-box-look-categories-wireframe.png
+      @startsalt
+      {+
+      { Page: | ^Turuvid-Argent Dawn^ }
+      { Category: | ^General^ Achievements^ Fishing^ Cooking^ ...^  }
+      {SI
+       Character notes                                            .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+      }
+      { [] | Remind Turuvid-Argent Dawn at logon }
+      { [Save] | [Cancel] }
+      }
+      @endsalt
+    #+END_SRC
+
+    #+RESULTS:
+    [[file:./combo-box-look-categories-wireframe.png]]
+
+*** Selection list look
+    The most advanced iteration has a scrollable list of all available
+    categories to the left of the textbox. Selecting the item from
+    the list displays the notes assigned to that category.
+
+    This has the most complicated back-end implementation so it will
+    most likely be discarded. However, the analysis is still going.
+    #+BEGIN_SRC plantuml :file ./selection-list-look-categories-wireframe.png
+      @startsalt
+      {+
+      { Page: | ^Turuvid-Argent Dawn^ }
+      {
+      {SI
+       General
+       Achievements
+       Fishing
+       Cooking
+       ...
+      } |
+      {SI
+       Character notes                                            .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+       .
+      }}
+      { [] | Remind Turuvid-Argent Dawn at logon }
+      { [Save] | [Cancel] }
+      }
+      @endsalt
+    #+END_SRC
+
+    #+RESULTS:
+    [[file:./selection-list-look-categories-wireframe.png]]
