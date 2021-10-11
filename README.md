@@ -7,7 +7,7 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current version:&nbsp;2.3.1    
+Current version:&nbsp;2.3.2    
 Maintainer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dejan Josifović (aka Turuvid, Argent Dawn)  
 Original author:&nbsp;&nbsp;Ghost Dancer (aka ZathrasEU)
 
