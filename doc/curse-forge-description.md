@@ -120,9 +120,4 @@ If you are interested in helping the development go to [Noteworthy II GitHub pag
 
 For any potential issues please open an issue ticket or submit a pull request on [GitHub](https://github.com/28/NoteworthyII).
 
-## Supporting Noteworthy II
-
-If you like Noteworthy II and want to support its development,
-consider buying me a [Ko-fi](https://ko-fi.com/djosifovic).
-
 Thank you!
