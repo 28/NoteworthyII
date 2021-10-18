@@ -119,10 +119,3 @@ This is just to clear out some old files that are no longer being used.
 If you are interested in helping the development go to [Noteworthy II GitHub page](https://github.com/28/NoteworthyII).
 
 For any potential issues please open an issue ticket or submit a pull request on [GitHub](https://github.com/28/NoteworthyII).
-
-## Supporting Noteworthy II
-
-If you like Noteworthy II and want to support its development,
-consider buying me a [Ko-fi](https://ko-fi.com/djosifovic).
-
-Thank you!
