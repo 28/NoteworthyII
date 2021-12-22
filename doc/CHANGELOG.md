@@ -15,7 +15,7 @@
   - Character notes are now saved as 'Character-Realm'
 - UI
   - Noteworthy window size changed to 400x450
-  - Reminder window size changed to 350x100    
+  - Reminder window size changed to 350x100
   - Reminder checkbox moved under the text area in character notes screen
 
 ## V2.1.1
