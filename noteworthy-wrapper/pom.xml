@@ -36,6 +36,20 @@
                 </executions>
                 <configuration>
                     <finalName>nww</finalName>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <manifestEntries>
+                                <Built-By>drow</Built-By>
+                                <Implementation-Title>Noteworthy II wrapper</Implementation-Title>
+                                <Implementation-Version>${project.version}</Implementation-Version>
+                                <Implementation-Vendor>theparanoidtimes.org</Implementation-Vendor>
+                                <Implementation-URL>https://github.com/28/NoteworthyII</Implementation-URL>
+                                <Build-Jdk>${maven.compiler.target}</Build-Jdk>
+                                <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+                                <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+                            </manifestEntries>
+                        </transformer>
+                    </transformers>
                 </configuration>
             </plugin>
             <plugin>
