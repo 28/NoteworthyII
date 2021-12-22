@@ -1,5 +1,4 @@
 import org.theparanoidtimes.noteworthywrapper.ChangelogDeltaGenerator;
-import org.theparanoidtimes.noteworthywrapper.Constants;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
