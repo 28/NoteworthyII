@@ -14,12 +14,13 @@ import static org.theparanoidtimes.noteworthywrapper.Constants.*;
 public final class PackageInstallation {
 
     public static void installLocally(Path sourcePath, Path gameInstallationDirectory) throws Exception {
-        Path installationDir = gameInstallationDirectory.resolve(INSTALL_LOCATION);
+        var installationDir = gameInstallationDirectory.resolve(INSTALL_LOCATION);
         System.out.println("Installing from: " + sourcePath + " to: " + installationDir);
-        Path luaSourcePath = sourcePath.resolve(LUA_SOURCE_PATH);
-        Path xmlSourcePath = sourcePath.resolve(XML_SOURCE_PATH);
-        Path librariesPath = sourcePath.resolve(LIBRARIES_PATH);
-        Path tocPath = sourcePath.resolve(TOC_PATH);
+
+        var luaSourcePath = sourcePath.resolve(LUA_SOURCE_PATH);
+        var xmlSourcePath = sourcePath.resolve(XML_SOURCE_PATH);
+        var librariesPath = sourcePath.resolve(LIBRARIES_PATH);
+        var tocPath = sourcePath.resolve(TOC_PATH);
         cleanInstallationDirectory(installationDir);
         doInstallLocally(luaSourcePath, installationDir);
         doInstallLocally(xmlSourcePath, installationDir);
@@ -47,12 +48,12 @@ public final class PackageInstallation {
         Files.walkFileTree(sourcePath, new SimpleFileVisitor<>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                Path subdirectoryPath = installationDir.resolve(subdirectory);
+                var subdirectoryPath = installationDir.resolve(subdirectory);
                 if (!installationDir.endsWith(subdirectoryPath) && !subdirectoryPath.toFile().exists()) {
                     Files.createDirectory(subdirectoryPath);
                 }
 
-                Path installPath = subdirectoryPath.resolve(file.getFileName());
+                var installPath = subdirectoryPath.resolve(file.getFileName());
                 System.out.println("Installing: " + file + " to " + installPath);
                 if (!file.toFile().isDirectory()) {
                     Files.copy(file, installPath);

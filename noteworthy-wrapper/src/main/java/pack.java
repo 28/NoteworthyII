@@ -36,13 +36,13 @@ public class pack implements Callable<Integer> {
     }
 
     private String getCurrentTimestamp() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(timestampFormat);
+        var now = LocalDateTime.now();
+        var dateTimeFormatter = DateTimeFormatter.ofPattern(timestampFormat);
         return dateTimeFormatter.format(now);
     }
 
     public static void main(String[] args) {
-        int resultCode = new CommandLine(new pack()).execute(args);
+        var resultCode = new CommandLine(new pack()).execute(args);
         System.exit(resultCode);
     }
 }

@@ -9,7 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -40,15 +39,15 @@ class SourcePackagingTest {
 
     @Test
     void wrapperWillPackageAllSourceFilesInZipWithTimestamp() throws Exception {
-        String currentTimeMillis = String.valueOf(System.currentTimeMillis());
+        var currentTimeMillis = String.valueOf(System.currentTimeMillis());
         SourcePackaging.zipSourceDirectory(testSourcePath, testPackageDestinationPath, currentTimeMillis);
 
-        String finalName = testPackageDestinationPath.resolve("NoteworthyII_" + currentTimeMillis + ".zip").toString();
+        var finalName = testPackageDestinationPath.resolve("NoteworthyII_" + currentTimeMillis + ".zip").toString();
         assertThat(Path.of(finalName)).exists();
         assertThat(Path.of(finalName).toFile()).isNotEmpty();
 
-        ZipFile zipFile = new ZipFile(finalName);
-        Set<String> zippedFilesSet = zipFile.stream().map(ZipEntry::getName).collect(Collectors.toSet());
+        var zipFile = new ZipFile(finalName);
+        var zippedFilesSet = zipFile.stream().map(ZipEntry::getName).collect(Collectors.toSet());
         assertThat(zippedFilesSet).contains("NoteworthyII/test.lua");
         assertThat(zippedFilesSet).contains("NoteworthyII/test.xml");
         assertThat(zippedFilesSet).contains("NoteworthyII/lib/testlib.lua");
@@ -59,15 +58,15 @@ class SourcePackagingTest {
 
     @Test
     void wrapperWillPackageAllSourceFilesInZipWithVersionInName() throws Exception {
-        String version = "v28.0";
+        var version = "v28.0";
         SourcePackaging.zipSourceDirectory(testSourcePath, testPackageDestinationPath, version);
 
-        String finalName = testPackageDestinationPath.resolve("NoteworthyII_" + version + ".zip").toString();
+        var finalName = testPackageDestinationPath.resolve("NoteworthyII_" + version + ".zip").toString();
         assertThat(Path.of(finalName)).exists();
         assertThat(Path.of(finalName).toFile()).isNotEmpty();
 
-        ZipFile zipFile = new ZipFile(finalName);
-        Set<String> zippedFilesSet = zipFile.stream().map(ZipEntry::getName).collect(Collectors.toSet());
+        var zipFile = new ZipFile(finalName);
+        var zippedFilesSet = zipFile.stream().map(ZipEntry::getName).collect(Collectors.toSet());
         assertThat(zippedFilesSet).contains("NoteworthyII/test.lua");
         assertThat(zippedFilesSet).contains("NoteworthyII/test.xml");
         assertThat(zippedFilesSet).contains("NoteworthyII/lib/testlib.lua");
