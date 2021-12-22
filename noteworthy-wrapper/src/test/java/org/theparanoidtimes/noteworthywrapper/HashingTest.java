@@ -11,10 +11,10 @@ class HashingTest {
 
     @Test
     void hasherWillProvideHashStringForAllMD5SHA1AndSha256() throws Exception {
-        Path file = Path.of(Objects.requireNonNull(HashingTest.class.getResource("/source/lib/testlib.lua")).toURI());
-        String md5 = Hasher.hashPackage(file, "MD5");
-        String sha1 = Hasher.hashPackage(file, "SHA1");
-        String sha256 = Hasher.hashPackage(file, "SHA-256");
+        var file = Path.of(Objects.requireNonNull(HashingTest.class.getResource("/source/lib/testlib.lua")).toURI());
+        var md5 = Hasher.hashPackage(file, "MD5");
+        var sha1 = Hasher.hashPackage(file, "SHA1");
+        var sha256 = Hasher.hashPackage(file, "SHA-256");
 
         assertThat(md5).isEqualTo("d41d8cd98f00b204e9800998ecf8427e");
         assertThat(sha1).isEqualTo("da39a3ee5e6b4b0d3255bfef95601890afd80709");

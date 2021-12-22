@@ -30,12 +30,12 @@ public class install implements Callable<Integer> {
     }
 
     private String getDefaultInstallationDirectory() {
-        String value = System.getenv(INSTALLATION_DIRECTORY_ENV_VAR);
+        var value = System.getenv(INSTALLATION_DIRECTORY_ENV_VAR);
         return value != null ? value : ".";
     }
 
     public static void main(String[] args) {
-        int resultCode = new CommandLine(new install()).execute(args);
+        var resultCode = new CommandLine(new install()).execute(args);
         System.exit(resultCode);
     }
 }
