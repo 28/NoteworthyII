@@ -10,7 +10,7 @@ import static org.theparanoidtimes.noteworthywrapper.Constants.CHANGELOG_PATH;
 
 @Command(name = "changelog",
         description = "Extracts info from the Change log for the required version range.",
-        version = "Version 1.0 Noteworthy II Wrapper",
+        version = "Version 1.1 Noteworthy II Wrapper",
         mixinStandardHelpOptions = true
 )
 public class changelog implements Callable<Integer> {

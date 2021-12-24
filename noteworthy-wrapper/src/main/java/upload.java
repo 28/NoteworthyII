@@ -12,7 +12,7 @@ import static org.theparanoidtimes.noteworthywrapper.Constants.CHANGELOG_PATH;
 
 @Command(name = "upload",
         description = "Uploads a Noteworthy II package and its associated metadata to CurseForge as a release.",
-        version = "Version 1.0 Noteworthy II Wrapper",
+        version = "Version 1.1 Noteworthy II Wrapper",
         mixinStandardHelpOptions = true)
 public class upload implements Callable<Integer> {
 
