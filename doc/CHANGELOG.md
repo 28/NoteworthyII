@@ -1,20 +1,20 @@
 # Change log
 
-# V2.3.2
+## V2.3.2
 - UI
   - Switch to Backdrop API
 
-# V2.3.1
+## V2.3.1
 - General
   - Update interface version
 
-# V2.3.0
+## V2.3.0
 - General
   - Introduce the undo feature for each tab
 - UI
   - Introduce 'Undo' button in the top right corner of the Noteworthy window
 
-# V2.2.0
+## V2.2.0
 - General
   - Character notes are now saved as 'Character-Realm'
 - UI
@@ -22,7 +22,7 @@
   - Reminder window size changed to 350x100    
   - Reminder checkbox moved under the text area in character notes screen
 
-# V2.1.1
+## V2.1.1
 - General
   - Update interface version
   - Introduce Noteworthy wrapper build tool
