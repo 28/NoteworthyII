@@ -144,3 +144,80 @@ Example usage:
 Uninstalling Noteworthy II from: D:\Games\World of Warcraft\_retail_\Interface\AddOns\NoteworthyII
 Noteworthy II uninstalled.
 ```
+
+### Changelog Delta
+
+This command can extract entries from the changelog for the specified version
+or version range.  
+
+```shell
+> nww.bat changelog -h
+Usage: changelog [-hV] [-c=<changelogLocation>] -vf=<versionFrom>
+                 [-vt=<versionTo>]
+Extracts info from the Change log for the required version range.
+  -c, --changelogLocation=<changelogLocation>
+                  The location of the change log file. Default is the file from
+                    the repository.
+  -h, --help      Show this help message and exit.
+  -V, --version   Print version information and exit.
+      -vf, --versionFrom=<versionFrom>
+                  Starting version / heading.
+      -vt, --versionTo=<versionTo>
+                  End version / heading.
+```
+
+Example usage (with one version):
+
+```shell
+> nww.bat changelog -vf 2.3.0
+## V2.3.0
+- General
+  - Introduce the undo feature for each tab
+- UI
+  - Introduce 'Undo' button in the top right corner of the Noteworthy window
+```
+
+With version range:
+
+```shell
+> nww.bat changelog -vf 2.3.0 -vt 2.2.1
+## V2.3.0
+- General
+  - Introduce the undo feature for each tab
+- UI
+  - Introduce 'Undo' button in the top right corner of the Noteworthy window
+
+## V2.2.1
+- General
+  - Update interface version
+```
+
+### Upload to CurseForge
+
+This command is used to upload a release to CurseForge (in the project files section).
+The release package should be present (see _Packaging_) before running the command.
+
+```shell
+> nww.bat upload -h
+Usage: upload [-hV] -gv=<gameVersion> -p=<pathToPackage> -rv=<releaseVersion> 
+Uploads a Noteworthy II package and its associated metadata to CurseForge as a
+release.
+      -gv, --gameVersion=<gameVersion>
+                  Supported WoW version by the package being uploaded.        
+  -h, --help      Show this help message and exit.
+  -p, --pathToPackage=<pathToPackage>
+                  Path to the release package.
+      -rv, --releaseVersion=<releaseVersion>
+                  Release version of the Noteworthy II package.
+  -V, --version   Print version information and exit. 
+```
+
+Usage:
+
+```shell
+> nww.bat upload -p .\NoteworthyII_2.3.2-classic-era.zip -rv 2.3.2 -gv 1.14.0
+Requesting WoW game versions with release version '1.14.0'.
+Found game version ID: '8668'.
+Attempting to upload release to CurseForge... 
+Release uploaded to CurseForge, file ID: 58642
+```
