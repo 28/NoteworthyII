@@ -12,7 +12,7 @@ import static org.theparanoidtimes.noteworthywrapper.Constants.INSTALL_LOCATION;
 
 @Command(name = "uninstall",
         description = "Uninstalls Noteworthy II from WoW addons location.",
-        version = "Version 1.0 Noteworthy II Wrapper",
+        version = "Version 1.1 Noteworthy II Wrapper",
         mixinStandardHelpOptions = true)
 public class uninstall implements Callable<Integer> {
 
