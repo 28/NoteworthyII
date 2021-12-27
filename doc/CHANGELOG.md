@@ -1,5 +1,9 @@
 # Change log
 
+## V2.3.1
+- General
+  - Update interface version
+
 ## V2.3.0
 - General
   - Introduce the undo feature for each tab
