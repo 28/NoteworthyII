@@ -31,7 +31,7 @@ jobs:
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
       - name: package
-        run: ./nww.sh pack $NWV
+        run: ./nww.sh pack -pv $NWV
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
       - name: view values
