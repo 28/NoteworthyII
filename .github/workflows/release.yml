@@ -37,4 +37,4 @@ jobs:
       - name: view values
         run: |
           echo version = ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
-          cat delta.txt
+          cat >>delta.txt<<END
