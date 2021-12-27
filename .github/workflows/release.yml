@@ -35,4 +35,4 @@ jobs:
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
       - name: view values
-        run: echo version is ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}, changelog is ${cat delta.txt}
+        run: echo version is ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}, changelog is $(cat ./delta.txt)
