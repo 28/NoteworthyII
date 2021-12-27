@@ -24,6 +24,6 @@ jobs:
       - name: get changelog delta
         run: echo ./nww.sh changelog -vf ${{ steps.nw-release-version.NW_RELEASE_VERSION }} >> delta.txt
       - name: package
-        run: ./nww pack ${{ steps.nw-release-version.NW_RELEASE_VERSION }}
+        run: ./nww.sh pack ${{ steps.nw-release-version.NW_RELEASE_VERSION }}
       - name: view values
         run: echo version is ${{ steps.nw-release-version.NW_RELEASE_VERSION }}, changelog is ${cat delta.txt}
