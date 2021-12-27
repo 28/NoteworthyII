@@ -24,7 +24,7 @@ jobs:
       - name: prepare wrapper
         run: chmod u+x ./nww.sh
       - name: get release version
-        run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}"
+        run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/heads\//}"
         id: nw-release-version
       - name: get changelog delta
         run: ./nww.sh changelog -vf $NWV >> delta.txt
