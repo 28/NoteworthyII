@@ -27,7 +27,7 @@ jobs:
         run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/heads\//}"
         id: nw-release-version
       - name: get changelog delta
-        run: ./nww.sh changelog -vf $NWV >> delta.txt
+        run: ./nww.sh changelog -vf $NWV > delta.txt
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
       - name: package
@@ -37,4 +37,4 @@ jobs:
       - name: view values
         run: |
           echo version = ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
-          cat >>delta.txt<<END
+          cat >>delta.txt<<EOF
