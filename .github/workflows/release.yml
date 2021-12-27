@@ -27,7 +27,7 @@ jobs:
         run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/heads\//}"
         id: nw-release-version
       - name: get changelog delta
-        run: echo "::set-output name=NW_CL_DELTA::${./nww.sh changlog -vf $NWV}"
+        run: echo "::set-output name=NW_CL_DELTA::$(./nww.sh changlog -vf $NWV)"
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
         id: nw-cl-delta
