@@ -29,10 +29,10 @@ jobs:
       - name: get changelog delta
         run: ./nww.sh changelog -vf $NWV >> delta.txt
         env:
-          NWV: ${{ steps.nw-release-version.NW_RELEASE_VERSION }}
+          NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
       - name: package
         run: ./nww.sh pack $NWV
         env:
-          NWV: ${{ steps.nw-release-version.NW_RELEASE_VERSION }}
+          NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
       - name: view values
-        run: echo version is ${{ steps.nw-release-version.NW_RELEASE_VERSION }}, changelog is ${cat delta.txt}
+        run: echo version is ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}, changelog is ${cat delta.txt}
