@@ -22,11 +22,12 @@ jobs:
         run: echo ::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}
         id: nw-release-version
       - name: get changelog delta
-        run: echo ::set-output name=NW_CL_DELTA::${./nww.sh chanelog -vf $NWV}
-        env:
-          NWV: ${{ steps.nw-release-version.NW_RELEASE_VERSION }}
+        run: |
+          echo 'nw_cl_delta<<EOF' >> ${GITHUB_ENV}
+          echo ./nww.sh changelog -vf ${{ steps.nw-release-version.NW_RELEASE_VERSION }}" >> ${GITHUB_ENV}
+          echo 'EOF' >> ${GITHUB_ENV}
         id: nw-changelog-delta
       - name: package
         run: ./nww pack ${steps.nw-release-version.NW_RELEASE_VERSION}
       - name: view values
-        run: echo version is ${steps.nw-release-version.NW_RELEASE_VERSION}, changelog is ${steps.nw-changelog-delta.NW_CF_DELTA}
+        run: echo version is ${steps.nw-release-version.NW_RELEASE_VERSION}, changelog is ${env.nv_cl_delta}
