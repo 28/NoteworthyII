@@ -16,12 +16,14 @@ public abstract class CurseForgeUploader {
 
     private static OkHttpClient client;
 
-    public static Long uploadReleaseToCurseForge(Path pathToRelease, String gameVersion, UploadRequest uploadRequest) throws Exception {
+    public static Long uploadReleaseToCurseForge(Path pathToRelease, String gameVersion, UploadRequest uploadRequest, boolean verboseOutput) throws Exception {
         var gameVersionId = getGameVersionId(gameVersion);
         System.out.printf("Found game version ID: '%s'.%n", gameVersionId);
         uploadRequest.setGameVersions(List.of(gameVersionId));
 
         String uploadRequestJson = getObjectMapper().writeValueAsString(uploadRequest);
+        if (verboseOutput)
+            System.out.println("Constructed upload request JSON: " + uploadRequestJson);
 
         var requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -39,6 +41,9 @@ public abstract class CurseForgeUploader {
         try (var response = getClient().newCall(request).execute()) {
             if (!response.isSuccessful())
                 throw new Exception("Request unsuccessful: " + response);
+            if (verboseOutput)
+                System.out.println("CurseForge response: " + response);
+
             var body = response.body();
             if (body != null) {
                 var uploadResponse = getObjectMapper().readValue(body.string(), UploadResponse.class);

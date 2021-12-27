@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
 
 public enum ReleaseType {
 
@@ -16,6 +18,10 @@ public enum ReleaseType {
 
     ReleaseType(String id) {
         this.id = id;
+    }
+
+    public static Optional<ReleaseType> fromId(String releaseTypeId) {
+        return Arrays.stream(ReleaseType.values()).filter(rt -> rt.id.equals(releaseTypeId)).findFirst();
     }
 
     public String getId() {
