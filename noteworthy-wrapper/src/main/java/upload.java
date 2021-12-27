@@ -1,11 +1,13 @@
 import org.theparanoidtimes.noteworthywrapper.ChangelogDeltaGenerator;
 import org.theparanoidtimes.noteworthywrapper.upload.CurseForgeUploader;
+import org.theparanoidtimes.noteworthywrapper.upload.domain.ReleaseType;
 import org.theparanoidtimes.noteworthywrapper.upload.domain.UploadRequest;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import static org.theparanoidtimes.noteworthywrapper.Constants.CHANGELOG_PATH;
@@ -31,14 +33,33 @@ public class upload implements Callable<Integer> {
             required = true)
     private String gameVersion;
 
+    @Option(names = {"-v", "--verbose"},
+            description = "Print verbose output of the upload process.")
+    private boolean verboseOutput = false;
+
+    @Option(names = {"-rt", "--releaseType"},
+            description = "Defines the CurseForge release type. Can be 'alpha', 'beta' and 'release', case sensitive, default is 'release'.")
+    private String releaseType = ReleaseType.RELEASE.getId();
+
     @Override
     public Integer call() {
         try {
+            Optional<ReleaseType> releaseType = ReleaseType.fromId(this.releaseType);
+            ReleaseType rt;
+            if (releaseType.isPresent()) {
+                rt = releaseType.get();
+            } else
+                throw new IllegalArgumentException(String.format("Incorrect release type (-rt) value: '%s'!", this.releaseType));
+
+            verbosePrint("Extracting changelog delta...");
             String changelogDelta = ChangelogDeltaGenerator.generateChangelogDelta(Path.of(CHANGELOG_PATH), releaseVersion);
+            verbosePrint(String.format("Extracted changelog delta:%n%s%n", changelogDelta));
             var uploadRequest = new UploadRequest();
             uploadRequest.setChangelog(changelogDelta);
             uploadRequest.setDisplayName(releaseVersion);
-            Long fileId = CurseForgeUploader.uploadReleaseToCurseForge(Path.of(pathToPackage), gameVersion, uploadRequest);
+            uploadRequest.setReleaseType(rt);
+            verbosePrint("Constructed upload request: " + uploadRequest);
+            Long fileId = CurseForgeUploader.uploadReleaseToCurseForge(Path.of(pathToPackage), gameVersion, uploadRequest, verboseOutput);
             System.out.println("Release uploaded to CurseForge, file ID: " + fileId);
             return 0;
         } catch (Exception e) {
@@ -50,5 +71,10 @@ public class upload implements Callable<Integer> {
     public static void main(String[] args) {
         var resultCode = new CommandLine(new upload()).execute(args);
         System.exit(resultCode);
+    }
+
+    private void verbosePrint(String message) {
+        if (verboseOutput)
+            System.out.println(message);
     }
 }
