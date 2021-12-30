@@ -15,7 +15,7 @@ public abstract class Constants {
     public static final String INSTALLATION_DIRECTORY_ENV_VAR = "WOWIL";
     public static final String INSTALL_LOCATION = "Interface/AddOns/NoteworthyII";
     public static final String CF_TOKEN_HEADER = "X-Api-Token";
-    public static final String CF_API_TOKEN = System.getProperty("CF_API_TOKEN");
+    public static final String CF_API_TOKEN = System.getenv("CF_API_TOKEN");
     public static final String CF_BASE_URL = "https://wow.curseforge.com";
     public static final String CF_VERSION_URL = "/api/game/versions";
     public static final String CF_UPLOAD_URL = "/api/projects/%d/upload-file";
