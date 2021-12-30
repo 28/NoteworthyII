@@ -3,7 +3,7 @@ name: Publish a new release to GH and CF from tag
 on:
   workflow_dispatch:
     inputs:
-      releaseVersion:
+      wowVersion:
         description: "The supported WoW game version of this release."
         required: true
         type: string
@@ -24,7 +24,7 @@ jobs:
       - name: prepare wrapper
         run: chmod u+x ./nww.sh
       - name: get release version
-        run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/heads\//}"
+        run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}"
         id: nw-release-version
       - name: get changelog delta
         run: echo "::set-output name=NW_CL_DELTA::$(./nww.sh changelog -vf $NWV)"
@@ -32,10 +32,25 @@ jobs:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
         id: nw-cl-delta
       - name: package
-        run: ./nww.sh pack -pv $NWV
+        run: |
+          ./nww.sh pack -pv $NWV
+          echo "::set-output name=NW_PACKAGE_NAME::NoteworhtyII_${$NWV}.zip"
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
-      - name: view values
+        id: nw-package
+      - name: calculate hashes
         run: |
-          echo version = ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
-          echo delta = ${{ steps.nw-cl-delta.outputs.NW_CL_DELTA }}
+          ./nww.sh hash $PN > hash.md5
+          ./nww.sh hash -a SHA-1 $PN > hash.sha1
+        env:
+          PN: ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }}
+      - name: github release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
+          files: |
+            ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }}
+            hash.md5
+            hash.sha1
+      - name: curseforge release
+        run: ./nww.sh upload -p ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }} -rv ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }} -gv ${{ github.event.inputs.wowVersion }} -v
