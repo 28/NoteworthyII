@@ -1,0 +1,59 @@
+name: Publish a new release to GH and CF from tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      wowVersion:
+        description: "The supported WoW game version of this release."
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: install java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      - name: prepare wrapper
+        run: chmod u+x ./nww.sh
+      - name: get release version
+        run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}"
+        id: nw-release-version
+      - name: get changelog delta
+        run: echo "::set-output name=NW_CL_DELTA::$(./nww.sh changelog -vf $NWV)"
+        env:
+          NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
+        id: nw-cl-delta
+      - name: package
+        run: |
+          ./nww.sh pack -pv $NWV
+          echo "::set-output name=NW_PACKAGE_NAME::./NoteworthyII_${NWV}.zip"
+        env:
+          NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
+        id: nw-package
+      - name: calculate hashes
+        run: |
+          ./nww.sh hash $PN > hash.md5
+          ./nww.sh hash -a SHA-1 $PN > hash.sha1
+        env:
+          PN: ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }}
+      - name: github release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
+          body: ${{ steps.nw-cl-delta.outputs.NW_CL_DELTA }}
+          files: |
+            ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }}
+            hash.md5
+            hash.sha1
+      - name: curseforge release
+        run: ./nww.sh upload -p ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }} -rv ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }} -gv ${{ github.event.inputs.wowVersion }} -v
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
