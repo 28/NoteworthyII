@@ -54,3 +54,5 @@ jobs:
             hash.sha1
       - name: curseforge release
         run: ./nww.sh upload -p ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }} -rv ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }} -gv ${{ github.event.inputs.wowVersion }} -v
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
