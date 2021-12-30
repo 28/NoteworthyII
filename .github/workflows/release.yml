@@ -47,7 +47,8 @@ jobs:
       - name: github release
         uses: softprops/action-gh-release@v1
         with:
-          body: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
+          name: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
+          body: ${{ steps.nw-cl-delta.outputs.NW_CL_DELTA }}
           files: |
             ${{ steps.nw-package.outputs.NW_PACKAGE_NAME }}
             hash.md5
