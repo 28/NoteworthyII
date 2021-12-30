@@ -44,6 +44,11 @@ public class upload implements Callable<Integer> {
     @Override
     public Integer call() {
         try {
+            Path packagePath = Path.of(pathToPackage);
+            if (!packagePath.toFile().exists()) {
+                throw new IllegalArgumentException(String.format("Specified release package '%s' does not exist!", pathToPackage));
+            }
+
             Optional<ReleaseType> releaseType = ReleaseType.fromId(this.releaseType);
             ReleaseType rt;
             if (releaseType.isPresent()) {
@@ -59,7 +64,7 @@ public class upload implements Callable<Integer> {
             uploadRequest.setDisplayName(releaseVersion);
             uploadRequest.setReleaseType(rt);
             verbosePrint("Constructed upload request: " + uploadRequest);
-            Long fileId = CurseForgeUploader.uploadReleaseToCurseForge(Path.of(pathToPackage), gameVersion, uploadRequest, verboseOutput);
+            Long fileId = CurseForgeUploader.uploadReleaseToCurseForge(packagePath, gameVersion, uploadRequest, verboseOutput);
             System.out.println("Release uploaded to CurseForge, file ID: " + fileId);
             return 0;
         } catch (Exception e) {
