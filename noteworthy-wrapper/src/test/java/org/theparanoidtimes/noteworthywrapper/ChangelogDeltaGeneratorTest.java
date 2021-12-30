@@ -70,4 +70,34 @@ class ChangelogDeltaGeneratorTest {
                   - Reminder checkbox moved under the text area in character notes screen""";
         assertThat(paragraph).isEqualToIgnoringNewLines(expectedResult);
     }
+
+    @Test
+    void generatorWillReturnCorrectDeltaForFromVersionThatHasAdditionalWording() throws Exception {
+        var changelogPath = Path.of(Objects.requireNonNull(ChangelogDeltaGeneratorTest.class.getResource("/changelog.txt")).toURI());
+        var paragraph = ChangelogDeltaGenerator.generateChangelogDelta(changelogPath, "v2.3.0-classic");
+        var expectedResult = """
+                ## V2.3.0
+                - General
+                  - Introduce the undo feature for each tab
+                - UI
+                  - Introduce 'Undo' button in the top right corner of the Noteworthy window""";
+        assertThat(paragraph).isEqualToIgnoringNewLines(expectedResult);
+    }
+
+    @Test
+    void generatorWillReturnRangeOfParagraphsForARangeOfVersionsWithAdditionalWording() throws Exception {
+        var changelogPath = Path.of(Objects.requireNonNull(ChangelogDeltaGeneratorTest.class.getResource("/changelog.txt")).toURI());
+        var paragraph = ChangelogDeltaGenerator.generateChangelogDelta(changelogPath, "v2.3.0-classic-era", "V2.2.1-classic-era");
+        var expectedResult = """
+                ## V2.3.0
+                - General
+                  - Introduce the undo feature for each tab
+                - UI
+                  - Introduce 'Undo' button in the top right corner of the Noteworthy window
+
+                ## V2.2.1
+                - General
+                  - Update interface version""";
+        assertThat(paragraph).isEqualToIgnoringNewLines(expectedResult);
+    }
 }

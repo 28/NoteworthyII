@@ -15,23 +15,35 @@ public final class ChangelogDeltaGenerator {
     public static String generateChangelogDelta(Path changelogLocation, String versionHeadingFrom, String versionHeadingTo) throws Exception {
         var changelog = Files.readString(changelogLocation);
         var paragraphs = stream(changelog.split(CHANGELOG_HEADING_DELIMITER)).skip(1).toList();
+        String normalizedVersionHeadingFrom = normalizeVersionHeading(versionHeadingFrom);
+        String normalizedVersionHeadingTo = normalizeVersionHeading(versionHeadingTo);
         boolean foundFromParagraph = false;
         var stringBuilder = new StringBuilder();
         for (String paragraph : paragraphs) {
             if (foundFromParagraph) {
-                if (versionHeadingTo == null)
+                if (normalizedVersionHeadingTo == null)
                     break;
-                else if (paragraph.contains(versionHeadingTo.toUpperCase())) {
+                else if (paragraph.contains(normalizedVersionHeadingTo.toUpperCase())) {
                     append(stringBuilder, paragraph);
                     break;
                 } else
                     append(stringBuilder, paragraph);
-            } else if (paragraph.contains(versionHeadingFrom.toUpperCase())) {
+            } else if (paragraph.contains(normalizedVersionHeadingFrom.toUpperCase())) {
                 append(stringBuilder, paragraph);
                 foundFromParagraph = true;
             }
         }
         return stringBuilder.toString().trim();
+    }
+
+    private static String normalizeVersionHeading(String versionHeading) {
+        if (versionHeading == null)
+            return null;
+        int dashIndex = versionHeading.indexOf("-");
+        if (dashIndex != -1) {
+            return versionHeading.substring(0, dashIndex);
+        } else
+            return versionHeading;
     }
 
     private static void append(StringBuilder stringBuilder, String line) {
