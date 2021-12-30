@@ -65,7 +65,7 @@ public abstract class CurseForgeUploader {
             var body = response.body();
             if (body != null) {
                 var gameVersions = getObjectMapper().readValue(body.string(), new TypeReference<List<GameVersion>>() {});
-                return gameVersions.stream().filter(gv -> gv.getName().equals(gameVersion)).findFirst().orElseThrow().getId();
+                return gameVersions.stream().filter(gv -> gv.getName().equals(gameVersion)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format("CurseForge does not recognize WoW version: '%s'!", gameVersion))).getId();
             } else throw new IllegalStateException("Request was successful, but body was empty!");
         }
     }
