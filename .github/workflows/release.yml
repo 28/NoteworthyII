@@ -34,7 +34,7 @@ jobs:
       - name: package
         run: |
           ./nww.sh pack -pv $NWV
-          echo "::set-output name=NW_PACKAGE_NAME::NoteworhtyII_${$NWV}.zip"
+          echo "::set-output name=NW_PACKAGE_NAME::NoteworhtyII_${NWV}.zip"
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
         id: nw-package
