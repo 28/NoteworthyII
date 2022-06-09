@@ -1,5 +1,9 @@
 # Change log
 
+## V2.3.2
+- General
+  - Update interface version
+
 ## V2.3.1
 - General
   - Update interface version
