@@ -4,7 +4,7 @@
 
 -- constants
 local NOTEWORTHY_VERSION = 203000
-local NOTEWORTHY_VTEXT = "2.3.3"
+local NOTEWORTHY_VTEXT = "2.3.4"
 local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
