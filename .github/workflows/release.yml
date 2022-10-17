@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       wowVersion:
-        description: "The supported WoW game version of this release."
+        description: "The supported WoW game versions of this release (as a CSV list)."
         required: true
         type: string
 
