@@ -4,7 +4,7 @@
 ## Notes: Fully featured and configurable notepad utility
 
 ## Author: Dejan Josifović / drow_28 / aka Turuvid, Argent Dawn
-## X-Email: theparanoidtimes.org
+## X-Email: theparanoidtimes@posteo.net
 ## X-Original-Author: Ghost Dancer (aka ZathrasEU)
 ## X-Website: https://github.com/28/NoteworthyII
 ## X-Category: Miscellaneous
