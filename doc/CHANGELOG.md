@@ -1,5 +1,9 @@
 # Change log
 
+## V2.4.0
+- General
+  - Switch to multi TOC packaging (separate TOC for each game version)
+
 ## V2.3.4
 - General
   - Update interface version

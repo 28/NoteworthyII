@@ -4,10 +4,8 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current Retail version: 2.3.4  
-Current Classic version: 2.3.3  
-Current Classic Era version: 2.3.4  
-Maintainer: drow_28  (aka Turuvid, Argent Dawn)  
+Current version: 2.4.0  
+Maintainer: Dejan Josifović / drow_28 / Turuvid, Argent Dawn  
 Original author: Ghost Dancer (aka ZathrasEU)
 
 ## Description

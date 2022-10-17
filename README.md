@@ -7,10 +7,8 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current Retail version: 2.3.4  
-Current Classic version: 2.3.3  
-Current Classic Era version: 2.3.4  
-Maintainer: Dejan Josifović (aka Turuvid, Argent Dawn)  
+Current version: 2.4.0  
+Maintainer: Dejan Josifović / drow_28 / Turuvid, Argent Dawn  
 Original author: Ghost Dancer (aka ZathrasEU)
 
 ## Description
@@ -69,7 +67,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 	- Insert Info -> Date and time: Inserts current date and time.
 	- Insert Chat Log: Inserts a specified number of entries from the chat log (from all major player initiated channels).
 	- Text Colour: Set selected text to one of preset colors.
-	- Clear Formatting: Remove colors and hyperlinks. If no selection will apply to whole page.
+	- Clear Formatting: Remove colors and hyperlinks. If no selection apply to whole page.
 	- Close Menu: Close the pop-up menu.
   - The Save button saves all notes and settings, and then closes the window.
   - The Cancel button closes the window, losing all changes since opening it
@@ -78,7 +76,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
   - The Undo button reverts a number of last changes (typing, text insert, etc.)
 - Character Notes tab:
   - This tab is for storing notes specific to each of your characters.
-  - It defaults to the current logged on character and can be changed via the drop down menu.
+  - It defaults to the current logged on character and can be changed via the drop-down menu.
   - Each character's notes page is created the first time you log on with that character.
   - Setting a reminder for a character will show an alert window when logging on with that character:
 	- Open Notes button: Close alert window and open notepad window.
@@ -102,7 +100,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
   - Remember last session checkbox: Remember page and cursor between sessions
 	- Enabled: Remembers last page and cursor position when you log off.
 	- Disabled: First use each session will open on the current character's page.
-  - Auto focus checkbox: Focus text area when opening note tabs
+  - Autofocus checkbox: Focus text area when opening note tabs
 	- Enabled: Whenever a notes page is opened, the cursor is focused in the text area.
 	- Disabled: To edit text, you must click in the text area.
   - Close on combat checkbox: Close window when entering combat
@@ -150,7 +148,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
   - Migrate notes: Migrate notes from one character from drop down menu to another character from drop down menu.
     - Override checkbox: Override the target character notes
     - Preserve origin checkbox: Preserve the origin character notes
-  - Delete notes: Delete notes for selected character from the drop down menu (Character which notes were deleted will be recreated upon logon, but with placeholder text).
+  - Delete notes: Delete notes for selected character from the drop-down menu (Character which notes were deleted will be recreated upon logon, but with placeholder text).
 
 ## Installation
 
@@ -158,7 +156,6 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 1. Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases);
 2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\';
-
 Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is.
 This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII';
 3. Start the game; Noteworthy II should be listed in the 'AddOns' game menu.
@@ -234,7 +231,7 @@ Last updated on 24.07.2019.
 Located [here](https://www.curseforge.com/wow/addons/callbackhandler).
 
 2. LibDataBroker-1.1  
-LibDataBroker is a small WoW addon library designed to provide a MVC
+LibDataBroker is a small WoW addon library designed to provide an MVC
 interface for use in various addons.  
 Last updated on 09.10.2018.  
 Located [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
@@ -264,7 +261,7 @@ There is no schedule or release date for these features, they are here only for 
 2. ~~Move settings to the Interface/Addon game menu~~ (Done in V2.1.0)
 3. ~~Restructure the source code to make it more manageable (decide what to do with GhostLib)~~ (New structure implemented
 and GhostLib is merged to Noteworthy II source.)
-4. ~~Add entries from Combat log to Quick Notes~~ (Decided to omit this as it is to complicated to be a nice-to-have
+4. ~~Add entries from Combat log to Quick Notes~~ (Decided to omit this as it is too complicated to be a nice-to-have
 feature. There are better add-ons that deal with this problem.)
 5. Refactor UI code - migrate from XML to Lua (programmable) UI
 6. Think about UI redesign (not yet confirmed)
@@ -285,7 +282,7 @@ as soon as possible. If it becomes too irritating, reload the UI with `/reload` 
 present in the character notes panel without the option to be removed. This will be handled in one of the upcoming
 releases.~~ (v2.1.0 introduced migrate and delete character notes feature)
 - Sometimes the cursor can misbehave during notes writing (any note type) - randomly change position in the text.
-I'm still investigating the issue and hopefully it will be solved as soon as possible.
+I'm still investigating the issue, and hopefully it will be solved as soon as possible.
 
 Suggestions for solutions are always welcome! Submit a pull request or open an issue. Thanks!
 
