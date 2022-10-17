@@ -52,8 +52,6 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200"/>
 
-
-
 ## Instructions & notes
 
 - The notepad window can be toggled opened/closed in a number of ways:
@@ -256,7 +254,7 @@ Located [here](https://www.curseforge.com/wow/addons/libstub).
 ### Noteworthy Wrapper
 
 Noteworthy Wrapper is a custom-made build tool for Noteworthy II.
-See the [documentation](/noteworthy-wrapper/README.md) for more info.
+See the [wrapper repository](https://github.com/28/Noteworthy-Wrapper) for more info.
 
 ### Upcoming
 
@@ -291,7 +289,19 @@ I'm still investigating the issue and hopefully it will be solved as soon as pos
 
 Suggestions for solutions are always welcome! Submit a pull request or open an issue. Thanks!
 
-## License
+## Licence
 
-GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007.
-See [license](https://raw.githubusercontent.com/28/NoteworthyII/master/LICENSE.txt).
+Copyright (C) 2018-2022 Dejan Josifović theparanoidtimes.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
