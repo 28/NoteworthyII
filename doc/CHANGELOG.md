@@ -1,5 +1,10 @@
 # Change log
 
+## V2.4.1
+- General
+  - Update interface version for Retail
+  - Adapt to new Retail UI changes (fix backward compatibility with Classic/Vanilla)
+
 ## V2.4.0
 - General
   - Switch to multi TOC packaging (separate TOC for each game version)
