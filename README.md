@@ -7,7 +7,7 @@
 
 The notes, notepad World of Warcraft addon.
 
-Current version: 2.4.0  
+Current version: 2.4.1  
 Maintainer: Dejan Josifović / drow_28 / Turuvid, Argent Dawn  
 Original author: Ghost Dancer (aka ZathrasEU)
 
