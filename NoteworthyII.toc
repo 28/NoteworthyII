@@ -1,4 +1,4 @@
-## Interface: 90207
+## Interface: 100000
 ## Title: Noteworthy II
 ## Version: 2.4.0
 ## Notes: Fully featured and configurable notepad utility
@@ -26,6 +26,7 @@ NoteworthyBroker.lua
 NoteworthyMain.lua
 NoteworthySystem.lua
 NoteworthyTemplates.xml
+NoteworthyVarTemplates.xml
 NoteworthyWindows.xml
 NoteworthyButton.xml
 NoteworthyOptions.xml

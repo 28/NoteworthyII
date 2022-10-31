@@ -26,13 +26,6 @@
         </Anchors>
     </Frame>
 
-    <!-- Tab Button template-->
-    <Button name="Noteworthy_TabTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true">
-        <Scripts>
-            <OnClick>Noteworthy_SetTab(self:GetID())</OnClick>
-        </Scripts>
-    </Button>
-
     <!-- Scrollable edit box template -->
     <ScrollFrame name="Noteworthy_TextAreaTemplate" inherits="UIPanelScrollFrameTemplate" virtual="true">
         <Size>

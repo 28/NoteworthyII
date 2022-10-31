@@ -26,6 +26,7 @@ NoteworthyBroker.lua
 NoteworthyMain.lua
 NoteworthySystem.lua
 NoteworthyTemplates.xml
+NoteworthyVarTemplates-classic.xml
 NoteworthyWindows.xml
 NoteworthyButton.xml
 NoteworthyOptions.xml

@@ -65,17 +65,6 @@
         </Scripts>
     </CheckButton>
 
-    <!-- Button template -->
-    <Button name="Ghost_ButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
-        <Size>
-            <AbsDimension x="100" y="22"/>
-        </Size>
-
-        <NormalText inherits="GameFontNormal"/>
-        <DisabledText inherits="GameFontDisable"/>
-        <HighlightText inherits="GameFontNormal"/>
-    </Button>
-
     <!-- Label template -->
     <Frame name="Ghost_LabelTemplate" virtual="true">
         <Layers>

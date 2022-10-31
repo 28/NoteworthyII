@@ -1,0 +1,25 @@
+<!--
+    NoteworthyVarTemplates.xml
+
+    This file is created to store UI elements that need to be defined in XML and differ between
+    WoW versions. This is the version for Retail WoW.
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui">
+    <!-- Button template -->
+    <Button name="Ghost_ButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="100" y="22"/>
+        </Size>
+
+        <NormalFont inherits="GameFontNormal"/>
+        <DisabledFont inherits="GameFontDisable"/>
+        <HighlightFont inherits="GameFontNormal"/>
+    </Button>
+
+    <!-- Tab Button template -->
+    <Button name="Noteworthy_TabTemplate" inherits="CharacterFrameTabTemplate" virtual="true">
+        <Scripts>
+            <OnClick>Noteworthy_SetTab(self:GetID())</OnClick>
+        </Scripts>
+    </Button>
+</Ui>
