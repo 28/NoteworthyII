@@ -200,7 +200,6 @@ Noteworthy II project file structure:
 		|- NoteworthyMain.lua ---> Main library code
 		|- NoteworthySystem.lua ---> Code for menus, commands and misc
 	+- xml
-		|- GhostLib.xml ---> Reusable XML templates
 		|- NoteworthyButton.xml ---> Code for the floating button
 		|- NoteworthyOptions.xml ---> Noteworthy II settings that appear in Interface/AddOns game menu
 		|- NoteworthyTemplates.xml ---> Noteworthy II specific reusable XML templates

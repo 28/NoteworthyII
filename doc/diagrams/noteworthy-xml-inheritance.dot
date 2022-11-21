@@ -1,46 +1,43 @@
 digraph arch {
-	ranksep=2.1
-	rankdir=TB
-	compound=true
-	node[color=blue]
+        ranksep=2.1
+        rankdir=TB
+        compound=true
+        node[color=blue]
 
-	XML_GL[label="GhostLib.xml", shape=box]
-	XML_T[label="Noteworthy_Templates.xml", shape=box]
+        XML_T[label="Noteworthy_Templates.xml", shape=box]
 
-	subgraph cluster_main {
-		label="Noteworthy Main Window (NoteworthyWindows.xml)"
-		color=blue
-		node[color=red]
+        subgraph cluster_main {
+                label="Noteworthy Main Window (NoteworthyWindows.xml)"
+                color=blue
+                node[color=red]
 
-		subgraph cluster_main_frame {
-			label="Main Frame"
+                subgraph cluster_main_frame {
+                        label="Main Frame"
 
-			M_F[label="Main frame", color=cyan, style=invis, shape=point]
-			M_L[label="Labels", color=brown]
-			M_P[label="Panels", color=red]
-			M_C[label="Checkboxes", color=gold]
-			M_T[label="ScrollFrame(TextArea)", color=black]
-			M_B[label="Buttons", color=orange]
-			M_TA[label="Tabs", color=green]
-		}
-	}
+                        M_F[label="Main frame", color=cyan, style=invis, shape=point]
+                        M_L[label="Labels", color=brown]
+                        M_P[label="Panels", color=red]
+                        M_C[label="Checkboxes", color=gold]
+                        M_T[label="ScrollFrame(TextArea)", color=black]
+                        M_B[label="Buttons", color=orange]
+                        M_TA[label="Tabs", color=green]
+                }
+        }
 
-	subgraph cluster_options {
-		label="Noteworthy Options (NoteworthyOptions.xml)"
-		color=blue
-		node[color=green]
+        subgraph cluster_options {
+                label="Noteworthy Options (NoteworthyOptions.xml)"
+                color=blue
+                node[color=green]
 
-		O_F[label="Options", color=cyan, style=invis, shape=point]
-	}
+                O_F[label="Options", color=cyan, style=invis, shape=point]
+        }
 
-	XML_GL->XML_T[label="Ghost_EditBox", color=black, fontcolor=black]
-
-	XML_GL->M_F[label="Ghost_WindowTemplate", color=cyan, fontcolor=cyan, lhead=cluster_main_frame]
-	XML_GL->M_L[label="Ghost_LabelTemplate", color=brown, fontcolor=brown]
-	XML_T->M_P[label="Noteworthy_PanelTemplate", color=red, fontcolor=red]
-	XML_GL->M_C[label="Ghost_CheckboxTemplate", color=gold, fontcolor=gold]
-	XML_T->M_T[label="Noteworthy_TextAreaTemplate", color=black, fontcolor=black]
-	XML_GL->M_B[label="Ghost_ButtonTemplate", color=orange, fontcolor=orange]
-	XML_T->M_TA[label="Noteworthy_TabTemplate", color=green, fontcolor=green]
-	XML_GL->O_F[label="Ghost_CheckboxTemplate", color=black, fontcolor=black, lhead=cluster_options]
+        XML_T->M_F[label="Ghost_WindowTemplate", color=cyan, fontcolor=cyan, lhead=cluster_main_frame]
+        XML_T->M_L[label="Ghost_LabelTemplate", color=brown, fontcolor=brown]
+        XML_T->M_P[label="Noteworthy_PanelTemplate", color=red, fontcolor=red]
+        XML_T->M_C[label="Ghost_CheckboxTemplate", color=gold, fontcolor=gold]
+        XML_T->M_T[label="Noteworthy_TextAreaTemplate", color=black, fontcolor=black]
+        XML_T->M_B[label="Ghost_ButtonTemplate", color=orange, fontcolor=orange]
+        XML_T->M_TA[label="Noteworthy_TabTemplate", color=green, fontcolor=green]
+        XML_T->O_F[label="Ghost_CheckboxTemplate", color=black, fontcolor=black, lhead=cluster_options]
 }

@@ -7,6 +7,155 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.blizzard.com/wow/ui ./Interface/FrameXML/UI.xsd">
 
+    <!-- Editbox template - requires code in GhostLib.lua -->
+    <EditBox name="Ghost_EditBox" multiLine="true" enableMouse="true" autoFocus="false" virtual="true">
+        <Scripts>
+            <OnLoad>
+                WorldFrame:HookScript("OnMouseDown",
+                    function(self, button)
+                        Ghost_ClearFocus()
+                    end)
+
+                self:HookScript("OnMouseDown",
+                    function(self, button) -- hooked this to prevent interference with other OnMouseDown stuff
+                        Ghost_MouseButton = button
+                        if Ghost_MouseButton == "RightButton" then
+                            Ghost_Wait(0.1, Ghost_RestoreSelection)
+                        end
+                    end)
+            </OnLoad>
+            <OnEditFocusGained>Ghost_CurrentEditBox = self</OnEditFocusGained>
+            <OnHide>Ghost_CurrentEditBox = nil</OnHide>
+            <OnCursorChanged>Ghost_EditBoxCursor(self, y, h)</OnCursorChanged>
+            <OnReceiveDrag>Ghost_EditBoxDrag()</OnReceiveDrag>
+            <OnEscapePressed>
+                self:ClearFocus()
+                CloseDropDownMenus()
+            </OnEscapePressed>
+        </Scripts>
+
+        <FontString inherits="ChatFontNormal"/>
+    </EditBox>
+
+    <!--
+    Checkbox Template
+    adds label & tooltip from "text" attribute (separated by "|")
+    Prevents other OnLoad events working for anything that inherits this, so do any initialisation via ADDON_LOADED event
+    -->
+    <CheckButton name="Ghost_CheckboxTemplate" inherits="InterfaceOptionsCheckButtonTemplate" virtual="true">
+        <Scripts>
+            <OnLoad>
+                local text = self:GetText()
+                local pos = string.find(text, "|")
+
+                if pos ~= nil then
+                    _G[self:GetName() .. "Label"] = strsub(text, 0, pos - 1)
+                    _G[self:GetName() .. "Tooltip"] = strsub(text, pos + 1)
+                else
+                    _G[self:GetName() .. "Label"] = text
+                end
+
+                _G[self:GetName() .. "Text"]:SetText(_G[self:GetName() .. "Label"])
+                _G[self:GetName() .. "Text"]:SetTextColor(1, 1, 1)
+            </OnLoad>
+            <OnEnter>
+                if _G[self:GetName() .. "Tooltip"] ~= nil then
+                    GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+                    GameTooltip:SetText(_G[self:GetName() .. "Tooltip"], 1, 0.8, 0, 1, 1)
+                end
+            </OnEnter>
+            <OnLeave>GameTooltip:Hide()</OnLeave>
+        </Scripts>
+    </CheckButton>
+
+    <!-- Label template -->
+    <Frame name="Ghost_LabelTemplate" virtual="true">
+        <Layers>
+            <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="12"/>
+                    </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <!-- Window template -->
+    <Frame name="Ghost_WindowTemplate" inherits="BackdropTemplate" virtual="true" movable="true">
+        <KeyValues>
+            <KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" type="global"/>
+        </KeyValues>
+
+        <Layers>
+            <Layer>
+                <Texture name="$parentWindowBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
+                    <Size>
+                        <AbsDimension x="160" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="5"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0.2" right="0.8" top="0" bottom="0.6"/>
+                </Texture>
+
+                <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF">
+                    <Size>
+                        <AbsDimension x="140" y="0"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="-4"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="12"/>
+                    </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnLoad inherit="prepend">
+                -- needs to be last OnLoad event
+                self:SetClampedToScreen(true)
+            </OnLoad>
+            <OnMouseDown>
+                <!-- leave empty so that event doesn't propagate to world frame -->
+            </OnMouseDown>
+            <OnMouseUp>
+                <!-- leave empty so that event doesn't propagate to world frame -->
+            </OnMouseUp>
+            <OnDragStop>
+                <!-- leave empty so that event doesn't propagate to world frame -->
+            </OnDragStop>
+        </Scripts>
+    </Frame>
+
     <!-- Background panel template -->
     <Frame name="Noteworthy_PanelTemplate" inherits="BackdropTemplate" virtual="true">
         <KeyValues>
