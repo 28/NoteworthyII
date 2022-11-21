@@ -3,6 +3,7 @@
 ## Unreleased
 - General
   - Merge GhostLib.xml to NoteworthyTemplates.xml
+  - Update interface version for Retail
 
 ## V2.4.1
 - General
