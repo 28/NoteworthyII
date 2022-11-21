@@ -1,6 +1,6 @@
 ## Interface: 100002
 ## Title: Noteworthy II
-## Version: 2.4.1
+## Version: 2.4.2
 ## Notes: Fully featured and configurable notepad utility
 
 ## Author: Dejan Josifović / drow_28 / aka Turuvid, Argent Dawn

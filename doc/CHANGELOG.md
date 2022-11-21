@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## V2.4.2
 - General
   - Merge GhostLib.xml to NoteworthyTemplates.xml
   - Update interface version for Retail
