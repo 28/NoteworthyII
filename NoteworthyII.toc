@@ -1,4 +1,4 @@
-## Interface: 100005
+## Interface: 100007
 ## Title: Noteworthy II
 ## Version: 2.4.3
 ## Notes: Fully featured and configurable notepad utility

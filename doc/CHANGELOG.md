@@ -1,5 +1,9 @@
 # Change log
 
+## V2.4.4
+- General
+  - Update interface version for Retail
+
 ## V2.4.3
 - General
   - Update interface version for Retail
