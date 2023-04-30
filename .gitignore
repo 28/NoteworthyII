@@ -7,13 +7,16 @@ luac.out
 *.sha1
 
 # Java
-target
+target/
 *.jar
 !nww.jar
 
 # API
-/Interface
+Interface/
 
 # Idea
-/.idea
+.idea/
 *.iml
+
+# Docs
+doc/**/*.html
