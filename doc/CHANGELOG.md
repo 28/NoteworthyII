@@ -6,6 +6,7 @@
 - UI
   - Enrich Options screen with more description text
   - Added chat commands info to Options screen
+  - Increase the frame strata to DIALOG
 
 ## V2.4.4
 - General

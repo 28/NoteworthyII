@@ -93,7 +93,7 @@
     </Frame>
 
     <!-- Window template -->
-    <Frame name="Ghost_WindowTemplate" inherits="BackdropTemplate" virtual="true" movable="true">
+    <Frame name="Ghost_WindowTemplate" inherits="BackdropTemplate" virtual="true" movable="true" frameStrata="DIALOG">
         <KeyValues>
             <KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" type="global"/>
         </KeyValues>
