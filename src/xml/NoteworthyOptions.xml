@@ -13,8 +13,8 @@
         </KeyValues>
 
         <Frames>
-            <!-- General Options label -->
-            <Frame name="$parentGeneralLabel">
+            <!-- Noteworthy II settings title -->
+            <Frame name="$parentTitleLabel">
                 <Size>
                     <AbsDimension x="140" y="22"/>
                 </Size>
@@ -29,7 +29,35 @@
 
                 <Layers>
                     <Layer level="ARTWORK">
-                        <FontString name="$parentText" text="General" justifyH="LEFT" justifyV="TOP"
+                        <FontString name="$parentText"
+                                    text="Noteworthy II Settings"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    inherits="GameFontNormalHuge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- General Options label -->
+            <Frame name="$parentGeneralLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentTitleLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="-25"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="General"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
                                     inherits="GameFontNormalLarge"/>
                     </Layer>
                 </Layers>
@@ -40,11 +68,13 @@
                          text="Remember last session|Remember page and cursor between sessions"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="$parentGeneralLabel" relativePoint="BOTTOMLEFT"/>
+                    <Anchor point="TOPLEFT"
+                            relativeTo="$parentGeneralLabel"
+                            relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("remember_page", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("remember_page", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -54,12 +84,13 @@
                          text="Auto focus|Focus text area when opening note tabs"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_RememberPageCheckbox"
+                    <Anchor point="TOPLEFT"
+                            relativeTo="Noteworthy_RememberPageCheckbox"
                             relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("focus_text", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("focus_text", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -69,11 +100,13 @@
                          text="Close on combat|Close window when entering combat"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_FocusCheckbox" relativePoint="BOTTOMLEFT"/>
+                    <Anchor point="TOPLEFT"
+                            relativeTo="Noteworthy_FocusCheckbox"
+                            relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("combat_close", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("combat_close", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -83,12 +116,13 @@
                          text="Save on auto close|Save changes when closed by toggle, logoff and combat"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_CombatCloseCheckbox"
+                    <Anchor point="TOPLEFT"
+                            relativeTo="Noteworthy_CombatCloseCheckbox"
                             relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("save_on_close", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("save_on_close", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -98,12 +132,13 @@
                          text="Save on page change|Save changes when changing page"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_CloseSaveCheckbox"
+                    <Anchor point="TOPLEFT"
+                            relativeTo="Noteworthy_CloseSaveCheckbox"
                             relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("save_on_page_change", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("save_on_page_change", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -113,12 +148,13 @@
                          text="Sound effects|Play sound effects when changing pages and saving"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_PageSaveCheckbox"
+                    <Anchor point="TOPLEFT"
+                            relativeTo="Noteworthy_PageSaveCheckbox"
                             relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("play_sounds", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("play_sounds", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -130,9 +166,9 @@
                 </Size>
 
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                    <Anchor point="TOPLEFT" relativeTo="$parentTitleLabel" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="250" y="-15"/>
+                            <AbsDimension x="250" y="-25"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -154,12 +190,12 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_UpdateMinimapButtonOption(self:GetChecked())
+                        Noteworthy_UpdateMinimapButtonOption(self:GetChecked())
                     </OnClick>
                 </Scripts>
             </CheckButton>
 
-            <!-- Show Icon checkbox -->
+            <!-- Show floating button checkbox -->
             <CheckButton name="Noteworthy_ShowIconCheckbox"
                          text="Floating button|Show floating toggle button"
                          inherits="Ghost_CheckboxTemplate">
@@ -169,7 +205,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("show_floating_button", self:GetChecked(), true)
+                        Noteworthy_SaveFlagOptions("show_floating_button", self:GetChecked(), true)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -181,9 +217,9 @@
                 </Size>
 
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                    <Anchor point="TOPLEFT" relativeTo="$parentTitleLabel" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="250" y="-90"/>
+                            <AbsDimension x="250" y="-110"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -205,7 +241,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("qnote_prefix", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("qnote_prefix", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -220,7 +256,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("qnote_edit", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("qnote_edit", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -235,7 +271,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("qnote_cursor", self:GetChecked(), false)
+                        Noteworthy_SaveFlagOptions("qnote_cursor", self:GetChecked(), false)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -247,7 +283,7 @@
                 </Size>
 
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                    <Anchor point="TOPLEFT" relativeTo="$parentTitleLabel" relativePoint="TOPLEFT">
                         <Offset>
                             <AbsDimension x="10" y="-210"/>
                         </Offset>
@@ -256,8 +292,39 @@
 
                 <Layers>
                     <Layer level="ARTWORK">
-                        <FontString name="$parentText" text="Performance" justifyH="LEFT" justifyV="TOP"
+                        <FontString name="$parentText"
+                                    text="Performance"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
                                     inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Performance explanation label -->
+            <Frame name="$parentPerformanceExplanationLabel">
+                <Size>
+                    <AbsDimension x="140" y="15"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentPerformanceLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-40"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="|cFFFFFFFFSome features can be memory-heavy and disabling them can boost UI performance (especially if you are running a lot of AddOns).|r"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    wordwrap="true"
+                                    inherits="GameFontNormal">
+                            <Size x="550" y="50"/>
+                        </FontString>
                     </Layer>
                 </Layers>
             </Frame>
@@ -267,12 +334,13 @@
                          text="Chat logging|Disabling will prevent chat log copying but should improve performance"
                          inherits="Ghost_CheckboxTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="$parentPerformanceLabel"
+                    <Anchor point="TOPLEFT"
+                            relativeTo="$parentPerformanceExplanationLabel"
                             relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                            Noteworthy_SaveFlagOptions("chat_logging", self:GetChecked(), true)
+                        Noteworthy_SaveFlagOptions("chat_logging", self:GetChecked(), true)
                     </OnClick>
                 </Scripts>
             </CheckButton>
@@ -300,17 +368,48 @@
                 </Size>
 
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnOptions" relativePoint="TOPLEFT">
+                    <Anchor point="TOPLEFT" relativeTo="$parentTitleLabel" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="10" y="-295"/>
+                            <AbsDimension x="10" y="-320"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
 
                 <Layers>
                     <Layer level="ARTWORK">
-                        <FontString name="$parentText" text="Macros" justifyH="LEFT" justifyV="TOP"
+                        <FontString name="$parentText"
+                                    text="Macros"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
                                     inherits="GameFontNormalLarge"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Macros explanation label -->
+            <Frame name="$parentMacrosExplanationLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentMacrosLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-40"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="|cFFFFFFFFPressing the bellow button will create two macros (if they don't exist already) that you can drag to your action bar. These macros will open Noteworthy II character notes and Quick notes menu respectfully.|r"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    wordwrap="true"
+                                    inherits="GameFontNormal">
+                            <Size x="550" y="50"/>
+                        </FontString>
                     </Layer>
                 </Layers>
             </Frame>
@@ -318,9 +417,9 @@
             <!-- Macro Button -->
             <Button name="Noteworthy_MacroButton" text="Create Macros" inherits="Ghost_ButtonTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="$parentMacrosLabel" relativePoint="BOTTOMLEFT">
+                    <Anchor point="TOPLEFT" relativeTo="$parentMacrosExplanationLabel" relativePoint="BOTTOMLEFT">
                         <Offset>
-                            <AbsDimension x="0" y="-4"/>
+                            <AbsDimension x="5" y="-10"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -329,6 +428,34 @@
                     <OnClick>Noteworthy_CreateMacros()</OnClick>
                 </Scripts>
             </Button>
+
+            <!-- Macros explanation label -->
+            <Frame name="$parentAdditionalInfoLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeTo="$parentMacrosExplanationLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-110"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="|cFFFFFFFFYou can open Noteworthy II by typing the '/noteworthy', '/notes' or '/quicknotes' commands in the chat.|r"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    wordwrap="true"
+                                    inherits="GameFontNormal">
+                            <Size x="550" y="50"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
 
             <!-- Version label -->
             <Frame name="Noteworthy_VersionLabel">
@@ -346,7 +473,10 @@
 
                 <Layers>
                     <Layer level="ARTWORK">
-                        <FontString name="$parentText" text="" justifyH="LEFT" justifyV="TOP"
+                        <FontString name="$parentText"
+                                    text=""
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
                                     inherits="GameFontNormal"/>
                     </Layer>
                 </Layers>
@@ -408,10 +538,11 @@
                     <Layer level="ARTWORK">
                         <FontString name="$parentText"
                                     text="|cFFFFFFFFMigrate notes from one character to another. By default notes will be appended to the end of the target character's notes as a new paragraph. Ticking the 'Override' box will erase the target character's notes before appending. All unsaved work will be lost! Origin notes can be preserved by ticking the 'Preserve origin', otherwise they will be removed!|r"
-                                    justifyH="LEFT" justifyV="TOP"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
                                     wordwrap="true"
                                     inherits="GameFontNormal">
-                            <Size x="550" y="50"/>
+                            <Size x="550" y="60"/>
                         </FontString>
                     </Layer>
                 </Layers>
@@ -426,7 +557,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="10" y="-90"/>
+                            <AbsDimension x="10" y="-95"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -462,7 +593,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="Noteworthy_AddOnMgmtOptions" relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="250" y="-90"/>
+                            <AbsDimension x="250" y="-95"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -581,7 +712,8 @@
                     <Layer level="ARTWORK">
                         <FontString name="$parentText"
                                     text="|cFFFFFFFFSelect a character from the drop down menu to delete their notes, remove it from the list and disable the reminder. This cannot be done for the playing character. Character notes which were deleted will be recreated upon logon, but with placeholder text. All unsaved work will be lost!|r"
-                                    justifyH="LEFT" justifyV="TOP"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
                                     wordwrap="true"
                                     inherits="GameFontNormal">
                             <Size x="550" y="50"/>
@@ -590,14 +722,39 @@
                 </Layers>
             </Frame>
 
+            <!-- Character label -->
+            <Frame name="$parentCharacterDropDownDelLabel">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentCharacterNotesDelExplanationLabel" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-40"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="Character:"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    inherits="GameFontNormalSmall"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
             <!-- Delete character drop down menu -->
             <Frame name="Noteworthy_DelCharDropDown" inherits="UIDropDownMenuTemplate">
                 <Anchors>
                     <Anchor point="TOPLEFT"
-                            relativeTo="$parentCharacterNotesDelExplanationLabel"
+                            relativeTo="$parentCharacterDropDownDelLabel"
                             relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="-15" y="-40"/>
+                            <AbsDimension x="-15" y="-20"/>
                         </Offset>
                     </Anchor>
                 </Anchors>

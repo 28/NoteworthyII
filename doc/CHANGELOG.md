@@ -1,5 +1,12 @@
 # Change log
 
+## Unreleased
+- General
+  - Remove 'Noteworthy II loaded' chat message on log-on
+- UI
+  - Enrich Options screen with more description text
+  - Added chat commands info to Options screen
+
 ## V2.4.4
 - General
   - Update interface version for Retail
