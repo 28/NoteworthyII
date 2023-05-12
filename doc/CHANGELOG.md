@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## V2.4.5
 - General
   - Remove 'Noteworthy II loaded' chat message on log-on
   - Update interface version for Retail
