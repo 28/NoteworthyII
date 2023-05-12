@@ -3,10 +3,12 @@
 ## Unreleased
 - General
   - Remove 'Noteworthy II loaded' chat message on log-on
+  - Update interface version for Retail
 - UI
-  - Enrich Options screen with more description text
+  - Enrich Options screen with more description and hint text
   - Added chat commands info to Options screen
   - Increase the frame strata to DIALOG
+  - Redesign floating button
 
 ## V2.4.4
 - General

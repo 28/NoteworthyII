@@ -403,7 +403,7 @@
                 <Layers>
                     <Layer level="ARTWORK">
                         <FontString name="$parentText"
-                                    text="|cFFFFFFFFPressing the bellow button will create two macros (if they don't exist already) that you can drag to your action bar. These macros will open Noteworthy II character notes and Quick notes menu respectfully.|r"
+                                    text="|cFFFFFFFFPressing the bellow button will create two macros (if they don't exist already) that you can drag to your action bar. These macros will open Noteworthy II character notes and Quick Notes menu respectfully.|r"
                                     justifyH="LEFT"
                                     justifyV="TOP"
                                     wordwrap="true"
@@ -429,8 +429,8 @@
                 </Scripts>
             </Button>
 
-            <!-- Macros explanation label -->
-            <Frame name="$parentAdditionalInfoLabel">
+            <!-- Additional info label 1 -->
+            <Frame name="$parentAdditionalInfoLabel1">
                 <Size>
                     <AbsDimension x="140" y="22"/>
                 </Size>
@@ -447,6 +447,34 @@
                     <Layer level="ARTWORK">
                         <FontString name="$parentText"
                                     text="|cFFFFFFFFYou can open Noteworthy II by typing the '/noteworthy', '/notes' or '/quicknotes' commands in the chat.|r"
+                                    justifyH="LEFT"
+                                    justifyV="TOP"
+                                    wordwrap="true"
+                                    inherits="GameFontNormal">
+                            <Size x="550" y="50"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Additional info label 2 -->
+            <Frame name="$parentAdditionalInfoLabel2">
+                <Size>
+                    <AbsDimension x="140" y="22"/>
+                </Size>
+
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeTo="$parentAdditionalInfoLabel1" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-50"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText"
+                                    text="|cFFFFFFFFIf your minimap is cluttered with AddOns consider enabling the Noteworthy II floating button and placing it anywhere on the screen.|r"
                                     justifyH="LEFT"
                                     justifyV="TOP"
                                     wordwrap="true"
@@ -711,7 +739,7 @@
                 <Layers>
                     <Layer level="ARTWORK">
                         <FontString name="$parentText"
-                                    text="|cFFFFFFFFSelect a character from the drop down menu to delete their notes, remove it from the list and disable the reminder. This cannot be done for the playing character. Character notes which were deleted will be recreated upon logon, but with placeholder text. All unsaved work will be lost!|r"
+                                    text="|cFFFFFFFFSelect a character from the drop-down menu to delete their notes, remove it from the list, and disable the reminder. This cannot be done for the playing character. Character notes which were deleted will be recreated upon logon but with placeholder text. All unsaved work will be lost!|r"
                                     justifyH="LEFT"
                                     justifyV="TOP"
                                     wordwrap="true"
