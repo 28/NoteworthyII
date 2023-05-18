@@ -24,22 +24,21 @@ jobs:
       - name: prepare wrapper
         run: chmod u+x ./nww.sh
       - name: get release version
-        run: echo "::set-output name=NW_RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}"
+        run: echo "NW_RELEASE_VERSION=${GITHUB_REF/refs\/tags\//}" >> "$GITHUB_OUTPUT"
         id: nw-release-version
       - name: get changelog delta
         run: |
-          CL=$(./nww.sh changelog -vf $NWV)
-          CL="${CL//'%'/'%25'}"
-          CL="${CL//$'\n'/'%0A'}"
-          CL="${CL//$'\r'/'%0D'}"
-          echo "::set-output name=NW_CL_DELTA::$CL"
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "NW_CL_DELTA<<$EOF" >> "$GITHUB_OUTPUT"
+          ./nww.sh changelog -vf $NWV >> "$GITHUB_OUTPUT"
+          echo "$EOF" >> "$GITHUB_OUTPUT"
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
         id: nw-cl-delta
       - name: package
         run: |
           ./nww.sh pack -pv $NWV
-          echo "::set-output name=NW_PACKAGE_NAME::./NoteworthyII_${NWV}.zip"
+          echo "NW_PACKAGE_NAME=./NoteworthyII_${NWV}.zip" >> "$GITHUB_OUTPUT"
         env:
           NWV: ${{ steps.nw-release-version.outputs.NW_RELEASE_VERSION }}
         id: nw-package
