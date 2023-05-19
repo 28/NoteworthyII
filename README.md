@@ -5,7 +5,7 @@
 
 # Noteworthy II
 
-The notes, notepad World of Warcraft addon.
+Fully featured and configurable notes, notepad World of Warcraft addon.
 
 Current version: 2.4.5  
 Maintainer: Dejan Josifović / drow_28 / Turuvid, Argent Dawn  
@@ -49,11 +49,12 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
 
 ## Instructions & notes
 
 - The notepad window can be toggled opened/closed in a number of ways:
-  left-click minimap/floating button, Broker plugin, '/noteworthy' or via a macro.
+  left-click minimap/floating button, Broker plugin, '/noteworthy', '/notes', '/quicknotes' or via a macro.
 - All windows and buttons are draggable.
 - General EditBox features:
   - Each note page can store up to 5000 letters.
@@ -66,7 +67,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 	- Insert Info -> Date: Inserts current date.
 	- Insert Info -> Date and time: Inserts current date and time.
 	- Insert Chat Log: Inserts a specified number of entries from the chat log (from all major player initiated channels).
-	- Text Colour: Set selected text to one of preset colors.
+	- Text Color: Set selected text to one of preset colors.
 	- Clear Formatting: Remove colors and hyperlinks. If no selection apply to whole page.
 	- Close Menu: Close the pop-up menu.
   - The Save button saves all notes and settings, and then closes the window.
@@ -154,28 +155,29 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ### Manual
 
-1. Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases);
-2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\';
+1. Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases)
+2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
 Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is.
-This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII';
-3. Start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII'.
+The same is applied for other versions of the game, only the destination folder is different - Classic: '\_classic_era_', Wrath of the Lich King: '\_classic_'
+3. Start the game, Noteworthy II should be listed in the 'AddOns' game menu
 
 ### CurseForge (Overwolf) app
 
-1. Start the [CurseForge (Overwolf) app](https://curseforge.overwolf.com);
-2. Select 'World of Warcraft' game;
-3. Go to 'Get More Addons' tab;
-4. In the top search bar type 'Noteworthy II';
-5. Click the 'Install' button in the 'Action' column or select the addon and press the 'Install' button on the upper right;
-6. When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+1. Start the [CurseForge (Overwolf) app](https://curseforge.overwolf.com)
+2. Select 'World of Warcraft' game
+3. Go to 'Get More Addons' tab
+4. In the top search bar type 'Noteworthy II'
+5. Click the 'Install' button on the upper right
+6. When installed, start the game, Noteworthy II should be listed in the 'AddOns' game menu
 
 ### WoWUp
 
-1. Start the [WowUp app](https://wowup.io);
-2. Navigate to 'Get Addons' tab;
-3. In the upper left search menu type 'Noteworthy II';
-4. Select the addon from the list and click install;
-5. When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+1. Start the [WowUp app](https://wowup.io)
+2. Navigate to 'Get Addons' tab
+3. In the upper left search menu type 'Noteworthy II'
+4. Select the addon from the list and click install
+5. When installed, start the game, Noteworthy II should be listed in the 'AddOns' game menu
 
 ### Important
 
@@ -186,13 +188,10 @@ This is just to clear out some old files that are no longer being used.
 
 ## Development
 
-Noteworthy II development is meant to go in cycles. Code is developed in a
-separate directory and when needed it is 'deployed' in WoW, tested then
-repeat. All scripts packed in the project exist to support this
-philosophy.
+Noteworthy II is developed in one repository/project for all game versions.
 
 Noteworthy II project file structure:
-```
+```text
 +- src
 	+- lua
 		|- GhostLib.lua ---> Code for text editing
@@ -201,10 +200,14 @@ Noteworthy II project file structure:
 		|- NoteworthySystem.lua ---> Code for menus, commands and misc
 	+- xml
 		|- NoteworthyButton.xml ---> Code for the floating button
-		|- NoteworthyOptions.xml ---> Noteworthy II settings that appear in Interface/AddOns game menu
+		|- NoteworthyOptions.xml ---> Noteworthy II settings that appear in Interface settings
 		|- NoteworthyTemplates.xml ---> Noteworthy II specific reusable XML templates
+		|- NoteworthyVarTemplates.xml ---> Noteworthy II templates that differ between game versions - Retail
+		|- NoteworthyVarTemplates-classic.xml ---> Noteworthy II templates that differ between game versions - Classic Era and Classic
 		|- NoteworthyWindows.xml ---> Noteworthy II main XML file (main and alert windows)
-|- NoteworthyII.toc ---> The TOC file
+|- NoteworthyII.toc ---> The Retail TOC file
+|- NoteworthyII-Vanilla.toc ---> The Classic Era TOC file
+|- NoteworthyII-Wrath.toc ---> The Wrath of the Lich King TOC file
 ```
 
 Noteworthy II XML structure leverages heavily on inheritance, and
@@ -223,25 +226,25 @@ See the change log file [here](https://raw.githubusercontent.com/28/NoteworthyII
 Dependency management and updating is done manually. All libraries are
 packaged with Noteworthy II.
 
-1. CallbackHandler-1.0  
+1. **CallbackHandler-1.0**  
 CallbackHandler is a back-end utility library that makes it easy for
 a library to fire its events to interested parties.  
 Last updated on 24.07.2019.  
 Located [here](https://www.curseforge.com/wow/addons/callbackhandler).
 
-2. LibDataBroker-1.1  
+2. **LibDataBroker-1.1**  
 LibDataBroker is a small WoW addon library designed to provide an MVC
 interface for use in various addons.  
 Last updated on 09.10.2018.  
 Located [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
 
-3. LibDBIcon-1.0  
+3. **LibDBIcon-1.0**  
 LibDBIcon is a small library you can throw in your LDB addon that will
 create a small minimap icon for you and nothing more.  
 Last updated on 14.05.2021.  
 Located [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
 
-4. LibStub  
+4. **LibStub**  
 LibStub is a minimalist versioning library that allows other
 libraries to easily register themselves and upgrade.  
 Last updated on 24.07.2019.  
@@ -262,8 +265,7 @@ There is no schedule or release date for these features, they are here only for 
 and GhostLib is merged to Noteworthy II source.)
 4. ~~Add entries from Combat log to Quick Notes~~ (Decided to omit this as it is too complicated to be a nice-to-have
 feature. There are better add-ons that deal with this problem.)
-5. Refactor UI code - migrate from XML to Lua (programmable) UI
-6. Think about UI redesign (not yet confirmed)
+5. Think about UI redesign (not yet confirmed)
 
 #### Requests from the community
 
@@ -271,7 +273,9 @@ These have a slightly higher priority.
 
 1. ~~Character notes should be saved as 'Character-Realm' instead of just 'Character' so that same-named characters
 from different realms can have their own notes.~~ (Introduced in V2.2.0)
-2. Multiple personal notes per character. It will be easier to divide the notes per topic.
+2. Multiple personal notes per character. It will be easier to divide the notes per topic. (See [wireframes](/doc/wireframes/noteworthy-character-notes-wireframes.org).)
+3. Create character notes for new characters upon opening Noteworthy II instead of on log-on. This will reduce the number
+of unwanted character notes when a player has multiple alts.
 
 ### Known issues
 
@@ -287,7 +291,7 @@ Suggestions for solutions are always welcome! Submit a pull request or open an i
 
 ## Licence
 
-Copyright (C) 2018-2022 Dejan Josifović theparanoidtimes.org
+Copyright (C) 2018-2023 Dejan Josifović theparanoidtimes.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
