@@ -48,8 +48,8 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
 <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
+<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200" align="left"/>
 
 ## Instructions & notes
 
