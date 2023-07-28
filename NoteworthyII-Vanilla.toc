@@ -1,6 +1,6 @@
 ## Interface: 11403
 ## Title: Noteworthy II
-## Version: 2.4.5
+## Version: 2.4.6
 ## Notes: Fully featured and configurable notepad utility
 
 ## Author: Dejan Josifović / drow_28 / aka Anurruk, Pyrewood Village

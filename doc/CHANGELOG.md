@@ -1,5 +1,10 @@
 # Change log
 
+## V2.4.6
+- General
+  - Update interface version for Retail
+  - Update interface version for Wrath
+
 ## V2.4.5
 - General
   - Remove 'Noteworthy II loaded' chat message on log-on

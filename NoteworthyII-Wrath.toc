@@ -1,6 +1,6 @@
-## Interface: 30401
+## Interface: 30402
 ## Title: Noteworthy II
-## Version: 2.4.5
+## Version: 2.4.6
 ## Notes: Fully featured and configurable notepad utility
 
 ## Author: Dejan Josifović / drow_28 / aka Turuvid, Firemaw
