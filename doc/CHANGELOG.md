@@ -1,5 +1,10 @@
 # Change log
 
+## V2.4.7
+- General
+  - Update interface version for Retail
+  - Update interface version for Vanilla
+
 ## V2.4.6
 - General
   - Update interface version for Retail
