@@ -7,7 +7,7 @@
 
 Fully featured and configurable notes, notepad World of Warcraft addon.
 
-Current version: 2.4.6  
+Current version: 2.4.7  
 Maintainer: Dejan Josifović / drow_28 / Turuvid, Argent Dawn  
 Original author: Ghost Dancer (aka ZathrasEU)
 
@@ -253,7 +253,7 @@ Located [here](https://www.curseforge.com/wow/addons/libstub).
 ### Noteworthy Wrapper
 
 Noteworthy Wrapper is a custom-made build tool for Noteworthy II.
-See the [wrapper repository](https://github.com/28/Noteworthy-Wrapper) for more info.
+See the [wrapper repository](https://git.sr.ht/~tpt/Noteworthy-Wrapper) for more info.
 
 ### Upcoming
 
@@ -289,9 +289,9 @@ I'm still investigating the issue, and hopefully it will be solved as soon as po
 
 Suggestions for solutions are always welcome! Submit a pull request or open an issue. Thanks!
 
-## Licence
+## License
 
-Copyright (C) 2018-2023 Dejan Josifović theparanoidtimes.org
+Copyright (C) 2018-2023. Dejan Josifović, The Paranoid Times
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
