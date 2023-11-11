@@ -1,5 +1,11 @@
 # Change log
 
+## V2.4.8
+- General
+  - Update interface version for Retail
+  - Update interface version for Wrath
+  - Update interface version for Vanilla
+
 ## V2.4.7
 - General
   - Update interface version for Retail
