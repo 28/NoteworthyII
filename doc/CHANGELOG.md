@@ -1,5 +1,10 @@
 # Change log
 
+## V2.4.9
+- General
+  - Update dependency libraries
+  - Update interface version for Vanilla
+
 ## V2.4.8
 - General
   - Update interface version for Retail
