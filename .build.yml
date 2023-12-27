@@ -1,0 +1,32 @@
+image: alpine/edge
+secrets:
+  - 178fd3d3-8d4e-4409-a8a6-3eb6a1a635bf
+sources:
+  - git@git.sr.ht:~tpt/NoteworthyII
+environment:
+  versions: 10.2.5,3.4.3,1.15.0
+  repo: NoteworthyII
+packages:
+  - openjdk17
+  - hut
+tasks:
+  - get-release-version: |
+      if [[ $GIT_REF != *"tag"* ]]; then \
+        complete-build; \
+      fi
+      cd $repo
+      NW_RELEASE_VERSION=${GIT_REF/refs\/tag\//}
+  - prepare-wrapper: |
+      cd $repo
+      chmod u+x ./nww.sh
+  - get-changelog-delta: |
+      cd $repo
+      ./nww.sh changelog -vf $NW_RELEASE_VERSION > changelog.txt
+  - package: |
+      cd $repo
+      ./nww.sh pack -pv $NW_RELEASE_VERSION
+      NW_FILE="NoteworthyII_${NW_RELEASE_VERSION}.zip"
+  - hash: |
+      cd $repo
+      ./nww.sh hash $NW_FILE > hash.md5
+      ./nww.sh hash -a SHA-1 $NW_FILE > hash.sha1
