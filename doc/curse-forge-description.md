@@ -1,4 +1,4 @@
-![Noteworthy II banner](https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/Banner.jpg)
+![Noteworthy II banner](https://media.forgecdn.net/attachments/thumbnails/780/466/310/172/banner.jpg)
 
 # Noteworthy II
 
@@ -26,8 +26,7 @@ Overview of features:
 * Full LDB support.
 * Undo changes support.
 
-This is a continuation of development of the original Noteworthy, which can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
-The original author approved it.
+This is a continuation of development of the original Noteworthy, the original author approved.
 
 Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
@@ -83,29 +82,30 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Installation
 
-
 ### Manual
 
-* Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases);
-* Unzip the contents to the location: '&lt;wow_install_directory&gt;\_retail_\Interface\AddOns\'; Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is. This means that the final path after the extraction will be: '&lt;wow_install_directory&gt;\_retail_\Interface\AddOns\NoteworthyII';
-* Start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+* Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases)
+* Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
+   Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is.
+   This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII'.
+   The same is applied for other versions of the game, only the destination folder is different - Classic: '\_classic_era_', Wrath of the Lich King: '\_classic_'
+* Start the game, Noteworthy II should be listed in the 'AddOns' game menu
 
 ### CurseForge (Overwolf) app
 
-* Start the [CurseForge (Overwolf) app](https://curseforge.overwolf.com);
-* Select 'World of Warcraft' game;
-* Go to 'Get More Addons' tab;
-* In the top search bar type 'Noteworthy II';
-* Click the 'Install' button in the 'Action' column or select the addon and press the 'Install' button on the upper right;
-* When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+* Start the [CurseForge (Overwolf) app](https://www.curseforge.com/download/app)
+* Select 'World of Warcraft' game
+* In the top search bar type 'Noteworthy II'
+* Click the 'Install' button on the 'Action' column
+* When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu
 
 ### WoWUp
 
-* Start the [WowUp app](https://wowup.io);
-* Navigate to 'Get Addons' tab;
-* In the upper left search menu type 'Noteworthy II';
-* Select the addon from the list and click install;
-* When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu.
+* Start the [WowUp app](https://wowup.io)
+* Navigate to 'Get Addons' tab
+* In the upper right search menu type 'Noteworthy II'
+* Select the addon from the list and click the 'Install' button on the right
+* When installed, start the game; Noteworthy II should be listed in the 'AddOns' game menu
 
 ### Important
 

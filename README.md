@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <p align="center">
-    <img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/Banner.jpg" alt="Noteworthy II banner"/>
+    <img src="doc/img/Banner.jpg" alt="Noteworthy II banner"/>
 </p>
 
 # Noteworthy II
@@ -35,21 +35,20 @@ macro or as LDB plug-in.
 - Undo changes support.
 
 This is a continuation of development of the original Noteworthy, which
-can be found [here](https://www.curseforge.com/wow/addons/noteworthy).
-The original author approved it.
+the original author approved.
 
 Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" width="200" align="left"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
-<img src="https://raw.githubusercontent.com/28/NoteworthyII/master/doc/img/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
+<img src="doc/img/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" width="200" align="left"/>
+<img src="doc/img/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
+<img src="doc/img/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200"/>
+<img src="doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
+<img src="doc/img/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
+<img src="doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
+<img src="doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
+<img src="doc/img/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
 
 ## Instructions & notes
 
@@ -164,19 +163,18 @@ The same is applied for other versions of the game, only the destination folder 
 
 ### CurseForge (Overwolf) app
 
-1. Start the [CurseForge (Overwolf) app](https://curseforge.overwolf.com)
+1. Start the [CurseForge (Overwolf) app](https://www.curseforge.com/download/app)
 2. Select 'World of Warcraft' game
-3. Go to 'Get More Addons' tab
-4. In the top search bar type 'Noteworthy II'
-5. Click the 'Install' button on the upper right
-6. When installed, start the game, Noteworthy II should be listed in the 'AddOns' game menu
+3. In the top search bar type 'Noteworthy II'
+4. Click the 'Install' button on the 'Action' column
+5. When installed, start the game, Noteworthy II should be listed in the 'AddOns' game menu
 
 ### WoWUp
 
 1. Start the [WowUp app](https://wowup.io)
 2. Navigate to 'Get Addons' tab
-3. In the upper left search menu type 'Noteworthy II'
-4. Select the addon from the list and click install
+3. In the upper right search menu type 'Noteworthy II'
+4. Select the addon from the list and click the 'Install' button on the right
 5. When installed, start the game, Noteworthy II should be listed in the 'AddOns' game menu
 
 ### Important
@@ -215,11 +213,11 @@ components are located in multiple files. Here is a diagram of
 inheritance trying to explain which component is in which file and 
 which component inherits which.
 
-![Noteworthy XML inheritance](https://raw.githubusercontent.com/28/NoteworthyII/master/doc/diagrams/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
+![Noteworthy XML inheritance](doc/diagrams/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
 
 ### Change log
 
-See the change log file [here](https://raw.githubusercontent.com/28/NoteworthyII/master/doc/CHANGELOG.md).
+See the change log file [here](doc/CHANGELOG.md).
 
 ### Dependencies
 
@@ -229,7 +227,7 @@ packaged with Noteworthy II.
 1. **CallbackHandler-1.0**  
 CallbackHandler is a back-end utility library that makes it easy for
 a library to fire its events to interested parties.  
-Last updated on 24.07.2019.  
+Last updated on 27.12.2023.  
 Located [here](https://www.curseforge.com/wow/addons/callbackhandler).
 
 2. **LibDataBroker-1.1**  
@@ -241,7 +239,7 @@ Located [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
 3. **LibDBIcon-1.0**  
 LibDBIcon is a small library you can throw in your LDB addon that will
 create a small minimap icon for you and nothing more.  
-Last updated on 14.05.2021.  
+Last updated on 27.12.2023.  
 Located [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
 
 4. **LibStub**  
