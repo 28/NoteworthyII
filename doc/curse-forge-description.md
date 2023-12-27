@@ -26,7 +26,7 @@ Overview of features:
 * Full LDB support.
 * Undo changes support.
 
-This is a continuation of development of the original Noteworthy, the original author approved.
+This is a continuation of development of the original Noteworthy, which the original author approved.
 
 Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
