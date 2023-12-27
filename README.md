@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <p align="center">
-    <img src="doc/img/Banner.jpg" alt="Noteworthy II banner"/>
+    <img src="https://media.forgecdn.net/attachments/780/466/banner.jpg" alt="Noteworthy II banner"/>
 </p>
 
 # Noteworthy II
@@ -41,14 +41,14 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ## Screenshots
 
-<img src="doc/img/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" width="200" align="left"/>
-<img src="doc/img/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
-<img src="doc/img/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200"/>
-<img src="doc/img/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
-<img src="doc/img/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
-<img src="doc/img/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
-<img src="doc/img/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
-<img src="doc/img/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
+<img src="https://media.forgecdn.net/attachments/390/968/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/390/972/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/390/971/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200"/>
+<img src="https://media.forgecdn.net/attachments/660/401/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/660/402/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/368/394/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/306/864/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/660/403/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
 
 ## Instructions & notes
 
@@ -271,7 +271,7 @@ These have a slightly higher priority.
 
 1. ~~Character notes should be saved as 'Character-Realm' instead of just 'Character' so that same-named characters
 from different realms can have their own notes.~~ (Introduced in V2.2.0)
-2. Multiple personal notes per character. It will be easier to divide the notes per topic. (See [wireframes](/doc/wireframes/noteworthy-character-notes-wireframes.org).)
+2. Multiple personal notes per character. It will be easier to divide the notes per topic. (See [wireframes](doc/wireframes/noteworthy-character-notes-wireframes.org).)
 3. Create character notes for new characters upon opening Noteworthy II instead of on log-on. This will reduce the number
 of unwanted character notes when a player has multiple alts.
 
