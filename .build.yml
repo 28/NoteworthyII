@@ -1,6 +1,7 @@
 image: alpine/edge
 secrets:
   - 178fd3d3-8d4e-4409-a8a6-3eb6a1a635bf
+  - 5389faf3-af7e-47e5-a418-f9a002d3c4c2
 sources:
   - git@git.sr.ht:~tpt/NoteworthyII
 environment:
@@ -30,3 +31,12 @@ tasks:
       cd $repo
       ./nww.sh hash $NW_FILE > hash.md5
       ./nww.sh hash -a SHA-1 $NW_FILE > hash.sha1
+  - upload-artifact: |
+      cd $repo
+      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION $NW_FILE
+      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION hash.md5
+      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION hash.sha1
+  - curse-forge-release: |
+      cd $repo
+      CF_API_TOKEN=$(cat ~/.cf-token)
+      ./nww.sh upload -p $MW_FILE -rv $NW_RELEASE_VERSION -gv $versions -v
