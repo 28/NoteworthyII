@@ -1,4 +1,5 @@
 image: alpine/edge
+oauth: git.sr.ht/PROFILE:RO git.sr.ht/REPOSITORIES:RO git.sr.ht/OBJECTS:RW
 secrets:
   - 178fd3d3-8d4e-4409-a8a6-3eb6a1a635bf
   - 5389faf3-af7e-47e5-a418-f9a002d3c4c2
@@ -16,7 +17,7 @@ tasks:
         complete-build; \
       fi
       cd $repo
-      NW_RELEASE_VERSION=${GIT_REF/refs\/tag\//}
+      echo "export NW_RELEASE_VERSION=${GIT_REF/refs\/tags\//}" >> ~/.buildenv
   - prepare-wrapper: |
       cd $repo
       chmod u+x ./nww.sh
@@ -26,7 +27,7 @@ tasks:
   - package: |
       cd $repo
       ./nww.sh pack -pv $NW_RELEASE_VERSION
-      NW_FILE="NoteworthyII_${NW_RELEASE_VERSION}.zip"
+      echo "export NW_FILE=NoteworthyII_${NW_RELEASE_VERSION}.zip" >> ~/.buildenv
   - hash: |
       cd $repo
       ./nww.sh hash $NW_FILE > hash.md5
@@ -38,5 +39,5 @@ tasks:
       hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION hash.sha1
   - curse-forge-release: |
       cd $repo
-      CF_API_TOKEN=$(cat ~/.cf-token)
-      ./nww.sh upload -p $MW_FILE -rv $NW_RELEASE_VERSION -gv $versions -v
+      export CF_API_TOKEN=$(cat ~/.cf-token)
+      ./nww.sh upload -p NW_FILE -rv $NW_RELEASE_VERSION -gv $versions -v
