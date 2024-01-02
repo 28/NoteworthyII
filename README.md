@@ -5,7 +5,7 @@
 
 # Noteworthy II
 
-DEVELOPMENT MOVED TO [Sourcehut](https://sr.ht/~tpt/NoteworthyII/).
+# DEVELOPMENT MOVED TO [Sourcehut](https://sr.ht/~tpt/NoteworthyII/).
 
 Fully featured and configurable notes, notepad World of Warcraft addon.
 
