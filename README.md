@@ -5,6 +5,8 @@
 
 # Noteworthy II
 
+DEVELOPMENT MOVED TO [Sourcehut](https://sr.ht/~tpt/NoteworthyII/).
+
 Fully featured and configurable notes, notepad World of Warcraft addon.
 
 Current version: 2.4.8  
