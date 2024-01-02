@@ -5,6 +5,8 @@
 
 # Noteworthy II
 
+[![builds.sr.ht status](https://builds.sr.ht/~tpt.svg)](https://builds.sr.ht/~tpt?)
+
 Fully featured and configurable notes, notepad World of Warcraft addon.
 
 Current version: 2.4.9  
@@ -154,7 +156,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ### Manual
 
-1. Download the Noteworthy II release zip archive from [here](https://github.com/28/NoteworthyII/releases)
+1. Download the Noteworthy II release zip archive from [here](https://git.sr.ht/~tpt/NoteworthyII/refs)
 2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
 Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is.
 This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII'.
@@ -214,6 +216,11 @@ inheritance trying to explain which component is in which file and
 which component inherits which.
 
 ![Noteworthy XML inheritance](doc/diagrams/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
+
+### Contributions
+
+For any suggestions, bug reports, ideas and patches please send a [plain-text e-mail](https://useplaintext.email)
+to ```~tpt/noteworthy-dev@lists.sr.ht```.
 
 ### Change log
 
@@ -289,7 +296,7 @@ Suggestions for solutions are always welcome! Submit a pull request or open an i
 
 ## License
 
-Copyright (C) 2018-2023. Dejan Josifović, The Paranoid Times
+Copyright (C) 2018-2024. Dejan Josifović, The Paranoid Times
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
