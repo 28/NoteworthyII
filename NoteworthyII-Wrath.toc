@@ -6,7 +6,7 @@
 ## Author: Dejan Josifović / drow_28 / aka Turuvid, Firemaw
 ## X-Email: theparanoidtimes@posteo.net
 ## X-Original-Author: Ghost Dancer (aka ZathrasEU)
-## X-Website: https://github.com/28/NoteworthyII
+## X-Website: https://sr.ht/~tpt/NoteworthyII
 ## X-Category: Miscellaneous
 ## X-Curse-Project-ID: 400633
 
