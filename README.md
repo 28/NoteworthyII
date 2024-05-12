@@ -3,6 +3,15 @@
     <img src="https://media.forgecdn.net/attachments/780/466/banner.jpg" alt="Noteworthy II banner"/>
 </p>
 
+## Development moved to [Sourcehut](https://sr.ht/~tpt/NoteworthyII/)
+
+The main code repository is on Sourcehut, but the GitHub instance will
+be an actively updated mirror.
+
+For any bug reports, issues, contributions:
+- open an issue or pull request on GitHub
+- [e-mail](#contributions) me
+
 # Noteworthy II
 
 [![builds.sr.ht status](https://builds.sr.ht/~tpt.svg)](https://builds.sr.ht/~tpt?)
