@@ -7,6 +7,9 @@
   - Switch to Settings API for add-on settings
   - Switch to Menu API for context menus
   - Create character notes on window open instead of on log-in
+- UI
+  - Focus text area after inserting text or decoration
+  - Don't print any messages in chat unless enabled in settings
 
 ## V2.4.9
 - General

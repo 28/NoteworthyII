@@ -1,9 +1,9 @@
 ## Interface: 120001
 ## Title: Noteworthy II
-## Version: 2.5.0-alpha
+## Version: 2.5.0-beta1
 ## Notes: Fully featured and configurable notepad utility
 
-## Author: Dejan Josifović / drow_28 / aka Turuvid, Argent Dawn
+## Author: Dejan Josifović / drow_28 / aka Turuvid-Argent Dawn
 ## X-Email: theparanoidtimes@posteo.net
 ## X-Original-Author: Ghost Dancer (aka ZathrasEU)
 ## X-Website: https://sr.ht/~tpt/NoteworthyII/

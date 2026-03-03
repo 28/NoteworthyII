@@ -56,7 +56,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 If you want to support the Noteworthy II development, the only way is through [PayPal](https://www.paypal.com/ncp/payment/2ZGM8473PY33E).
 PayPal does not support donations in Serbia, so the only way is to "buy Noteworthy II development". You can scan the QR code bellow.
 
-<img src="doc/img/payment-qrcode.png" alt="PayPal support page" width="200" height="200">
+<img src="https://media.forgecdn.net/attachments/1563/545/payment-qrcode-png.png" alt="PayPal support page" width="200" height="200">
 
 **Thank you!**
 
@@ -204,6 +204,7 @@ For any suggestions, bug reports, ideas and patches please:
 
 - send a [plain-text e-mail](https://useplaintext.email) to [```~tpt/noteworthy-dev@lists.sr.ht```](mailto:~tpt/noteworthy-dev@lists.sr.ht)
 - open an issue or pull request on [GitHub](https://github.com/28/NoteworthyII)
+- post a comment on [CurseForge](https://www.curseforge.com/wow/addons/noteworthy-ii/comments)
 - contact me in-game using the information from TOC files
 
 ### Change log
