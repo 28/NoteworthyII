@@ -247,8 +247,8 @@
             </OnEvent>
             <OnShow>
                 if Noteworthy_DB["notes_on_open"] == true then
-                Noteworthy_AddCharacterToDB()
-                Noteworthy_ResetGadgetInfo()
+                    Noteworthy_AddCharacterToDB()
+                    Noteworthy_ResetGadgetInfo()
                 end
 
                 Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
