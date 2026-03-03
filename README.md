@@ -56,7 +56,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 If you want to support the Noteworthy II development, the only way is through [PayPal](https://www.paypal.com/ncp/payment/2ZGM8473PY33E).
 PayPal does not support donations in Serbia, so the only way is to "buy Noteworthy II development". You can scan the QR code bellow.
 
-![PayPal support page](doc/img/payment-qrcode.png "PayPal support page")
+<img src="doc/img/payment-qrcode.png" alt="PayPal support page" width="200" height="200">
 
 **Thank you!**
 
@@ -202,9 +202,9 @@ Noteworthy II is primarily developed on [Sourcehut](https://sr.ht/~tpt/Noteworth
 
 For any suggestions, bug reports, ideas and patches please:
 
-- send a [plain-text e-mail](https://useplaintext.email) to ```~tpt/noteworthy-dev@lists.sr.ht```
+- send a [plain-text e-mail](https://useplaintext.email) to [```~tpt/noteworthy-dev@lists.sr.ht```](mailto:~tpt/noteworthy-dev@lists.sr.ht)
 - open an issue or pull request on [GitHub](https://github.com/28/NoteworthyII)
-- contact me in-game
+- contact me in-game using the information from TOC files
 
 ### Change log
 
@@ -277,7 +277,7 @@ releases.~~ (v2.1.0 introduced migrate and delete character notes feature)
 - Sometimes the cursor can misbehave during notes writing (any note type) - randomly change position in the text.
 I'm still investigating the issue, and hopefully it will be solved as soon as possible.
 
-Solutions are always welcome! See [Contribution](#Contribution).
+Solutions are always welcome! See [Contribution](#contribution).
 
 ## License
 
