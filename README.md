@@ -45,10 +45,11 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 <img src="https://media.forgecdn.net/attachments/390/968/screen_main_page.jpg" alt="Noteworthy II main page" title="Noteworthy II main page" width="200" align="left"/>
 <img src="https://media.forgecdn.net/attachments/390/972/screen_shared.jpg" alt="Noteworthy II shared notes page" title="Noteworthy II shared notes page" width="200" align="left"/>
 <img src="https://media.forgecdn.net/attachments/390/971/screen_quick.jpg" alt="Noteworthy II quick notes page" title="Noteworthy II quick notes page" width="200"/>
-<img src="https://media.forgecdn.net/attachments/660/401/screen_settings.jpg" alt="Noteworthy II settings page" title="Noteworthy II settings page" width="200" align="left"/>
-<img src="https://media.forgecdn.net/attachments/660/402/screen_settings_notes.jpg" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/1563/602/screen_settings_1-png.png" alt="Noteworthy II settings page part 1" title="Noteworthy II settings page" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/1563/603/screen_settings_2-png.png" alt="Noteworthy II settings page part 2" title="Noteworthy II settings page" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/1563/604/screen_settings_notes_1-png.png" alt="Noteworthy II notes settings page" title="Noteworthy II notes settings page" width="200" align="left"/>
 <img src="https://media.forgecdn.net/attachments/368/394/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
-<img src="https://media.forgecdn.net/attachments/306/864/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
+<img src="https://media.forgecdn.net/attachments/1563/597/screen_minimap_1-png.png" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
 <img src="https://media.forgecdn.net/attachments/660/403/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
 
 ## Support
