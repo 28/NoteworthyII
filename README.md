@@ -5,18 +5,17 @@
 
 # Noteworthy II
 
-[![builds.sr.ht status](https://builds.sr.ht/~tpt.svg)](https://builds.sr.ht/~tpt?)
+[![builds.sr.ht status](https://builds.sr.ht/~tpt/NoteworthyII.svg)](https://builds.sr.ht/~tpt/NoteworthyII?)
 
-Fully featured and configurable notes, notepad World of Warcraft addon.
+Fully featured and configurable notes, notepad World of Warcraft add-on.
 
-Current version: 2.4.9  
-Maintainer: Dejan Josifović / drow_28 / Turuvid, Argent Dawn  
+Current version: 2.5.0-beta1  
+Maintainer: Dejan Josifović / drow_28 / Turuvid-Argent Dawn  
 Original author: Ghost Dancer (aka ZathrasEU)
 
 ## Description
 
-Noteworthy II is a feature rich, configurable notepad with full LDB
-support.
+Noteworthy II is a feature rich, configurable notepad with full LDB support.
 
 Overview of features:
 - Separate notes page for each character with advanced management options, plus a Shared and Quick Notes
@@ -26,7 +25,7 @@ page (see below).
 (if applicable).
 - Insert game info, including character location, target name and chat
 logs via pop-up Edit menu.
-- Change colour of selected text via pop-up Edit menu.
+- Change color of selected text via pop-up Edit menu.
 - Quick Notes pop-up menu adds location, target name and chat logs,
 even when notepad is closed.
 - Reminder system can show alerts for each character.
@@ -51,6 +50,15 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 <img src="https://media.forgecdn.net/attachments/368/394/screen_reminder.jpg" alt="Noteworthy II reminder" title="Noteworthy II reminder" width="200" align="left"/>
 <img src="https://media.forgecdn.net/attachments/306/864/screen_minimap.jpg" alt="Noteworthy II icon on the minimap" title="Noteworthy II icon on the minimap" width="200" align="left"/>
 <img src="https://media.forgecdn.net/attachments/660/403/screen_floating_button.jpg" alt="Noteworthy II floating button" title="Noteworthy II floating button" width="200"/>
+
+## Support
+
+If you want to support the Noteworthy II development, the only way is through [PayPal](https://www.paypal.com/ncp/payment/2ZGM8473PY33E).
+PayPal does not support donations in Serbia, so the only way is to "buy Noteworthy II development". You can scan the QR code bellow.
+
+![PayPal support page](doc/img/payment-qrcode.png "PayPal support page")
+
+**Thank you!**
 
 ## Instructions & notes
 
@@ -102,7 +110,7 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
   - Remember last session checkbox: Remember page and cursor between sessions
 	- Enabled: Remembers last page and cursor position when you log off.
 	- Disabled: First use each session will open on the current character's page.
-  - Autofocus checkbox: Focus text area when opening note tabs
+  - Auto-focus checkbox: Focus text area when opening note tabs
 	- Enabled: Whenever a notes page is opened, the cursor is focused in the text area.
 	- Disabled: To edit text, you must click in the text area.
   - Close on combat checkbox: Close window when entering combat
@@ -156,10 +164,10 @@ Logo and banner made by [Alex](mailto:aleksandar.micic028@gmail.com).
 
 ### Manual
 
-1. Download the Noteworthy II release zip archive from [here](https://git.sr.ht/~tpt/NoteworthyII/refs)
-2. Unzip the contents to the location: '<wow_install_directory>\_retail_\Interface\AddOns\'
+1. Download the Noteworthy II release zip archive from [Sourcehut](https://git.sr.ht/~tpt/NoteworthyII/refs) or from [CurseForge](https://www.curseforge.com/wow/addons/noteworthy-ii/files/all)
+2. Unzip the contents to the location: '\<wow_install_directory\>\\\_retail_\\Interface\\AddOns\\'
 Note that the zip archive already contains the 'NoteworthyII' directory which should be extracted as is.
-This means that the final path after the extraction will be: '<wow_install_directory>\_retail_\Interface\AddOns\NoteworthyII'.
+This means that the final path after the extraction will be: '\<wow_install_directory\>\\\_retail_\\Interface\\AddOns\\NoteworthyII'.
 The same is applied for other versions of the game, only the destination folder is different - Classic: '\_classic_era_', Wrath of the Lich King: '\_classic_'
 3. Start the game, Noteworthy II should be listed in the 'AddOns' game menu
 
@@ -173,7 +181,7 @@ The same is applied for other versions of the game, only the destination folder 
 
 ### WoWUp
 
-1. Start the [WowUp app](https://wowup.io)
+1. Start the [WoWUp app](https://wowup.io)
 2. Navigate to 'Get Addons' tab
 3. In the upper right search menu type 'Noteworthy II'
 4. Select the addon from the list and click the 'Install' button on the right
@@ -188,39 +196,15 @@ This is just to clear out some old files that are no longer being used.
 
 ## Development
 
-Noteworthy II is developed in one repository/project for all game versions.
+Noteworthy II is primarily developed on [Sourcehut](https://sr.ht/~tpt/NoteworthyII/), with an active mirror on [GitHub](https://github.com/28/NoteworthyII).
 
-Noteworthy II project file structure:
-```text
-+- src
-	+- lua
-		|- GhostLib.lua ---> Code for text editing
-		|- NoteworthyBroker.lua ---> Contains LDB code for Noteworthy II
-		|- NoteworthyMain.lua ---> Main library code
-		|- NoteworthySystem.lua ---> Code for menus, commands and misc
-	+- xml
-		|- NoteworthyButton.xml ---> Code for the floating button
-		|- NoteworthyOptions.xml ---> Noteworthy II settings that appear in Interface settings
-		|- NoteworthyTemplates.xml ---> Noteworthy II specific reusable XML templates
-		|- NoteworthyVarTemplates.xml ---> Noteworthy II templates that differ between game versions - Retail
-		|- NoteworthyVarTemplates-classic.xml ---> Noteworthy II templates that differ between game versions - Classic Era and Classic
-		|- NoteworthyWindows.xml ---> Noteworthy II main XML file (main and alert windows)
-|- NoteworthyII.toc ---> The Retail TOC file
-|- NoteworthyII-Vanilla.toc ---> The Classic Era TOC file
-|- NoteworthyII-Wrath.toc ---> The Wrath of the Lich King TOC file
-```
+### Contribution
 
-Noteworthy II XML structure leverages heavily on inheritance, and
-components are located in multiple files. Here is a diagram of
-inheritance trying to explain which component is in which file and 
-which component inherits which.
+For any suggestions, bug reports, ideas and patches please:
 
-![Noteworthy XML inheritance](doc/diagrams/noteworthy-xml-inheritance.png "Noteworthy II XML inheritance")
-
-### Contributions
-
-For any suggestions, bug reports, ideas and patches please send a [plain-text e-mail](https://useplaintext.email)
-to ```~tpt/noteworthy-dev@lists.sr.ht```.
+- send a [plain-text e-mail](https://useplaintext.email) to ```~tpt/noteworthy-dev@lists.sr.ht```
+- open an issue or pull request on [GitHub](https://github.com/28/NoteworthyII)
+- contact me in-game
 
 ### Change log
 
@@ -244,9 +228,9 @@ Last updated on 09.10.2018.
 Located [here](https://www.curseforge.com/wow/addons/libdatabroker-1-1).
 
 3. **LibDBIcon-1.0**  
-LibDBIcon is a small library you can throw in your LDB addon that will
+LibDBIcon is a small library you can throw in your LDB add-on that will
 create a small minimap icon for you and nothing more.  
-Last updated on 27.12.2023.  
+Last updated on 01.03.2026.  
 Located [here](https://www.curseforge.com/wow/addons/libdbicon-1-0).
 
 4. **LibStub**  
@@ -279,8 +263,9 @@ These have a slightly higher priority.
 1. ~~Character notes should be saved as 'Character-Realm' instead of just 'Character' so that same-named characters
 from different realms can have their own notes.~~ (Introduced in V2.2.0)
 2. Multiple personal notes per character. It will be easier to divide the notes per topic. (See [wireframes](doc/wireframes/noteworthy-character-notes-wireframes.org).)
-3. Create character notes for new characters upon opening Noteworthy II instead of on log-on. This will reduce the number
-of unwanted character notes when a player has multiple alts.
+3. ~~Create character notes for new characters upon opening Noteworthy II instead of on log-on. This will reduce the number
+of unwanted character notes when a player has multiple alts.~~ (Introduced in V2.5.0-beta1)
+4. Noteworthy II window is huge, it should support UI scaling.
 
 ### Known issues
 
@@ -292,11 +277,11 @@ releases.~~ (v2.1.0 introduced migrate and delete character notes feature)
 - Sometimes the cursor can misbehave during notes writing (any note type) - randomly change position in the text.
 I'm still investigating the issue, and hopefully it will be solved as soon as possible.
 
-Suggestions for solutions are always welcome! Submit a pull request or open an issue. Thanks!
+Solutions are always welcome! See [Contribution](#Contribution).
 
 ## License
 
-Copyright (C) 2018-2024. Dejan Josifović, The Paranoid Times
+Copyright (C) 2018-2026. Dejan Josifović, The Paranoid Times
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

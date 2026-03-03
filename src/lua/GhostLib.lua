@@ -1,8 +1,5 @@
 --==============================================================
--- GhostLib V1.1
--- Description: useful functions
--- Author: Ghost Dancer
--- Web: https://github.com/28/Noteworthy
+-- Ghost utility functions
 --==============================================================
 
 
@@ -44,13 +41,17 @@ function Ghost_CreateMacro(name, icon, text)
     if GetMacroIndexByName(name) == 0 then
         CreateMacro(name, icon, text, nil, nil)
 
-        if GetMacroIndexByName(name) then
-            print(name .. " macro has been created")
-        else
-            print("Unable to create " .. name .. " macro")
+        if (Noteworthy_DB["verbose"]) then
+           if GetMacroIndexByName(name) then
+              print("|cFF18DF00Noteworthy II|r: " .. name .. " macro has been created.")
+           else
+              print("|cFF18DF00Noteworthy II|r: Unable to create " .. name .. " macro.")
+           end
         end
     else
-        print(name .. " macro already exists")
+       if (Noteworthy_DB["verbose"]) then
+          print("|cFF18DF00Noteworthy II|r: " .. name .. " macro already exists")
+       end
     end
 end
 
@@ -59,7 +60,7 @@ function Ghost_ClearEscapeCodes(text)
     -- clear hyperlink encoding (but only if entire sequence is within our selected text)
     text = text:gsub("(|H.-|h)(.-)(|h)", "%2")
 
-    -- ditto for colour
+    -- ditto for color
     text = text:gsub("(|c%x%x%x%x%x%x%x%x)(.-)(|r)", "%2")
 
     return text
@@ -99,6 +100,7 @@ end
 -- Ghost_CursorPos, Ghost_SelectionStart, Ghost_SelectionEnd
 -- Shared Globals: Ghost_CurrentEditBox (current focussed EditBox)
 ----------------------------------------------------------------
+
 -- called by WorldFrame:HookScript
 function Ghost_EditBoxMouseDown()
     Ghost_ClearFocus()
@@ -113,7 +115,7 @@ end
 function Ghost_EditBoxCursor(self, y, cursorHeight)
     local cursorPos = self:GetCursorPosition()
 
-    if cursorPos ~= Ghost_CursorPos then -- only run code if editbox cursor changes (not mouse position)
+    if cursorPos ~= Ghost_CursorPos then -- only run code if edit box cursor changes (not mouse position)
         if Ghost_MouseButton == "LeftButton" then CloseDropDownMenus() end
 
         Ghost_CurrentEditBox = self
@@ -213,6 +215,7 @@ end
 -- Ghost_EditBox text formatting & insert code
 -- Shared Globals: Ghost_CurrentEditBox, Ghost_CursorPos, Ghost_SelectionStart, Ghost_SelectionEnd
 ----------------------------------------------------------------
+
 -- manages items dragged into EditBox
 function Ghost_EditBoxDrag()
     local infoType, info1, info2 = GetCursorInfo()
@@ -236,7 +239,7 @@ function Ghost_EditBoxDrag()
     ClearCursor()
 end
 
--- set selected text to hex colour
+-- set selected text to hex color
 function Ghost_EditBoxSetTextColour(colour)
     CloseDropDownMenus()
 
@@ -261,7 +264,7 @@ function Ghost_EditBoxClearEscapes()
     if not text then text = Ghost_CurrentEditBox:GetText() end -- or entire text if no selection
 
     local newText = Ghost_ClearEscapeCodes(text) -- set new var with cleared text
-    local sizeReduction = #text - #newText -- calc size difference
+    local sizeReduction = #text - #newText -- calculate size difference
 
     Ghost_CursorPos = Ghost_CursorPos - sizeReduction -- update cursor pos
 
@@ -272,6 +275,6 @@ function Ghost_EditBoxClearEscapes()
         Ghost_RestoreSelection() -- restore selection
     else
         Ghost_CurrentEditBox:SetText(newText)
-        Ghost_CurrentEditBox:SetCursorPosition(Ghost_CursorPos) -- rstore cursor
+        Ghost_CurrentEditBox:SetCursorPosition(Ghost_CursorPos) -- restore cursor
     end
 end

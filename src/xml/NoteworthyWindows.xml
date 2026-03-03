@@ -246,7 +246,14 @@
                 Noteworthy_EventHandler(event)
             </OnEvent>
             <OnShow>
+                if Noteworthy_DB["notes_on_open"] == true then
+                Noteworthy_AddCharacterToDB()
+                Noteworthy_ResetGadgetInfo()
+                end
+
                 Noteworthy_PlaySound(Noteworthy_DB["snd_pageturn"])
+
+                if Noteworthy_UndoEnabled() then Noteworthy_MainWindowUndoButton:Show() else Noteworthy_MainWindowUndoButton:Hide() end
             </OnShow>
             <OnHide>
                 Noteworthy_PlaySound(Noteworthy_DB["snd_pageclose"])

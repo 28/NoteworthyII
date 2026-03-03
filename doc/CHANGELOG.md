@@ -1,5 +1,13 @@
 # Change log
 
+## V2.5.0-beta1
+- General
+  - Update retail interface version
+  - Update dependency libraries
+  - Switch to Settings API for add-on settings
+  - Switch to Menu API for context menus
+  - Create character notes on window open instead of on log-in
+
 ## V2.4.9
 - General
   - Update dependency libraries

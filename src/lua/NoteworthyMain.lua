@@ -3,8 +3,8 @@
 --==============================================================
 
 -- constants
-local NOTEWORTHY_VERSION = 204000
-local NOTEWORTHY_VTEXT = "2.4.9"
+local NOTEWORTHY_VERSION = 205000
+local NOTEWORTHY_VTEXT = "2.5.0-beta1"
 local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
@@ -22,7 +22,7 @@ end
 Noteworthy_character = "" -- selected character
 local Noteworthy_plrID = 0 -- player character ID
 local Noteworthy_current_tab = 1 -- ID of current tab
-local Noteworthy_textbox -- current visible textbox (diff to Ghost_CurrentEditBox which is focussed box)
+local Noteworthy_textbox -- current visible text box (diff to Ghost_CurrentEditBox which is focused box)
 local Noteworthy_text = {} -- character notes text
 local Noteworthy_reminder = {} -- character reminder flags
 local Noteworthy_bufferTxt = {} -- text buffer for quick notes
@@ -35,7 +35,7 @@ local Noteworthy_Undo_Stack = { -- a table of undo stacks per tab
 
 
 ----------------------------------------------------------------
--- Initialise code
+-- Initialize code
 ----------------------------------------------------------------
 
 --- Returns the character ID for the character stored in Noteworthy_character var.
@@ -48,6 +48,31 @@ function Noteworthy_GetPlrID()
         end
     end
     return 0
+end
+
+--- TBD
+-- @return nil
+-- @see Noteworthy_GetPlrID
+-- @see Noteworthy_ValidCharacter
+function Noteworthy_AddCharacterToDB()
+    -- check if character has been added to table
+    Noteworthy_plrID = Noteworthy_GetPlrID()
+
+    if Noteworthy_plrID == 0 then
+        Noteworthy_DB["character_count"] = Noteworthy_DB["character_count"] + 1
+        Noteworthy_DB["character_list"][Noteworthy_DB["character_count"]] = Noteworthy_character
+        Noteworthy_DB[Noteworthy_character] = Noteworthy_character .. "'s notes."
+
+        -- sort character list
+        table.sort(Noteworthy_DB["character_list"])
+
+        -- update player ID
+        Noteworthy_plrID = Noteworthy_GetPlrID()
+    end
+
+    if Noteworthy_DB["last_char"] == nil or not Noteworthy_ValidCharacter(Noteworthy_DB["last_char"]) then
+        Noteworthy_DB["last_char"] = Noteworthy_plrID
+    end
 end
 
 --- Initializes Noteworthy II on startup.
@@ -76,24 +101,24 @@ end
 -- @see Noteworthy_ChangeCharacter
 -- @see Ghost_CursorPos
 -- @see Noteworthy_SetTextFocus
-function Noteworthy_Initialise()
+function Noteworthy_Initialize()
     Noteworthy_character = Noteworthy_CreatePlayerName()
 
     -- TODO: For dev only - check if commented before release/upload
     -- Noteworthy_DB["version"] = 1100		-- temporarily uncomment this line & change number to reset to previous version
-    -- Noteworthy_DB["initialised"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
+    -- Noteworthy_DB["initialized"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
     -- Noteworthy_DB = {}                   -- temporarily uncomment this line to reset ALL saved data
-    Noteworthy_DB["beta"] = false           -- change the value to true if the current version is a beta version
+    Noteworthy_DB["beta"] = true           -- change the value to true if the current version is a beta version
     ----------------------------------------------------------------
 
     -- version check
     local startupMsg
-    if Noteworthy_DB["initialised"] == nil then
-        startupMsg = "|cFF00FF00Noteworthy II V" .. NOTEWORTHY_VTEXT .. " installed.|r"
+    if Noteworthy_DB["initialized"] == nil then
+        startupMsg = "|cFF18DF00Noteworthy II|r V" .. NOTEWORTHY_VTEXT .. " installed."
         Noteworthy_SetDefaults()
     end
     if Noteworthy_DB["version"] ~= NOTEWORTHY_VERSION then
-        startupMsg = "|cFF00FF00Noteworthy II updated to V" .. NOTEWORTHY_VTEXT .. ".|r"
+        startupMsg = "|cFF18DF00Noteworthy II|r updated to V" .. NOTEWORTHY_VTEXT .. "."
         Noteworthy_SetDefaults()
     end
 
@@ -112,39 +137,23 @@ function Noteworthy_Initialise()
         Noteworthy_DB["character_list"] = {}
     end
 
-    -- check if character has been added to table
-    Noteworthy_plrID = Noteworthy_GetPlrID()
-
-    if Noteworthy_plrID == 0 then
-        Noteworthy_DB["character_count"] = Noteworthy_DB["character_count"] + 1
-        Noteworthy_DB["character_list"][Noteworthy_DB["character_count"]] = Noteworthy_character
-        Noteworthy_DB[Noteworthy_character] = Noteworthy_character .. "'s notes."
-
-        -- sort character list
-        table.sort(Noteworthy_DB["character_list"])
-
-        -- update plr ID
-        Noteworthy_plrID = Noteworthy_GetPlrID()
-    end
-
-    if Noteworthy_DB["last_char"] == nil then
-        Noteworthy_DB["last_char"] = Noteworthy_plrID
+    if Noteworthy_DB["notes_on_open"] == nil or Noteworthy_DB["notes_on_open"] == false then
+       Noteworthy_AddCharacterToDB()
     end
 
     -- broker setup
     Noteworthy_InitBroker()
 
     -- set gadgets from saved vars
-    Noteworthy_VersionLabelText:SetText("V" .. NOTEWORTHY_VTEXT)
     Noteworthy_ResetOptions()
     Noteworthy_ResetGadgetInfo()
     Noteworthy_SetInterface(false)
 
-    -- configure dropdown menus
+    -- configure drop down menus
     Noteworthy_CreateDropDownMenus()
 
     -- set initial tab etc.
-    if Noteworthy_DB["remember_page"] and Noteworthy_ValidTab(Noteworthy_DB["last_tab"]) then
+    if Noteworthy_DB["remember_page"] and Noteworthy_ValidCharacter(Noteworthy_DB["last_char"]) and Noteworthy_ValidTab(Noteworthy_DB["last_tab"]) then
         Noteworthy_SetTab(Noteworthy_DB["last_tab"])
 
         if Noteworthy_current_tab == TAB_CHAR then
@@ -168,8 +177,15 @@ function Noteworthy_Initialise()
     end
 
     if Noteworthy_DB["beta"] then
-        print("This is a beta version of Noteworthy II. Please keep an eye for bugs and issues. If you can, report anything suspicious you find on https://www.curseforge.com/wow/addons/noteworthy-ii or https://github.com/28/NoteworthyII/issues. Also, if possible you can send me an IGM at Turuvid on ArgentDawn. Thank you!")
+        print("|cFF18DF00Noteworthy II|r: This is a beta version of Noteworthy II. Please keep an eye for bugs and issues. If you can, report anything suspicious you find on https://www.curseforge.com/wow/addons/noteworthy-ii or https://github.com/28/NoteworthyII/issues. Also, if possible you can send me an IGM at Turuvid on ArgentDawn. Thank you!")
     end
+end
+
+--- Returns the formatted Noteworthy II version.
+-- @return formatted version text
+-- @see NOTEWORTHY_VTEXT
+function Noteworthy_GetStructuredVersion()
+   return "V" .. NOTEWORTHY_VTEXT
 end
 
 --- Creates all Noteworthy II drop down menus
@@ -178,9 +194,10 @@ end
 -- @see Noteworthy_CreateCharacterListDropDown
 function Noteworthy_CreateDropDownMenus()
     Noteworthy_CreateDropDown()
-    Noteworthy_CreateCharacterListDropDown(Noteworthy_FromCharDropDown, false)
-    Noteworthy_CreateCharacterListDropDown(Noteworthy_ToCharDropDown, false)
-    Noteworthy_CreateCharacterListDropDown(Noteworthy_DelCharDropDown, true)
+
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_Options.fromDropDown, false)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_Options.toDropDown, false)
+    Noteworthy_CreateCharacterListDropDown(Noteworthy_Options.delDropDown, true)
 end
 
 --- Asserts if passed tab ID is valid/existing.
@@ -192,11 +209,18 @@ function Noteworthy_ValidTab(tabId)
     return tabId ~= nil and (tabId == TAB_CHAR or tabId == TAB_SHARED or tabId == TAB_QUICK)
 end
 
+--- Asserts if a character exists for the given character ID.
+-- @param characterId ID to check
+-- @return true is character exists for the given ID, otherwise false
+function Noteworthy_ValidCharacter(characterId)
+   return Noteworthy_DB["character_list"][characterId] ~= nil
+end
+
 --- Sets the default setting values with regards to the version being upgraded to.
 -- @return nil
 function Noteworthy_SetDefaults()
     -- V1.0 settings
-    if Noteworthy_DB["initialised"] == nil then
+    if Noteworthy_DB["initialized"] == nil then
         Noteworthy_DB["version"] = 1000
         Noteworthy_DB["last_tab"] = 1
         Noteworthy_DB["last_curs"] = 1
@@ -232,8 +256,8 @@ function Noteworthy_SetDefaults()
     if Noteworthy_DB["version"] < 202000 then
         Noteworthy_DB["version"] = 202000
         -- print this message only when updating to this version (newly installed Noteworthy does not have old format character names)
-        if Noteworthy_DB["initialised"] == true then
-            print("|c00FFFF00Noteworthy II changed the way it stores character notes. All notes are stored as 'Character-Realm' instead of only 'Character'. If you have notes stored in the old format, use the character migration/deletion options from addon settings menu to move your notes.|r")
+        if Noteworthy_DB["initialized"] == true then
+            print("|cFF18DF00Noteworthy II|r: |c00FFFF00Noteworthy II changed the way it stores character notes. All notes are stored as 'Character-Realm' instead of only 'Character'. If you have notes stored in the old format, use the character migration/deletion options from add-on settings menu to move your notes.|r")
         end
     end
 
@@ -243,7 +267,14 @@ function Noteworthy_SetDefaults()
         Noteworthy_DB["undo"] = true
     end
 
-    Noteworthy_DB["initialised"] = true
+    -- V2.5.0 settings
+    if Noteworthy_DB["version"] < 205000 then
+        Noteworthy_DB["version"] = 205000
+        Noteworthy_DB["verbose"] = false
+        Noteworthy_DB["notes_on_open"] = false
+    end
+
+    Noteworthy_DB["initialized"] = true
     Noteworthy_DB["version"] = NOTEWORTHY_VERSION
 end
 
@@ -256,12 +287,12 @@ end
 -- Handles log in, entering combat and log off.
 -- @param event
 -- @return nil
--- @see Noteworthy_Initialise
+-- @see Noteworthy_Initialize
 -- @see Noteworthy_AutoCloseSave
 function Noteworthy_EventHandler(event)
     if (event == "VARIABLES_LOADED") then
         -- log in
-        Noteworthy_Initialise()
+        Noteworthy_Initialize()
 
     elseif event == "PLAYER_REGEN_DISABLED" then
         -- entering combat
@@ -526,7 +557,9 @@ function Noteworthy_AddQuickNote(quicknote)
     CloseDropDownMenus(nil)
 
     if quicknote == nil or quicknote == "" then
-        print("Noteworthy II quick note NOT saved (no text).")
+       if Noteworthy_DB["verbose"] then
+          print("|cFF18DF00Noteworthy II|r: Quick note NOT saved (no text).")
+       end
     else
         -- check for prefix
         if Noteworthy_DB["qnote_prefix"] then
@@ -553,7 +586,9 @@ function Noteworthy_AddQuickNote(quicknote)
         if Noteworthy_DB["qnote_edit"] then
             Noteworthy_QuickEdit()
         else
-            print("Noteworthy II quick note saved.")
+           if Noteworthy_DB["verbose"] then
+              print("|cFF18DF00Noteworthy II|r: Quick note saved.")
+           end
         end
     end
 end
@@ -589,7 +624,7 @@ function Noteworthy_ResetGadgetInfo()
     Noteworthy_text = {}
 
     for c = 1, Noteworthy_DB["character_count"], 1 do
-        thisCharacter = Noteworthy_DB["character_list"][c]
+        local thisCharacter = Noteworthy_DB["character_list"][c]
         Noteworthy_text[thisCharacter] = Noteworthy_DB[thisCharacter]
         Noteworthy_reminder[thisCharacter] = Noteworthy_DB["Remind_" .. thisCharacter]
     end
@@ -603,27 +638,31 @@ end
 --- Resets all the settings with the values from DB.
 -- @return nil
 function Noteworthy_ResetOptions()
-    Noteworthy_RememberPageCheckbox:SetChecked(Noteworthy_DB["remember_page"])
-    Noteworthy_FocusCheckbox:SetChecked(Noteworthy_DB["focus_text"])
-    Noteworthy_CombatCloseCheckbox:SetChecked(Noteworthy_DB["combat_close"])
-    Noteworthy_CloseSaveCheckbox:SetChecked(Noteworthy_DB["save_on_close"])
-    Noteworthy_PageSaveCheckbox:SetChecked(Noteworthy_DB["save_on_page_change"])
-    Noteworthy_SoundCheckbox:SetChecked(Noteworthy_DB["play_sounds"])
-    Noteworthy_ChatLoggingCheckbox:SetChecked(Noteworthy_DB["chat_logging"])
-    Noteworthy_UndoCheckbox:SetChecked(Noteworthy_DB["undo"])
-    Noteworthy_MiniButtonCheckbox:SetChecked(not Noteworthy_DB["minimap_button"].hide)
-    Noteworthy_ShowIconCheckbox:SetChecked(Noteworthy_DB["show_floating_button"])
-    Noteworthy_QNotePrefixCheckbox:SetChecked(Noteworthy_DB["qnote_prefix"])
-    Noteworthy_QNoteEditCheckbox:SetChecked(Noteworthy_DB["qnote_edit"])
-    Noteworthy_QNoteCursorCheckbox:SetChecked(Noteworthy_DB["qnote_cursor"])
+    Noteworthy_Options.remember_page:SetChecked(Noteworthy_DB["remember_page"])
+    Noteworthy_Options.focus_text:SetChecked(Noteworthy_DB["focus_text"])
+    Noteworthy_Options.combat_close:SetChecked(Noteworthy_DB["combat_close"])
+    Noteworthy_Options.save_on_close:SetChecked(Noteworthy_DB["save_on_close"])
+    Noteworthy_Options.save_on_page_change:SetChecked(Noteworthy_DB["save_on_page_change"])
+    Noteworthy_Options.play_sounds:SetChecked(Noteworthy_DB["play_sounds"])
+    Noteworthy_Options.verbose:SetChecked(Noteworthy_DB["verbose"])
+    Noteworthy_Options.notes_on_open:SetChecked(Noteworthy_DB["notes_on_open"])
+    Noteworthy_Options.chat_logging:SetChecked(Noteworthy_DB["chat_logging"])
+    Noteworthy_Options.undo:SetChecked(Noteworthy_DB["undo"])
+    Noteworthy_Options.show_minimap_button:SetChecked(not Noteworthy_DB["minimap_button"].hide)
+    Noteworthy_Options.show_floating_button:SetChecked(Noteworthy_DB["show_floating_button"])
+    Noteworthy_Options.qnote_prefix:SetChecked(Noteworthy_DB["qnote_prefix"])
+    Noteworthy_Options.qnote_edit:SetChecked(Noteworthy_DB["qnote_edit"])
+    Noteworthy_Options.qnote_cursor:SetChecked(Noteworthy_DB["qnote_cursor"])
 end
 
 --- Updates all visible UI elements on the character notes page.
 -- @return nil
 function Noteworthy_UpdateCharacterGadgets()
-    _G[Noteworthy_ReminderCheckbox:GetName() .. "Text"]:SetText("Remind " .. Noteworthy_character .. " at logon")
-    Noteworthy_ReminderCheckbox:SetChecked(Noteworthy_reminder[Noteworthy_character])
-    Noteworthy_TextAreaCEditBox:SetText(Noteworthy_text[Noteworthy_character])
+   if Noteworthy_character then
+      _G[Noteworthy_ReminderCheckbox:GetName() .. "Text"]:SetText("Remind " .. Noteworthy_character .. " at logon")
+      Noteworthy_ReminderCheckbox:SetChecked(Noteworthy_reminder[Noteworthy_character] or false)
+      Noteworthy_TextAreaCEditBox:SetText(Noteworthy_text[Noteworthy_character] or "")
+   end
 end
 
 --- Saves all notes current state.
@@ -697,10 +736,10 @@ end
 -- @see Noteworthy_ResetGadgetInfo
 -- @see Noteworthy_ClearDropDownSelection
 function Noteworthy_MigrateCharacterNotes()
-    local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_FromCharDropDown)
-    local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_ToCharDropDown)
-    local override = Noteworthy_OverrideOnMigrateCheckbox:GetChecked() or false
-    local preserveOrigin = Noteworthy_LeaveOriginCheckbox:GetChecked() or false
+    local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_Options.fromDropDown)
+    local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_Options.toDropDown)
+    local override = Noteworthy_Options.migrate_override:GetChecked() or false
+    local preserveOrigin = Noteworthy_Options.migrate_preserve:GetChecked() or false
     local fromChar = Noteworthy_DB["character_list"][fromCharId]
     local toChar = Noteworthy_DB["character_list"][toCharId]
     local notes
@@ -713,9 +752,12 @@ function Noteworthy_MigrateCharacterNotes()
     if not preserveOrigin then
         Noteworthy_DB[fromChar] = ""
     end
+
     Noteworthy_ResetGadgetInfo()
-    Noteworthy_ClearDropDownSelection(Noteworthy_FromCharDropDown)
-    Noteworthy_ClearDropDownSelection(Noteworthy_ToCharDropDown)
+    Noteworthy_ClearDropDownSelection(Noteworthy_Options.fromDropDown)
+    Noteworthy_ClearDropDownSelection(Noteworthy_Options.toDropDown)
+    Noteworthy_Options.migrate_override:SetChecked(false)
+    Noteworthy_Options.migrate_preserve:SetChecked(false)
 end
 
 --- Removes a character from Noteworthy II character lists, notes and reminders.
@@ -723,7 +765,7 @@ end
 -- @see Noteworthy_CreateDropDownMenus
 -- @see Noteworthy_ResetGadgetInfo
 function Noteworthy_RemoveCharacter()
-    local charId = UIDropDownMenu_GetSelectedID(Noteworthy_DelCharDropDown)
+    local charId = UIDropDownMenu_GetSelectedID(Noteworthy_Options.delDropDown)
     local charName = Noteworthy_DB["character_list"][charId]
     local currentPlayerName = Noteworthy_CreatePlayerName()
     if charName ~= currentPlayerName then
@@ -838,7 +880,7 @@ function Noteworthy_SetTextForTab(tabId, text)
     end
 end
 
---- Reinitializes/empties the undo stack.
+--- Re-initializes/empties the undo stack.
 -- @return nil
 function Noteworthy_EmptyUndoStack()
     Noteworthy_Undo_Stack = {
@@ -928,7 +970,7 @@ function Noteworthy_SetTextFocus(pos)
     end
 end
 
---- Sets the focus and cursor position on the current visible textbox.
+--- Sets the focus and cursor position on the current visible text box.
 -- @param pos the position to set the cursor to
 -- @return nil
 function Noteworthy_SetFocus(pos)

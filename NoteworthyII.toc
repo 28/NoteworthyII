@@ -1,6 +1,6 @@
-## Interface: 100200
+## Interface: 120001
 ## Title: Noteworthy II
-## Version: 2.4.9
+## Version: 2.5.0-alpha
 ## Notes: Fully featured and configurable notepad utility
 
 ## Author: Dejan Josifović / drow_28 / aka Turuvid, Argent Dawn
@@ -28,4 +28,4 @@ NoteworthyTemplates.xml
 NoteworthyVarTemplates.xml
 NoteworthyWindows.xml
 NoteworthyButton.xml
-NoteworthyOptions.xml
+NoteworthyOptions.lua

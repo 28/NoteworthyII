@@ -510,10 +510,6 @@
                 </Layers>
             </Frame>
         </Frames>
-
-        <Scripts>
-            <OnLoad function="InterfaceOptions_AddCategory"/>
-        </Scripts>
     </Frame>
 
     <Frame name="Noteworthy_AddOnMgmtOptions" hidden="false">
@@ -808,9 +804,5 @@
                 </Scripts>
             </Button>
         </Frames>
-
-        <Scripts>
-            <OnLoad function="InterfaceOptions_AddCategory"/>
-        </Scripts>
     </Frame>
 </Ui>
