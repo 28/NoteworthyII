@@ -1,7 +1,7 @@
 ## Interface: 120001
 ## Title: Noteworthy II
 ## Version: 2.5.0-beta1
-## Notes: Fully featured and configurable notepad utility
+## Notes: Fully featured and configurable notes, notepad World of Warcraft add-on
 
 ## Author: Dejan Josifović / drow_28 / aka Turuvid-Argent Dawn
 ## X-Email: theparanoidtimes@posteo.net
@@ -9,11 +9,24 @@
 ## X-Website: https://sr.ht/~tpt/NoteworthyII/
 ## X-Category: Miscellaneous
 ## X-Curse-Project-ID: 400633
+## IconTexture: Interface\Icons\INV_7XP_Inscription_TalentTome02
 
 ## Dependencies:
 ## OptionalDeps:
 ## DefaultState: enabled
 ## SavedVariables: Noteworthy_DB
+
+## Category: Other
+## Category-deDE: Anderes
+## Category-esES: Otros
+## Category-esMX: Otros
+## Category-frFR: Autre
+## Category-itIT: Altro
+## Category-koKR: 기타
+## Category-ptBR: Outro
+## Category-ruRU: Другое
+## Category-zhCN: 其它
+## Category-zhTW: 其他
 
 lib\LibStub.lua
 lib\CallbackHandler-1.0.lua
