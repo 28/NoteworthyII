@@ -50,7 +50,8 @@ function Noteworthy_GetPlrID()
     return 0
 end
 
---- TBD
+--- Adds the current playing character to Noteworthy_DB if not already added.
+-- Updates the character_count and last_char values.
 -- @return nil
 -- @see Noteworthy_GetPlrID
 -- @see Noteworthy_ValidCharacter
