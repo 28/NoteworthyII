@@ -23,21 +23,22 @@ tasks:
       chmod u+x ./nww.sh
   - get-changelog-delta: |
       cd $repo
-      ./nww.sh changelog -vf $NW_RELEASE_VERSION > changelog.txt
+      ./nww.sh changelog -vf $NW_RELEASE_VERSION > ${NW_RELEASE_VERSION}-changelog.txt
   - package: |
       cd $repo
       ./nww.sh pack -pv $NW_RELEASE_VERSION
       echo "export NW_FILE=NoteworthyII_${NW_RELEASE_VERSION}.zip" >> ~/.buildenv
   - hash: |
       cd $repo
-      ./nww.sh hash $NW_FILE > hash.md5
-      ./nww.sh hash -a SHA-1 $NW_FILE > hash.sha1
+      ./nww.sh hash $NW_FILE > ${NW_FILE}.md5
+      ./nww.sh hash -a SHA-1 $NW_FILE > ${NW_FILE}.sha1
   - upload-artifact: |
       cd $repo
       hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION $NW_FILE
-      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION hash.md5
-      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION hash.sha1
+      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION ${NW_FILE}.md5
+      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION ${NW_FILE}.sha1
+      hut git artifact upload -r NoteworthyII --rev $NW_RELEASE_VERSION ${NW_RELEASE_VERSION}-changelog.txt
   - curse-forge-release: |
       cd $repo
       export CF_API_TOKEN=$(cat ~/.cf-token)
-      ./nww.sh upload -p NW_FILE -rv $NW_RELEASE_VERSION -gv $versions -v
+      ./nww.sh upload -p $NW_FILE -rv $NW_RELEASE_VERSION -gv $versions -v
