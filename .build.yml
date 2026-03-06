@@ -6,7 +6,7 @@ secrets:
 sources:
   - git@git.sr.ht:~tpt/NoteworthyII
 environment:
-  versions: 10.2.5,3.4.3,1.15.0
+  versions: 12.0.1
   repo: NoteworthyII
 packages:
   - openjdk17
