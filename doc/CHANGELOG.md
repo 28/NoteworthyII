@@ -1,5 +1,8 @@
 # Change log
 
+## V2.5.0-beta2
+- No changes, optimizing release process
+
 ## V2.5.0-beta1
 - General
   - Update retail interface version
