@@ -4,7 +4,7 @@
 
 -- constants
 local NOTEWORTHY_VERSION = 205000
-local NOTEWORTHY_VTEXT = "2.5.0-beta2"
+local NOTEWORTHY_VTEXT = "2.5.0"
 local MAX_CHAT_LINES = 30
 local TAB_CHAR = 1
 local TAB_SHARED = 2
@@ -110,7 +110,7 @@ function Noteworthy_Initialize()
     -- Noteworthy_DB["version"] = 1100		-- temporarily uncomment this line & change number to reset to previous version
     -- Noteworthy_DB["initialized"] = nil	-- temporarily uncomment this line to reset default settings (but not notes)
     -- Noteworthy_DB = {}                   -- temporarily uncomment this line to reset ALL saved data
-    Noteworthy_DB["beta"] = true           -- change the value to true if the current version is a beta version
+    Noteworthy_DB["beta"] = false           -- change the value to true if the current version is a beta version
     ----------------------------------------------------------------
 
     -- version check

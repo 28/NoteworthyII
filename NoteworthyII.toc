@@ -1,6 +1,6 @@
 ## Interface: 120001
 ## Title: Noteworthy II
-## Version: 2.5.0-beta2
+## Version: 2.5.0
 ## Notes: Fully featured and configurable notes, notepad World of Warcraft add-on
 
 ## Author: Dejan Josifović / drow_28 / aka Turuvid-Argent Dawn

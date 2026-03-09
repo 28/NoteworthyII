@@ -1,5 +1,10 @@
 # Change log
 
+## V2.5.0
+- Promoting to real release version
+- UI
+  - Temporarily disable spell drag handler
+
 ## V2.5.0-beta2
 - No changes, optimizing release process
 
