@@ -2,11 +2,14 @@
 -- Add-on settings code
 --==============================================================
 
+-- table for all settings components
 Noteworthy_Options = {}
 
+-- main settings panel
 local panel = CreateFrame("Frame")
+-- character notes management panel
 local characterPanel = CreateFrame("Frame")
-
+--main settings scroll panel
 local scrollFrame = CreateFrame("ScrollFrame", nil, panel, "UIPanelScrollFrameTemplate")
 scrollFrame:SetPoint("TOPLEFT", 3, -4)
 scrollFrame:SetPoint("BOTTOMRIGHT", -27, 4)
@@ -17,6 +20,17 @@ scrollChild:SetHeight(1)
 scrollChild:SetWidth(panel:GetWidth() - 18)
 panel.scrollChild = scrollChild
 
+
+----------------------------------------------------------------
+-- Style components functions
+----------------------------------------------------------------
+
+--- Creates a text panel with the given text. The panel is 180 in width.
+-- If 'previous' component is nil, anchors it to the parent frame, otherwise to the 'previous' component.
+-- @param text text to write
+-- @param parent parent frame for anchor point
+-- @param previous previous frame in the parent frame for anchor point
+-- @return the text frame panel to serve as a 'previous' component for another function call
 local function CreateText(text, parent, previous)
    local title = parent:CreateFontString(nil, nil, "GameFontNormal")
    title:SetText(text)
@@ -34,6 +48,12 @@ local function CreateText(text, parent, previous)
    return title
 end
 
+--- Creates a wide text panel with the given text. The panel is 600 in width.
+-- If 'previous' component is nil, anchors it to the parent frame, otherwise to the 'previous' component.
+-- @param text text to write
+-- @param parent parent frame for anchor point
+-- @param previous previous frame in the parent frame for anchor point
+-- @return the text frame panel to serve as a 'previous' component for another function call
 local function CreateDetailsText(text, parent, previous)
    local title = parent:CreateFontString(nil, nil, "GameFontNormal")
    title:SetText(text)
@@ -51,6 +71,12 @@ local function CreateDetailsText(text, parent, previous)
    return title
 end
 
+--- Creates a heading text panel with the given text. Uses the large font.  The panel is 250 in width.
+-- If 'previous' component is nil, anchors it to the parent frame, otherwise to the 'previous' component.
+-- @param text text to write
+-- @param parent parent frame for anchor point
+-- @param previous previous frame in the parent frame for anchor point
+-- @return the text frame panel to serve as a 'previous' component for another function call
 local function CreateHeading(text, parent, previous)
    local title = parent:CreateFontString(nil, nil, "GameFontNormalLarge")
    title:SetText(text)
@@ -67,6 +93,12 @@ local function CreateHeading(text, parent, previous)
    return title
 end
 
+--- Creates a version text panel with the given text. The panel is 600 in width as is justified to the right.
+-- If 'previous' component is nil, anchors it to the parent frame, otherwise to the 'previous' component.
+-- @param parent parent frame for anchor point
+-- @param previous previous frame in the parent frame for anchor point
+-- @return the text frame panel to serve as a 'previous' component for another function call
+-- @see Noteworthy_GetStructuredVersion()
 local function CreateVersionHeading(parent, previous)
    local title = parent:CreateFontString(nil, nil, "GameFontNormalLarge")
    title:SetText(Noteworthy_GetStructuredVersion())
@@ -83,6 +115,12 @@ local function CreateVersionHeading(parent, previous)
    return title
 end
 
+--- Creates a heading text panel with the given text. Uses the large font.  The panel is 250 in width.
+-- If 'previous' component is nil, anchors it to the parent frame, otherwise to the 'previous' component.
+-- @param text text to write
+-- @param parent parent frame for anchor point
+-- @param previous previous frame in the parent frame for anchor point
+-- @return the text frame panel to serve as a 'previous' component for another function call
 local function CreateCheckButton(name, variable, description, parent, previous, updateUi)
    local title = CreateText(name, parent, previous)
    title:SetHeight(20)
@@ -121,6 +159,15 @@ local function CreateCheckButton(name, variable, description, parent, previous, 
    return title
 end
 
+--- Creates button frame with the given name, and the 'onClick' function.
+-- Creates an empty text frame to help with the button alignment with the 'previous' component.
+-- If 'previous' component is nil, anchors it to the parent frame, otherwise to the 'previous' component.
+-- @param name name of the button
+-- @param onClick button onClick handler function
+-- @param parent parent frame for anchor point
+-- @param previous previous frame in the parent frame for anchor point
+-- @return the button frame to serve as a 'previous' component for another function call
+-- @see CreateText
 local function CreateButton(name, onClick, parent, previous)
    local title = CreateText("", parent, previous)
    title:SetHeight(20)
@@ -135,6 +182,18 @@ local function CreateButton(name, onClick, parent, previous)
    return title
 end
 
+
+----------------------------------------------------------------
+-- Main settings
+----------------------------------------------------------------
+
+--- Creates the main settings panel.
+-- @param parent the parent frame
+-- @return the last created frame in the function to serve as a 'previous' component for another function call
+-- @see CreateHeading
+-- @see CreateCheckButton
+-- @see CreateDetailsText
+-- @see CreateVersionHeading
 local function CreateMainSettings(parent)
    local p = nil
 
@@ -180,6 +239,14 @@ local function CreateMainSettings(parent)
    p = CreateVersionHeading(parent, p)
 end
 
+
+----------------------------------------------------------------
+-- Character notes management settings
+----------------------------------------------------------------
+
+--- Migrate notes button handler function.
+-- Invokes the confirmation dialog only if the from and to character IDs are populated and are different.
+-- @return nil
 local function NotesMigrationButtonHandler()
    local fromCharId = UIDropDownMenu_GetSelectedID(Noteworthy_Options.fromDropDown)
    local toCharId = UIDropDownMenu_GetSelectedID(Noteworthy_Options.toDropDown)
@@ -188,6 +255,10 @@ local function NotesMigrationButtonHandler()
    end
 end
 
+--- Delete character notes button handler function.
+-- Invokes the confirmation dialog only if the character ID is populated and is different from the current playing character ID.
+-- @return nil
+-- @see Noteworthy_isCharacterIdFromCurrentPlayer
 local function NotesDeleteButtonHandler()
    local charId = UIDropDownMenu_GetSelectedID(Noteworthy_Options.delDropDown)
    if charId ~= nil and not Noteworthy_isCharacterIdFromCurrentPlayer(charId) then
@@ -195,6 +266,14 @@ local function NotesDeleteButtonHandler()
    end
 end
 
+--- Create the character notes management panel.
+-- @param parent the parent frame
+-- @return the last created frame in the function to serve as a 'previous' component for another function call
+-- @see CreateHeading
+-- @see CreateCheckButton
+-- @see CreateDetailsText
+-- @see NotesMigrationButtonHandler
+-- @see NotesDeleteButtonHandler
 local function CreateMigrationSettings(parent)
    local p = nil
 
@@ -235,10 +314,15 @@ local function CreateMigrationSettings(parent)
    p = CreateButton("Delete Notes", NotesDeleteButtonHandler, parent, p)
 end
 
+
+----------------------------------------------------------------
+-- Initialize settings
+----------------------------------------------------------------
+
 CreateMainSettings(scrollChild)
 CreateMigrationSettings(characterPanel)
 
-local category = Settings.RegisterCanvasLayoutCategory(panel, "Noteworthy II", "Noteworthy II")
-local characterManagementCategory = Settings.RegisterCanvasLayoutSubcategory(category, characterPanel, "Character Management")
+local category = Settings.RegisterCanvasLayoutCategory(panel, "Noteworthy II")
+Settings.RegisterCanvasLayoutSubcategory(category, characterPanel, "Character Management")
 
 Settings.RegisterAddOnCategory(category)

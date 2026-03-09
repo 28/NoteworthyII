@@ -3,5 +3,19 @@
   "runtime.version": "Lua 5.4",
   "hint.enable": false,
   "workspace.library" : ["Interface/AddOns"],
-  "diagnostics.globals" : ["CreateFrame", "GameTooltip", "C_Map", "GetRealZoneText"]
+  "diagnostics.globals" : [
+    "CreateFrame",
+    "GameTooltip",
+    "C_Map",
+    "GetRealZoneText",
+    "GetMacroIndexByName",
+    "CreateMacro",
+    "GetCursorPosition",
+    "GetCursorInfo",
+    "GetSpellBookItemInfo",
+    "GetSpellLink",
+    "GetMerchantItemLink",
+    "GetMacroInfo",
+    "GetMacroBody",
+    "ClearCursor"]
 }

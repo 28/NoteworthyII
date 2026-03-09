@@ -102,6 +102,7 @@ end
 -- @see Noteworthy_ChangeCharacter
 -- @see Ghost_CursorPos
 -- @see Noteworthy_SetTextFocus
+-- @see Noteworthy_AddCharacterToDB
 function Noteworthy_Initialize()
     Noteworthy_character = Noteworthy_CreatePlayerName()
 
@@ -428,7 +429,7 @@ function Noteworthy_ButtonClick(button)
 end
 
 --- Toggles the Noteworthy frame visibility.
--- If visible close the frame with auto save (if available). If hidden displays it.
+-- If visible close the frame with auto save (if available). If hidden, displays it.
 -- @return nil
 -- @see Noteworthy_AutoCloseSave
 -- @see Noteworthy_ShowNotepad
@@ -896,6 +897,7 @@ end
 function Noteworthy_UndoEnabled()
     return Noteworthy_DB["undo"] == true
 end
+
 
 ----------------------------------------------------------------
 -- Other event functions
