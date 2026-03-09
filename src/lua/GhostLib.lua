@@ -248,8 +248,8 @@ function Ghost_EditBoxDrag()
     if (infoType == "item") then
         text = info2
     elseif (infoType == "spell") then
-        local skillType, spellId = GetSpellBookItemInfo(info1, "player")
-        text = GetSpellLink(spellId)
+        -- local skillType, spellId = GetSpellBookItemInfo(info1, "player")
+        -- text = GetSpellLink(spellId)
     elseif (infoType == "merchant") then
         text = GetMerchantItemLink(info1)
     elseif (infoType == "macro") then
